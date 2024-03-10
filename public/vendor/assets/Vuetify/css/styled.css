@@ -1,0 +1,157 @@
+#menu_tab {
+  background: #1976d2 !important;
+}
+
+.v-speed-dial--right {
+  position: fixed !important;
+  bottom: 12%;
+  right: 65px;
+  transition-duration: .8s;
+}
+
+#inspire {
+  background: none !important;
+}
+
+.v-application--wrap {
+  min-height: none !important;
+}
+
+.v-input__slot {
+  margin-bottom: 0 !important;
+}
+
+.testingclass1 .v-messages {
+  display: none !important;
+}
+
+.qtitle {
+  font-size: 1.5rem;
+}
+
+.qtitle .v-input__control .v-input__slot:before, .checkbox .v-input__control .v-input__slot:before, .multiple .v-input__control .v-input__slot:before, .dropdown .v-input__control .v-input__slot:before {
+  border-style: none !important;
+}
+
+.skin-default-dark .left-sidebar {
+  background: #1976d2 !important;
+}
+
+.floatingbot:focus {
+  outline: none;
+}
+
+.testingclass1 .v-label {
+  margin: 0 !important;
+}
+
+.v-input--selection-controls {
+  margin-top: 0px !important;
+}
+
+.checkbox, .multiple, .dropdown {
+  padding: 0 !important;
+}
+
+.container, .container-fluid {
+  padding: 20px 90px !important;
+}
+
+.dtitle {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.v-menu__content {
+  max-height: 500px !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#addop:hover {
+  cursor: pointer;
+}
+
+#dis_select {
+  color: black !important;
+}
+
+#vform {
+  padding: 0px !important;
+}
+
+#v-fo {
+  width: 92.3% !important;
+}
+
+@media screen and (min-width: 1300px) {
+  .v-speed-dial--right {
+    right: 100px !important;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .v-speed-dial--right {
+    right: 40px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-wrapper {
+    margin-left: 0 !important;
+    padding-left: 60px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .lock-nav .page-wrapper {
+    margin-left: 0 !important;
+    padding-left: 220px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container, .container-fluid {
+    padding: 20px 10px !important;
+  }
+  .v-form {
+    padding: 20px !important;
+    font-size: 0.5rem;
+  }
+  #v-fo {
+    width: 100% !important;
+    padding: 5px !important;
+  }
+  .v-speed-dial--right {
+    bottom: 5% !important;
+    right: 20px !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #vform {
+    padding: 0 !important;
+  }
+  #form_title {
+    font-size: 1.5rem;
+  }
+}
+/*# sourceMappingURL=styled.css.map */
