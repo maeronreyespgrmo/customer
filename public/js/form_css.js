@@ -121,6 +121,7 @@ this.radio_12 = response.data[0].radio_12
 this.comments = response.data[0].comments
 this.invalidated = response.data[0].invalidated
 this.others_remarks = response.data[0].others_remarks
+this.isVisible = response.data[0].invalidated == "yes" ? false : true
 
 axios.post('/change_dropdown',{
 office_name: response.data[0].office_name

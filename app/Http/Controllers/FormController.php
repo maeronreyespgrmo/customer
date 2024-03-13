@@ -132,12 +132,28 @@ class FormController extends Controller
     //VIEW CSS FORM
     public function view_css(Request $request)
     {
-        $result = DB::table('tbl_form_css')
+
+        $result_invalidated = DB::table('tbl_form_css')
+        ->join('tbl_offices', 'tbl_form_css.office_id', '=', 'tbl_offices.id')
+        ->select('tbl_form_css.*', 'tbl_offices.office_name')
+        ->where('tbl_form_css.id', $request->id)
+        ->get();
+        
+        if($result_invalidated[0]->invalidated == "yes"){
+            $result = DB::table('tbl_form_css')
+            ->join('tbl_offices', 'tbl_form_css.office_id', '=', 'tbl_offices.id')
+            ->select('tbl_form_css.*','tbl_offices.office_name')
+            ->where('tbl_form_css.id', $request->id)
+            ->get();
+        }
+        else{
+            $result = DB::table('tbl_form_css')
             ->join('tbl_services', 'tbl_form_css.services_id', '=', 'tbl_services.id')
             ->join('tbl_offices', 'tbl_form_css.office_id', '=', 'tbl_offices.id')
             ->select('tbl_form_css.*', 'tbl_services.service_name', 'tbl_offices.office_name')
             ->where('tbl_form_css.id', $request->id)
             ->get();
+        }
 
         return $result;
     }
