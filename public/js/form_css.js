@@ -243,9 +243,11 @@ console.log(response);
 this.snackbar = true
 this.snackbarcolor = "success"
 this.snackbartext = "Save Successfully"
+this.valid = false
 setTimeout(() => {
-window.location.reload()
-}, 1000);
+this.valid = true
+// window.location.reload()
+}, 5000);
 
 })
 }

@@ -701,7 +701,7 @@
                             <v-btn width="500" color="primary" :disabled="!valid" @click="save_btn()"
                                 v-if="currentStep == totalSteps" x-large>Submit ↑</v-btn>
 
-                            <v-btn v-show="isVisible == false" width="1000" color="primary"  @click="save_btn()"
+                            <v-btn :disabled="!valid" v-show="isVisible == false" width="1000" color="primary"  @click="save_btn()"
                              x-large>Submit ↑</v-btn>
 
                         </center>
