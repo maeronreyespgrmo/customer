@@ -77,7 +77,7 @@ class FormController extends Controller
                 ->select('id')
                 ->where('office_name', $request->office_name)
                 ->get();
-
+            // return$request->invalidated;
             if($request->invalidated == "no"){
                 foreach($request->services as $services_item){
                     $query_services = DB::table('tbl_services')
@@ -97,7 +97,7 @@ class FormController extends Controller
                 'date' => $request->date,
                 'name_evaluatee' => $request->name_evaluatee,
                 'name_evaluator' => $request->name_evaluator,
-                'services_id' => $query_services[0]->id,
+                'services_id' => $services,
                 'office_id' => $query_offices[0]->id,
                 'radio_1' => $request->radio_1,
                 'radio_2' => $request->radio_2,
