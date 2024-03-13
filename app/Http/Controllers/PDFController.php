@@ -55,8 +55,8 @@ class PDFController extends Controller
         $countInvalidated = DB::table('tbl_form_css')
         ->where('invalidated', 'yes')
         ->whereNull('deleted_at')
-        ->where('office_id', '38')
-        ->where('date', 'LIKE', '%2023-02%')
+        ->where('office_id', $result_offices[0]->id)
+        ->where('date', 'LIKE', '%' . $monthYearString . '%')
         ->count();
 
         $invalidated = $countInvalidated;
