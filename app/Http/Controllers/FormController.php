@@ -41,7 +41,6 @@ class FormController extends Controller
             $table->date = $request->date;
             $table->name_evaluatee = $request->name_evaluatee;
             $table->name_evaluator = $request->name_evaluator;
-            // $table->services_id = $query_services[0]->id;
             $table->services_id = $services;
             $table->office_id = $query_offices[0]->id;
             $table->radio_1 = $request->radio_1 ?? "N/A";

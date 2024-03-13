@@ -52,58 +52,14 @@ class PDFController extends Controller
         $manager_suffix = $result_managers[0]->suffix;
         $manager_final_lastname = $manager_suffix." ".$manager_lastname;
 
-        // $invalidatedCount = DB::table(DB::raw('(
-        //     SELECT
-        //         tbl_form_css.id,
-        //         tbl_form_css.invalidated AS invalidated,
-        //         SUBSTRING_INDEX(SUBSTRING_INDEX(services_id, ",", n.digit + 1), ",", -1) AS service_id,
-        //         COUNT(*) AS total_respondents
-        //     FROM
-        //         tbl_form_css
-        //     JOIN
-        //         (
-        //             SELECT 0 AS digit
-        //             UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL
-        //             SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL
-        //             SELECT 9 UNION ALL SELECT 10 UNION ALL SELECT 11 UNION ALL SELECT 12 UNION ALL
-        //             SELECT 13 UNION ALL SELECT 14 UNION ALL SELECT 15 UNION ALL SELECT 16 UNION ALL
-        //             SELECT 17 UNION ALL SELECT 18 UNION ALL SELECT 19 UNION ALL SELECT 20
-        //         ) n
-        //     ON LENGTH(services_id) - LENGTH(REPLACE(services_id, ",", "")) >= n.digit
-        //     WHERE tbl_form_css.office_id = "'.$result_offices[0]->id.'" AND DATE LIKE "%'.$monthYearString.'%"
-        //     GROUP BY service_id
-        // ) as tb2'))
-        //     ->select(DB::raw('COUNT(tb2.invalidated) as count_invalidated'))
-        //     ->get();
-
-        // $invalidatedCount = DB::table(DB::raw('(
-        //     SELECT
-        //         SUBSTRING_INDEX(SUBSTRING_INDEX(services_id, ",", n.digit + 1), ",", -1) AS service_id
-        //     FROM
-        //         tbl_form_css
-        //     JOIN
-        //         (
-        //             SELECT 0 AS digit
-        //             UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL
-        //             SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL
-        //             SELECT 9 UNION ALL SELECT 10 UNION ALL SELECT 11 UNION ALL SELECT 12 UNION ALL
-        //             SELECT 13 UNION ALL SELECT 14 UNION ALL SELECT 15 UNION ALL SELECT 16 UNION ALL
-        //             SELECT 17 UNION ALL SELECT 18 UNION ALL SELECT 19 UNION ALL SELECT 20
-        //         ) n
-        //     ON LENGTH(services_id) - LENGTH(REPLACE(services_id, ",", "")) >= n.digit
-        //     WHERE tbl_form_css.office_id = "'.$result_offices[0]->id.'" AND tbl_form_css.invalidated = "yes" AND DATE LIKE "%'.$monthYearString.'%"
-        // ) AS tb2'))
-        //     ->select(DB::raw('COUNT(tb2.service_id) as count_invalidated'))
-        //     ->get();
-
         $countInvalidated = DB::table('tbl_form_css')
         ->where('invalidated', 'yes')
-        ->where('office_id', $result_offices[0]->id)
-        ->where('DATE', 'LIKE', '%' . $monthYearString . '%')
+        ->whereNull('deleted_at')
+        ->where('office_id', '38')
+        ->where('date', 'LIKE', '%2023-02%')
         ->count();
 
         $invalidated = $countInvalidated;
-        // $invalidated = $result_invalidated[0]->invalidated;
 
         $currentDate = Carbon::now()->formatLocalized('%B %d, %Y');
 

@@ -14,15 +14,15 @@ class SurveyController extends Controller
         $total_count = DB::table('tbl_form_css')
             ->join('tbl_services', 'tbl_form_css.services_id', '=', 'tbl_services.id')
             ->join('tbl_offices', 'tbl_form_css.office_id', '=', 'tbl_offices.id')
-            ->whereNull('tbl_form_css.deleted_at')
-            ->select('tbl_form_css.*', 'tbl_services.service_name', 'tbl_offices.office_name')
-            ->where('tbl_offices.office_name', 'LIKE', $request->office_name)
+            ->select('tbl_form_css.id','tbl_services.service_name','tbl_form_css.name_evaluatee','tbl_form_css.name_evaluator','tbl_form_css.invalidated','tbl_form_css.date', 'tbl_services.service_name', 'tbl_offices.office_name')
+            ->where('tbl_offices.office_name','LIKE',$request->office_name)
             ->whereRaw("
             CONCAT(
             tbl_form_css.id, 
             service_name,
-            name_evaluatee,
-            name_evaluator,
+            tbl_form_css.name_evaluatee,
+            tbl_form_css.name_evaluator,
+            tbl_form_css.invalidated,
             date
             ) LIKE '%" . $request->search . "%'")
             ->count();
@@ -40,17 +40,15 @@ class SurveyController extends Controller
         $next = DB::table('tbl_form_css')
             ->join('tbl_services', 'tbl_form_css.services_id', '=', 'tbl_services.id')
             ->join('tbl_offices', 'tbl_form_css.office_id', '=', 'tbl_offices.id')
-            ->whereNull('tbl_form_css.deleted_at')
-            ->select('tbl_form_css.*', 'tbl_services.service_name', 'tbl_offices.office_name')
-            ->where('tbl_offices.office_name', 'LIKE', $request->office_name)
-            // ->offset($offset)
-            // ->limit($rowsperpage)
+            ->select('tbl_form_css.id','tbl_services.service_name','tbl_form_css.name_evaluatee','tbl_form_css.name_evaluator','tbl_form_css.invalidated','tbl_form_css.date', 'tbl_services.service_name', 'tbl_offices.office_name')
+            ->where('tbl_offices.office_name','LIKE',$request->office_name)
             ->whereRaw("
             CONCAT(
             tbl_form_css.id, 
             service_name,
-            name_evaluatee,
-            name_evaluator,
+            tbl_form_css.name_evaluatee,
+            tbl_form_css.name_evaluator,
+            tbl_form_css.invalidated,
             date
             ) LIKE '%" . $request->search . "%'")
             ->orderBy('id', 'desc')
@@ -68,7 +66,7 @@ class SurveyController extends Controller
     public function display_pss(Request $request)
     {
         $total_count = DB::table('tbl_form_pss')
-            ->select('tbl_form_pss.id AS id', 'patient_name', 'home_address', 'date')
+            ->select('tbl_form_pss.id AS id', 'patient_name', 'home_address', 'date' , 'hospital_name')
             ->join('tbl_hospitals', 'tbl_form_pss.hospital_id', '=', 'tbl_hospitals.id')
             ->whereNull('tbl_form_pss.deleted_at')
             ->where('tbl_hospitals.hospital_name', 'LIKE', $request->hospital_name)
@@ -76,8 +74,10 @@ class SurveyController extends Controller
             CONCAT(
             tbl_form_pss.id, 
             patient_name,
+            hospital_name,
             home_address,
             date,
+            invalidated,
             comments
             ) LIKE '%" . $request->search . "%'")
             ->count();
@@ -93,7 +93,7 @@ class SurveyController extends Controller
         $offset = ($currentpage - 1) * $rowsperpage;
 
         $next = DB::table('tbl_form_pss')
-            ->select('tbl_form_pss.id AS id', 'patient_name', 'home_address', 'date')
+            ->select('tbl_form_pss.id AS id', 'patient_name', 'home_address', 'date', 'hospital_name')
             ->join('tbl_hospitals', 'tbl_form_pss.hospital_id', '=', 'tbl_hospitals.id')
             // ->offset($offset)
             // ->limit($rowsperpage)
@@ -103,8 +103,10 @@ class SurveyController extends Controller
             CONCAT(
             tbl_form_pss.id, 
             patient_name,
+            hospital_name,
             home_address,
             date,
+            invalidated,
             comments
             ) LIKE '%" . $request->search . "%'")
             ->get();

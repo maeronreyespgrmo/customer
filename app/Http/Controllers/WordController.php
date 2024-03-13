@@ -55,8 +55,9 @@ class WordController extends Controller
 
             $countInvalidated = DB::table('tbl_form_css')
             ->where('invalidated', 'yes')
+            ->whereNull('deleted_at')
             ->where('office_id', $result_offices[0]->id)
-            ->where('DATE', 'LIKE', '%' . $monthYearString . '%')
+            ->where('date', 'LIKE', '%' . $monthYearString . '%')
             ->count();
 
             // $invalidated = $invalidatedCount[0]->count_invalidated;
