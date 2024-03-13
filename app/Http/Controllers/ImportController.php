@@ -25,6 +25,7 @@ class ImportController extends Controller
             office_name,
             name_evaluatee,
             name_evaluator,
+            invalidated,
             date
             ) LIKE '%" . $request->search . "%'")
             ->count();
@@ -52,6 +53,7 @@ class ImportController extends Controller
             office_name,
             name_evaluatee,
             name_evaluator,
+            invalidated,
             date
             ) LIKE '%" . $request->search . "%'")
             ->orderBy('id', 'desc')
