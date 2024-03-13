@@ -12,14 +12,31 @@ class TableController extends Controller
     //
     public function view_css($id)
     {
-        $results = DB::table('tbl_form_css')
+
+        $result_invalidated = DB::table('tbl_form_css')
+        ->join('tbl_offices', 'tbl_form_css.office_id', '=', 'tbl_offices.id')
+        ->select('tbl_form_css.*', 'tbl_offices.office_name')
+        ->where('tbl_form_css.id', $id)
+        ->get();
+        
+        if($result_invalidated[0]->invalidated == "yes"){
+            $result = DB::table('tbl_form_css')
+            ->join('tbl_offices', 'tbl_form_css.office_id', '=', 'tbl_offices.id')
+            ->select('tbl_form_css.*','tbl_offices.office_name')
+            ->where('tbl_form_css.id', $id)
+            ->get();
+        }
+        else{
+            $result = DB::table('tbl_form_css')
             ->join('tbl_services', 'tbl_form_css.services_id', '=', 'tbl_services.id')
             ->join('tbl_offices', 'tbl_form_css.office_id', '=', 'tbl_offices.id')
             ->select('tbl_form_css.*', 'tbl_services.service_name', 'tbl_offices.office_name')
             ->where('tbl_form_css.id', $id)
             ->get();
+        }
+       
         $data = [
-            'results' => $results[0],
+            'results' => $result[0],
         ];
         return view('table_css', $data);
     }

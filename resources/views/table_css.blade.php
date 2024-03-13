@@ -63,9 +63,17 @@
             <tr>
                 <td>Name of Evaluatee:<b>{{ $results->name_evaluatee }}</b></td>
             </tr>
+            @if($results->invalidated == "no")
             <tr>
                 <td>Requested Service:<b>{{ $results->service_name }}</b></td>
             </tr>
+            @endif
+
+            <tr>
+                <td>Invalidated:<b>{{ $results->invalidated }}</b></td>
+            </tr>
+
+            @if($results->invalidated == "no")
             <tr>
                 <td><b>Delivery Serbisyo</b></td>
             </tr>
@@ -151,6 +159,8 @@
                     <b>{{ $results->comments }}</b>
                 </td>
             </tr>
+            @endif
+          
 
         </tbody>
     </table>

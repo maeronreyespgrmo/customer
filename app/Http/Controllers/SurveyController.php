@@ -66,7 +66,7 @@ class SurveyController extends Controller
     public function display_pss(Request $request)
     {
         $total_count = DB::table('tbl_form_pss')
-            ->select('tbl_form_pss.id AS id', 'patient_name', 'home_address', 'date')
+            ->select('tbl_form_pss.id AS id','hospital_name','patient_name', 'home_address', 'date', 'invalidated')
             ->join('tbl_hospitals', 'tbl_form_pss.hospital_id', '=', 'tbl_hospitals.id')
             ->whereNull('tbl_form_pss.deleted_at')
             ->where('tbl_hospitals.hospital_name', 'LIKE', $request->hospital_name)
@@ -76,6 +76,7 @@ class SurveyController extends Controller
             patient_name,
             home_address,
             date,
+            invalidated,
             comments
             ) LIKE '%" . $request->search . "%'")
             ->count();
@@ -91,7 +92,7 @@ class SurveyController extends Controller
         $offset = ($currentpage - 1) * $rowsperpage;
 
         $next = DB::table('tbl_form_pss')
-            ->select('tbl_form_pss.id AS id', 'patient_name', 'home_address', 'date')
+            ->select('tbl_form_pss.id AS id','hospital_name', 'patient_name', 'home_address', 'date', 'invalidated')
             ->join('tbl_hospitals', 'tbl_form_pss.hospital_id', '=', 'tbl_hospitals.id')
             // ->offset($offset)
             // ->limit($rowsperpage)
@@ -103,6 +104,7 @@ class SurveyController extends Controller
             patient_name,
             home_address,
             date,
+            invalidated,
             comments
             ) LIKE '%" . $request->search . "%'")
             ->get();

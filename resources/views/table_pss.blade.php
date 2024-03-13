@@ -57,6 +57,7 @@
             <tr>
                 <td>Date: <b>{{ $results->date }}</b></td>
             </tr>
+            @if($results->invalidated == "no" || $results->invalidated == "no")
             <tr>
                 <td>Pangalan ng Pasyente:<b>{{ $results->patient_name }}</b></td>
             </tr>
@@ -105,6 +106,7 @@
                     @endif
                 </td>
             </tr>
+         
             <tr>
                 <td><b>I. Environment of the Facility (Kapaligiran)</b></td>
             </tr>
@@ -415,6 +417,8 @@
             <tr>
                 <td>Comments:<b>{{ $results->comments}}</b></td>
             </tr>
+            @endif
+       
         </tbody>
     </table>
 </body>
