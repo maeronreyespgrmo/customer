@@ -38,22 +38,19 @@ class SurveyController extends Controller
         $offset = ($currentpage - 1) * $rowsperpage;
 
         $next = DB::table('tbl_form_css')
-            ->join('tbl_services', 'tbl_form_css.services_id', '=', 'tbl_services.id')
             ->join('tbl_offices', 'tbl_form_css.office_id', '=', 'tbl_offices.id')
             ->whereNull('tbl_form_css.deleted_at')
-            ->select('tbl_form_css.*', 'tbl_services.service_name', 'tbl_offices.office_name')
+            ->select('tbl_form_css.*', 'tbl_offices.office_name')
             ->where('tbl_offices.office_name', 'LIKE', $request->office_name)
-            // ->offset($offset)
-            // ->limit($rowsperpage)
             ->whereRaw("
             CONCAT(
             tbl_form_css.id, 
-            service_name,
             name_evaluatee,
             name_evaluator,
+            invalidated,
             date
             ) LIKE '%" . $request->search . "%'")
-            ->orderBy('id', 'desc')
+            ->orderBy('tbl_form_css.id', 'ASC')
             ->get();
 
         $myArray = array(
@@ -64,6 +61,7 @@ class SurveyController extends Controller
         );
         return $myArray;
     }
+    
     //DISPLAY PSS
     public function display_pss(Request $request)
     {

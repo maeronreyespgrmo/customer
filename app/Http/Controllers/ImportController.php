@@ -14,17 +14,15 @@ class ImportController extends Controller
     public function display_css(Request $request)
     {
         $total_count = DB::table('tbl_form_css')
-            ->join('tbl_services', 'tbl_form_css.services_id', '=', 'tbl_services.id')
             ->join('tbl_offices', 'tbl_form_css.office_id', '=', 'tbl_offices.id')
             ->where('tbl_form_css.deleted_at', null)
             ->where('tbl_offices.office_name', 'LIKE', $request->office_name)
-            ->select('tbl_form_css.*', 'tbl_services.service_name', 'tbl_offices.office_name')
+            ->select('tbl_form_css.*', 'tbl_offices.office_name')
             ->whereNull('tbl_form_css.deleted_at')
             ->whereRaw("
             CONCAT(
             tbl_form_css.id, 
             office_name,
-            service_name,
             name_evaluatee,
             name_evaluator,
             date
@@ -42,18 +40,16 @@ class ImportController extends Controller
         $offset = ($currentpage - 1) * $rowsperpage;
 
         $next = DB::table('tbl_form_css')
-            ->join('tbl_services', 'tbl_form_css.services_id', '=', 'tbl_services.id')
             ->join('tbl_offices', 'tbl_form_css.office_id', '=', 'tbl_offices.id')
             ->where('tbl_offices.office_name', 'LIKE', $request->office_name)
             ->where('tbl_form_css.deleted_at', null)
-            ->select('tbl_form_css.*', 'tbl_services.service_name', 'tbl_offices.office_name')
+            ->select('tbl_form_css.*', 'tbl_offices.office_name')
             // ->offset($offset)
             // ->limit($rowsperpage)
             ->whereRaw("
             CONCAT(
             tbl_form_css.id, 
             office_name,
-            service_name,
             name_evaluatee,
             name_evaluator,
             date

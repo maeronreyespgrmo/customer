@@ -43,12 +43,12 @@ let app = new Vue({
     sortable: false,
     value: 'office_name',
     },
-    {
-    text: 'Services',
-    align: 'start',
-    sortable: false,
-    value: 'service_name',
-    },
+    // {
+    // text: 'Services',
+    // align: 'start',
+    // sortable: false,
+    // value: 'service_name',
+    // },
     {
     text: 'Name of Evalualator',
     align: 'start',
