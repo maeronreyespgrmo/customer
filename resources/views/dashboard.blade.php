@@ -122,12 +122,19 @@
                             </div>
                             <!-- /.row -->
                             <!-- Main row -->
+                            
                             <div class="row">
-                                <!-- Left col -->
-                                <section class="col-lg-12 connectedSortable">
+                                <div class="col-lg-6">
+   <!-- Left col -->
+                                 <section class="connectedSortable">
+    
                                     <!-- Custom tabs (Charts with tabs)-->
                                     <div class="card">
                                         <div class="card-header">
+                                            <h3 class="card-title">
+                                            <i class="fas fa-chart-pie mr-1"></i>
+                                            Analytics
+                                            </h3><br>
                                             <h3 class="card-title">
                                                 <div class="w3-bar w3-white">
                                                     <button class="w3-bar-item w3-button" onclick="openCity('London')">No of
@@ -140,12 +147,12 @@
                                         </div><!-- /.card-header -->
                                         <div class="card-body">
 
-                                            <div id="London" class="w3-container city">
-                                                <canvas id="line_chart_css" width="1200" height="1000"></canvas>
+                                            <div id="London" class=" w3-container city">
+                                                <canvas id="line_chart_css" width="800" height="600"></canvas>
                                             </div>
 
-                                            <div id="Paris" class="w3-container city" style="display:none">
-                                                <canvas id="line_chart_pss" width="1200" height="1000"></canvas>
+                                            <div id="Paris" class="col-lg-6 w3-container city" style="display:none">
+                                                <canvas id="line_chart_pss" width="800" height="600"></canvas>
                                             </div>
 
                                         </div>
@@ -166,34 +173,65 @@
 
                                     </div> -->
                                 </section>
-                                <!-- /.Left col -->
-                                <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                                <section class="col-lg-5 connectedSortable">
+                                <!-- right col -->
+                                </div>
 
-                                    <!-- Map card -->
-                                    <!-- <div class="card">
-                                    <div class="card-header border-0">
-                                    <h3 class="card-title">
-                                    <i class="fas fa-map-marker-alt mr-1"></i>
-                                    Chart 3
-                                    </h3>
+                                <div class="col-lg-6">
+   <!-- Left col -->
+                                 <section class="connectedSortable">
+    
+                                    <!-- Custom tabs (Charts with tabs)-->
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                            <i class="fas fa-chart-pie mr-1"></i>
+                                            Forecast
+                                            </h3><br>
+                                            <h3 class="card-title">
+                                                <div class="w3-bar w3-white">
+                                                    <button class="w3-bar-item w3-button" onclick="predictCity('London')">No of
+                                                        CSS Per month</button>
+                                                    <button class="w3-bar-item w3-button" onclick="predictCity('Paris')">No of
+                                                        PSS Per month</button>
+
+                                                </div>
+                                            </h3>
+                                        </div><!-- /.card-header -->
+                                        <div class="card-body">
+
+                                            <div id="London" class=" w3-container predictcity">
+                                                <canvas id="prediction_chart_css" width="800" height="600"></canvas>
+                                            </div>
+
+                                            <div id="Paris" class="col-lg-6 w3-container predictcity" style="display:none">
+                                                <canvas id="prediction_chart_pss" width="800" height="600"></canvas>
+                                            </div>
+
+                                        </div>
+
                                     </div>
-                                    <div class="card-body">
-                                    <div id="world-map" style="height: 500px; width: 100%;">
-                                    <div class="chart-container" style="position: relative; height:500px;">
-                                    <canvas id="myChart3"></canvas>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div> -->
                                     <!-- /.card -->
 
+                                    <!-- DIRECT CHAT -->
+                                    <!-- <div class="card direct-chat direct-chat-primary">
+                                    <div class="card-header">
+                                    <h3 class="card-title">Chart 2</h3>
+
+                                    </div>
+
+                                    <div class="card-footer">
+
+                                    </div>
+
+                                    </div> -->
                                 </section>
                                 <!-- right col -->
+                                </div>
+                             
                             </div>
                             <!-- /.row (main row) -->
                         </div><!-- /.container-fluid -->
-                    </section>
+                </section>
                 </div>
                 <!-- <div class="card-footer">
                                     Footer
@@ -202,6 +240,7 @@
         </div>
     </div>
     <script src="/js/chart.js"></script>
+    <script src="/js/brain.js"></script>
     <script>
         function chart_boxes() {
             fetch('/count_chart').then(res => {
@@ -353,6 +392,135 @@
             })
         }
 
+        function prediction_chart_css() {
+            let dd
+            fetch('/prediction_css').then(res => {
+                return res.json()
+            }).then(res => {
+                dd = Object.values(res[0])
+                let arr = []
+                res.map(x=>{
+                    arr.push({input: ["2023"], output: { outcome: x.cc_id, name: x.office_name }})
+                })
+             
+            // Create and configure the neural network
+            const net = new brain.NeuralNetwork();
+            net.train(arr);
+
+            // Prepare input for prediction (replace with features for the current year)
+            const inputForCurrentYear = [2025];
+
+            // Make a prediction for the current year
+            const outputForCurrentYear = net.run(inputForCurrentYear);
+
+            // Sort predicted outcomes based on output value
+            const sortedOutcomes = Object.keys(outputForCurrentYear).sort((a, b) => outputForCurrentYear[b] - outputForCurrentYear[a]);
+
+            // Select top 1 to 5 outcomes for the current year, including names
+            const topOutcomesForCurrentYear = sortedOutcomes.map((x,y) => ({
+            name: arr[y].output.name,
+            outcome: outputForCurrentYear[x]
+            }));
+
+            const cc_title = topOutcomesForCurrentYear.map(aa=> Object.keys(aa).filter(x=> x!="outcome").reduce((acc,keys)=>{
+            acc[keys] = aa[keys]
+            return acc
+            },{}))
+
+            const cc_value = topOutcomesForCurrentYear.map(aa=> Object.keys(aa).filter(x=> x!="name").reduce((acc,keys)=>{
+            acc[keys] = aa[keys]
+            return acc
+            },{}))
+
+            console.log("Prediction CSS",outputForCurrentYear)
+            var data1 = {
+            labels: cc_title.map(x=> {
+            return Object.values(x)
+            },{}).flat(),
+
+                datasets: [{
+                label: 'Top CSS for 2025',
+                data: cc_value.map(x=> {
+                return Object.values(x)
+                },{}).flat(),
+                backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                borderColor: 'rgba(0, 123, 255, 1)',
+                borderWidth: 2,
+                pointRadius: 5,
+                pointBackgroundColor: 'rgba(0, 123, 255, 1)',
+                pointBorderColor: '#fff',
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(0, 123, 255, 1)',
+                fill: false
+                }]
+                };
+
+                var options = {
+                    responsive: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                };
+
+                var ctx3 = document.getElementById('prediction_chart_css').getContext('2d');
+                var lineChart = new Chart(ctx3, {
+                    type: 'line',
+                    data: data1,
+                    options: options
+                });
+
+            })
+        }
+
+        function prediction_chart_pss() {
+            fetch('/prediction_pss').then(res => {
+                return res.json()
+            }).then(res => {
+                dd = Object.values(res[0])
+                console.log(dd)
+                var data2 = {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+                        'September', 'October', 'November', 'December'
+                    ],
+                    datasets: [{
+                        label: 'Total of PSS per month',
+                        data: dd,
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                        borderColor: 'rgba(0, 123, 255, 1)',
+                        borderWidth: 2,
+                        pointRadius: 5,
+                        pointBackgroundColor: 'rgba(0, 123, 255, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverRadius: 8,
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(0, 123, 255, 1)',
+                        fill: false
+                    }]
+                };
+
+                var options = {
+                    responsive: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                };
+
+                var ctx2 = document.getElementById('prediction_chart_pss').getContext('2d');
+                var lineChart = new Chart(ctx2, {
+                    type: 'line',
+                    data: data2,
+                    options: options
+                });
+
+            })
+        }
+        
+
         function openCity(cityName) {
             var i;
             var x = document.getElementsByClassName("city");
@@ -362,10 +530,19 @@
             document.getElementById(cityName).style.display = "block";
         }
 
-
+        function predictCity(cityName) {
+            var i;
+            var x = document.getElementsByClassName("predictcity");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(cityName).style.display = "block";
+        }
 
         chart_boxes()
         line_chart_css()
         line_chart_pss()
+        prediction_chart_css()
+        prediction_chart_pss()
     </script>
 @endsection

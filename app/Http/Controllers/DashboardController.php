@@ -195,34 +195,5 @@ class DashboardController extends Controller
         );
         return view('chart_settings', compact('page'));
     }
-
-
-
-
-
-
-    // public function adminmaeron(Request $request)
-    // {
-    //     DB::beginTransaction();
-    //     try {
-    //         $new_profile = new Profile();
-    //         $new_profile->fname = $request->fname;
-    //         $new_profile->lname = $request->lame;
-    //         $new_profile->save();
-
-    //         $new_user = new User();
-    //         $new_user->username = $request->username;
-    //         $new_user->password = bcrypt($request->password);
-    //         $new_user->profile_id = $new_profile->id;
-    //         $new_user->save();
-
-    //         DB::commit();
-    //         return back()-withSuccess('New user added successfully');
-            
-    //     } catch (\Exception $e) {
-    //         DB::rollBack();
-    //         return back()->withErrors($e->getMessage());
-    //     }
-    // }
     
 }

@@ -152,6 +152,8 @@ Route::get('/test', [PDFController::class, 'test']);
 Route::get('/count_chart', [ChartController::class, 'count_survey']);
 Route::get('/monthly_css', [ChartController::class, 'monthly_css']);
 Route::get('/monthly_pss', [ChartController::class, 'monthly_pss']);
+Route::get('/prediction_css', [ChartController::class, 'prediction_css']);
+Route::get('/prediction_pss', [ChartController::class, 'prediction_pss']);
 //SURVEY
 Route::get('/select_css', [SurveyController::class, 'display_css']);
 Route::post('/select_css2', [SurveyController::class, 'display_css']);
