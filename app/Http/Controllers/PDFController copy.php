@@ -1063,7 +1063,7 @@ class PDFController extends Controller
                 // echo $collection_comments[$keys]['total_count'];
             }
 
-            $limit = 100; // Set the limit for total_count
+            $limit = 30; // Set the limit for total_count
 
             $dividedData = [];
 
@@ -1085,7 +1085,7 @@ class PDFController extends Controller
             }
 
 
-            // return$dividedData;
+            // return$dividedData[0];
             // dd($collection_comments);
 
             $query_chart1 = DB::table('tbl_form_css')

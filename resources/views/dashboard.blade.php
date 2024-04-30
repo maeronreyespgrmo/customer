@@ -200,11 +200,22 @@
                                         <div class="card-body">
 
                                             <div id="London" class=" w3-container predictcity">
-                                                <canvas id="prediction_chart_css" width="800" height="600"></canvas>
+                                                <table class="table" border=1>
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Office Name</th>
+                                                        <th>Total No of Feedbacks</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tableBody">
+                        
+                                                    </tbody>
+                                                </table>
+                                                <!-- <canvas id="prediction_chart_css" width="800" height="600"></canvas> -->
                                             </div>
 
                                             <div id="Paris" class="col-lg-6 w3-container predictcity" style="display:none">
-                                                <canvas id="prediction_chart_pss" width="800" height="600"></canvas>
+                                                <!-- <canvas id="prediction_chart_pss" width="800" height="600"></canvas> -->
                                             </div>
 
                                         </div>
@@ -393,6 +404,10 @@
         }
 
         function prediction_chart_css() {
+
+            const rowData = { name: 'John', age: 30 };
+
+
             let dd
             fetch('/prediction_css').then(res => {
                 return res.json()
@@ -406,15 +421,20 @@
             // Create and configure the neural network
             const net = new brain.NeuralNetwork();
             net.train(arr);
+       
+
 
             // Prepare input for prediction (replace with features for the current year)
-            const inputForCurrentYear = [2025];
+            const inputForCurrentYear = [2023];
 
             // Make a prediction for the current year
             const outputForCurrentYear = net.run(inputForCurrentYear);
 
+       
+            console.log("rowHtml",outputForCurrentYear)
+
             // Sort predicted outcomes based on output value
-            const sortedOutcomes = Object.keys(outputForCurrentYear).sort((a, b) => outputForCurrentYear[b] - outputForCurrentYear[a]);
+            const sortedOutcomes = Object.keys(outputForCurrentYear).slice(0, 5).sort((a, b) => outputForCurrentYear[b] - outputForCurrentYear[a]);
 
             // Select top 1 to 5 outcomes for the current year, including names
             const topOutcomesForCurrentYear = sortedOutcomes.map((x,y) => ({
@@ -422,103 +442,64 @@
             outcome: outputForCurrentYear[x]
             }));
 
-            const cc_title = topOutcomesForCurrentYear.map(aa=> Object.keys(aa).filter(x=> x!="outcome").reduce((acc,keys)=>{
-            acc[keys] = aa[keys]
-            return acc
-            },{}))
+       
+            // Create a new row HTML dynamically
+                        const rowHtml = `
+                        ${topOutcomesForCurrentYear.map(({ name, outcome }) => `
+                        <tr>
+                        <td>${name}</td>
+                        <td>${outcome / 100 * 100}</td>
+                        </tr>`).join('')}`;
 
-            const cc_value = topOutcomesForCurrentYear.map(aa=> Object.keys(aa).filter(x=> x!="name").reduce((acc,keys)=>{
-            acc[keys] = aa[keys]
-            return acc
-            },{}))
+            document.getElementById('tableBody').innerHTML += rowHtml;
 
-            console.log("Prediction CSS",outputForCurrentYear)
-            var data1 = {
-            labels: cc_title.map(x=> {
-            return Object.values(x)
-            },{}).flat(),
-
-                datasets: [{
-                label: 'Top CSS for 2025',
-                data: cc_value.map(x=> {
-                return Object.values(x)
-                },{}).flat(),
-                backgroundColor: 'rgba(0, 123, 255, 0.2)',
-                borderColor: 'rgba(0, 123, 255, 1)',
-                borderWidth: 2,
-                pointRadius: 5,
-                pointBackgroundColor: 'rgba(0, 123, 255, 1)',
-                pointBorderColor: '#fff',
-                pointHoverRadius: 8,
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(0, 123, 255, 1)',
-                fill: false
-                }]
-                };
-
-                var options = {
-                    responsive: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                };
-
-                var ctx3 = document.getElementById('prediction_chart_css').getContext('2d');
-                var lineChart = new Chart(ctx3, {
-                    type: 'line',
-                    data: data1,
-                    options: options
-                });
-
-            })
+        })
         }
 
-        function prediction_chart_pss() {
-            fetch('/prediction_pss').then(res => {
-                return res.json()
-            }).then(res => {
-                dd = Object.values(res[0])
-                console.log(dd)
-                var data2 = {
-                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
-                        'September', 'October', 'November', 'December'
-                    ],
-                    datasets: [{
-                        label: 'Total of PSS per month',
-                        data: dd,
-                        backgroundColor: 'rgba(0, 123, 255, 0.2)',
-                        borderColor: 'rgba(0, 123, 255, 1)',
-                        borderWidth: 2,
-                        pointRadius: 5,
-                        pointBackgroundColor: 'rgba(0, 123, 255, 1)',
-                        pointBorderColor: '#fff',
-                        pointHoverRadius: 8,
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(0, 123, 255, 1)',
-                        fill: false
-                    }]
-                };
+        // function prediction_chart_pss() {
+        //     fetch('/prediction_pss').then(res => {
+        //         return res.json()
+        //     }).then(res => {
+        //         dd = Object.values(res[0])
+        //         console.log(dd)
+        //         var data2 = {
+        //             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+        //                 'September', 'October', 'November', 'December'
+        //             ],
+        //             datasets: [{
+        //                 label: 'Total of PSS per month',
+        //                 data: dd,
+        //                 backgroundColor: 'rgba(0, 123, 255, 0.2)',
+        //                 borderColor: 'rgba(0, 123, 255, 1)',
+        //                 borderWidth: 2,
+        //                 pointRadius: 5,
+        //                 pointBackgroundColor: 'rgba(0, 123, 255, 1)',
+        //                 pointBorderColor: '#fff',
+        //                 pointHoverRadius: 8,
+        //                 pointHoverBackgroundColor: '#fff',
+        //                 pointHoverBorderColor: 'rgba(0, 123, 255, 1)',
+        //                 fill: false
+        //             }]
+        //         };
 
-                var options = {
-                    responsive: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                };
+        //         var options = {
+        //             responsive: false,
+        //             scales: {
+        //                 y: {
+        //                     beginAtZero: true
+        //                 }
+        //             }
+        //         };
 
-                var ctx2 = document.getElementById('prediction_chart_pss').getContext('2d');
-                var lineChart = new Chart(ctx2, {
-                    type: 'line',
-                    data: data2,
-                    options: options
-                });
+        //         var ctx2 = document.getElementById('prediction_chart_pss').getContext('2d');
+        //         var lineChart = new Chart(ctx2, {
+        //             type: 'line',
+        //             data: data2,
+        //             options: options
+        //         });
 
-            })
-        }
+        //     })
+        // }
         
 
         function openCity(cityName) {
@@ -543,6 +524,6 @@
         line_chart_css()
         line_chart_pss()
         prediction_chart_css()
-        prediction_chart_pss()
+        // prediction_chart_pss()
     </script>
 @endsection
