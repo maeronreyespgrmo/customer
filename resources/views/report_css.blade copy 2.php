@@ -59,7 +59,6 @@
             }
 
             tfoot:last-child {
-                position: fixed;
                 bottom: 0;
                 width: 100%;
                 text-align: center;
@@ -78,7 +77,6 @@
 
 
                 tfoot:last-child {
-                    position: fixed;
                     bottom: 0;
                     width: 100%;
                     text-align: center;
@@ -457,16 +455,6 @@
             </tbody>
 
             <tfoot class="lastfoot">
-
-                <tr>
-                    <td>
-
-                        <footer style="line-height:1.5;background-color:white;height:150px;">
-
-                        </footer>
-
-                    </td>
-                </tr>
                 <tr>
                     <td>
 
@@ -477,9 +465,6 @@
 
                     </td>
                 </tr>
-
-
-
             </tfoot>
             </table>
         </center>
