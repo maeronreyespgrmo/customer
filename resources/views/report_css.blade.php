@@ -58,32 +58,46 @@
                 width: 70%;
             }
 
-            tfoot:last-child {
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-                text-align: center;
-                letter-spacing: 1px;
-            }
-
-
-
             @media print {
+
+                .comments_table {
+                    border-collapse: collapse;
+                    background-color: red;
+                    page-break-after: always;
+                }
+
+                .comments_table>tr {
+                    border-collapse: collapse;
+                    background-color: red;
+                    page-break-before: always;
+                }
 
                 body {
                     margin: 5px 5px;
                     width: 8.5in;
                     height: 13in;
+                    box-sizing: border-box
                 }
 
 
-                tfoot:last-child {
+                tfoot:last-child>tr {
                     position: fixed;
                     bottom: 0;
                     width: 100%;
                     text-align: center;
                     letter-spacing: 1px;
+                    background-color: red;
                 }
+
+                .maintable table>tfoot:last-child {
+
+                    bottom: 0;
+                    width: 100%;
+                    text-align: center;
+                    background-color: red;
+                }
+
+
 
                 .dynamic-padding {
                     padding-bottom: 10px;
@@ -147,7 +161,7 @@
 
     <body class="dynamic-padding">
         <center>
-            <table style="overflow:hidden;">
+            <table class="maintable" style="overflow:hidden;">
                 <thead>
                     <tr>
                         <td>
@@ -257,7 +271,11 @@
                                             </tr>
                                         @endif
                                     </table>
-                                    <table border="1" style="margin-top:-150px;padding-bottom:auto;width:100%">
+                                    <table border="1"
+                                        style="page-break-inside:auto;
+                                               margin-top:-150px;
+                                               width:100%;overflow:auto;"
+                                        class="comments_table">
                                         <thead>
                                             <tr style="text-align:center">
                                                 <th colspan="12"><b>Comments and Suggestions</b>
@@ -311,7 +329,7 @@
 
             </div>
 
-            <div>
+            <div style="background-color:green;overflow:auto; height: auto;">
                 <p><b>Analytics</b></p>
                 <table>
                     <tr>
@@ -418,8 +436,8 @@
                                     Respectfully,
                                 </div>
 
-                                <p style="line-height: 1.5;">&nbsp;</p>
-                                <p style="line-height: 1.5;">&nbsp;</p>
+                                <p style="line-height: 1.2;">&nbsp;</p>
+                                <p style="line-height: 1.2;">&nbsp;</p>
 
                                 <div contenteditable="true">
                                     <b>Ms.Maria A.Lim</b>
@@ -436,8 +454,8 @@
                                     Noted by:
                                 </div>
 
-                                <p style="line-height: 1.5;">&nbsp;</p>
-                                <p style="line-height: 1.5;">&nbsp;</p>
+                                <p style="line-height: 1.2;">&nbsp;</p>
+                                <p style="line-height: 1.2;">&nbsp;</p>
 
                                 <div contenteditable="true">
                                     <b>Atty. Dulce H. Rebanal</b>
@@ -451,22 +469,17 @@
                 </table>
             </div>
             </div>
+            <div
+                style="width:100%;background-color:red;>
+            </div>
+            <div style="width:100%;background-color:red;>
+            </div>
             </td>
             </tr>
 
             </tbody>
 
-            <tfoot class="lastfoot">
-
-                <tr>
-                    <td>
-
-                        <footer style="line-height:1.5;background-color:white;height:150px;">
-
-                        </footer>
-
-                    </td>
-                </tr>
+            <!---<tfoot class="lastfoot">
                 <tr>
                     <td>
 
@@ -480,7 +493,7 @@
 
 
 
-            </tfoot>
+            </tfoot>-->
             </table>
         </center>
         <script src="../../../../../js/chart.js"></script>
