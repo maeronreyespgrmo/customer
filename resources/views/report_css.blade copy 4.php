@@ -67,21 +67,6 @@
                 border: 1px solid black;
             }
 
-            .comment_table>ul {
-                list-style-type: disc;
-                margin: 0;
-                padding: 0 0 0 20px;
-                /* Adjust as needed */
-            }
-
-            .comment_table>ul ul {
-                list-style-type: circle;
-                margin: 0;
-                padding: 0 0 0 20px;
-                /* Adjust as needed */
-            }
-
-
             @media print {
 
 
@@ -185,15 +170,17 @@
                     /* Allow the last row to break across pages if needed */
                 }
 
-
-
-                .comment_table>ul,
-                ul ul {
-                    margin: 0;
-                    padding: 0;
-                    /* Reset margin and padding for unordered lists */
+                .comment_table ul {
+                    margin: 5px;
+                    padding: 10px;
+                    list-style: none;
+                    /* Remove default list styling */
                 }
+            }
 
+            @page {
+                size: Legal;
+                margin: 0;
             }
         </style>
     </head>
@@ -203,7 +190,7 @@
         <table class="maintable">
             <thead>
                 <tr>
-                    <div class="image-container">
+                    <div>
                         <img src="/images/seal_laguna.png" alt="" width="50" height="50" class="left-image">
                         <div class="title">
                             <p contenteditable="true">Republic of the Philippines</p>
@@ -317,139 +304,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
+                                @foreach ($comments_arr1 as $keys1 => $comment_items_1)
+                                    @if ($keys1 == 0)
+                                        @foreach ($comment_items_1 as $keys2 => $comment_items_2)
+                                            <tr>
+                                                {{-- {{ $comment_items_2->service_name }} --}}
+                                                @if (empty($comment_items_2['comment']))
+                                                @else
+                                                @endif
 
-                                        <ul>
-                                            <li>Nested item 1</li>
-                                            <li>Nested item 2</li>
-                                            <li>Nested item 2</li>
-                                            <li>Nested item 2</li>
-                                            <li>Nested item 2</li>
-                                            <li>Nested item 2</li>
-                                            <li>Nested item 2</li>
-                                            <li>Nested item 2</li>
-                                            <li>Nested item 2</li>
-                                            <li>Nested item 2</li>
-                                            <li>Nested item 2</li>
-                                            <li>Nested item 2</li>
-                                        </ul>
+                                                @foreach ($comment_items_2['comment'] as $keys3 => $comment_items_3)
+                                                    {{-- <li>{{ $comment_items_3->services_name }}</li> --}}
 
+                                                    @foreach ($comment_items_3 as $keys3 => $comment_items_4)
+                                                        <td>
+                                                            <ul>
+                                                                <li>{{ $comments_arr1[$keys1][$keys2]['service_name'] }}
+                                                                </li>
+                                                                <ul>
+                                                                    <li>
+                                                                        {{ $comment_items_4 }}
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
+                                                                    </li>
+                                                                </ul>
 
-                                        <ul>
-                                            <li>Nested item 1</li>
-                                            <li>Nested item 2</li>
-                                        </ul>
-
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-                                        <ul>
-                                            <li>Nested item 1</li>
-                                            <li>Nested item 2</li>
-                                        </ul>
-
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <ul>
-                                            <li>Nested item 1</li>
-                                            <li>Nested item 2</li>
-                                        </ul>
-
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-                                        <ul>
-                                            <li>Nested item 1</li>
-                                            <li>Nested item 2</li>
-                                        </ul>
-
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-                                        <ul>
-                                            <li>Nested item 1</li>
-                                            <li>Nested item 2</li>
-                                        </ul>
-
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-                                        <ul>
-                                            <li>Nested item 1</li>
-                                            <li>Nested item 2</li>
-                                        </ul>
-
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-                                        <ul>
-                                            <li>Nested item 1</li>
-                                            <li>Nested item 2</li>
-                                        </ul>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-                                        <ul>
-                                            <li>Nested item 1</li>
-                                            <li>Nested item 2</li>
-                                        </ul>
-
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-                                        <ul>
-                                            <li>Nested item 1</li>
-                                            <li>Nested item 2</li>
-                                        </ul>
-
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-                                        <ul>
-                                            <li>Nested item 1</li>
-                                            <li>Nested item 2</li>
-                                        </ul>
-
-
-
-                                    </td>
-                                </tr>
-
-
+                                                        </td>
+                                                    @endforeach
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
+                                @endif
+                                @endforeach
                             </tbody>
 
                         </table>
@@ -471,6 +356,7 @@
                 </tr>
             </tfoot>
         </table>
+
 
     </body>
 
