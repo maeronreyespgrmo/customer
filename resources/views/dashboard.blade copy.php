@@ -22,17 +22,17 @@
         }
 
         /* .box {
-                                                                                                              animation: upAndDown 2.5s;
-                                                                                                            }
+                                                      animation: upAndDown 2.5s;
+                                                    }
 
-                                                                                                            @keyframes upAndDown {
-                                                                                                              0%, 100% {
-                                                                                                                transform: translateY(0);
-                                                                                                              }
-                                                                                                              50% {
-                                                                                                                transform: translateY(-20px);
-                                                                                                              }
-                                                                                                            } */
+                                                    @keyframes upAndDown {
+                                                      0%, 100% {
+                                                        transform: translateY(0);
+                                                      }
+                                                      50% {
+                                                        transform: translateY(-20px);
+                                                      }
+                                                    } */
     </style>
 
     <div class="row">
@@ -41,20 +41,20 @@
                 <div class="card-header">
                     <h3 class="card-title">Title</h3>
                     <!-- <div class="card-tools">
-                                                                                                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                                                                                                  <i class="fas fa-minus"></i>
-                                                                                                                </button>
-                                                                                                                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                                                                                                                  <i class="fas fa-times"></i>
-                                                                                                                </button>
-                                                                                                            </div> -->
+                                                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                                          <i class="fas fa-minus"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                                          <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </div> -->
                 </div>
                 <div class="card-body">
                     <section class="content">
                         <div class="container-fluid">
                             <!-- Small boxes (Stat box) -->
                             <div class="row">
-                                <div class="col-lg-3 col-6">
+                                <div class="col-lg-4 col-6">
                                     <!-- small box -->
                                     <div class="small-box bg-info box">
                                         <div class="inner">
@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                                 <!-- ./col -->
-                                <div class="col-lg-3 col-6">
+                                <div class="col-lg-4 col-6">
                                     <!-- small box -->
                                     <div class="small-box bg-success box">
                                         <div class="inner">
@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                                 <!-- ./col -->
-                                <div class="col-lg-3 col-6">
+                                <div class="col-lg-4 col-6">
                                     <!-- small box -->
                                     <div class="small-box bg-warning box">
                                         <div class="inner">
@@ -104,43 +104,27 @@
                                         <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-6">
-                                    <!-- small box -->
-                                    <div class="small-box bg-secondary box">
-                                        <div class="inner">
-                                            <h3>
-                                                <div id="count_csm">0</div>
-                                            </h3>
-
-                                            <p>Total of CSM</p>
-                                        </div>
-                                        <div class="icon">
-                                            <i class="ion ion-person-add"></i>
-                                        </div>
-                                        <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
-                                    </div>
-                                </div>
                                 <!-- ./col -->
                                 <!-- <div class="col-lg-3 col-6">
-                                                                                                            <div class="small-box bg-danger">
-                                                                                                            <div class="inner">
-                                                                                                            <h3>65</h3>
+                                                    <div class="small-box bg-danger">
+                                                    <div class="inner">
+                                                    <h3>65</h3>
 
-                                                                                                            <p>Unique Visitors</p>
-                                                                                                            </div>
-                                                                                                            <div class="icon">
-                                                                                                            <i class="ion ion-pie-graph"></i>
-                                                                                                            </div>
-                                                                                                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                                                                                                            </div>
-                                                                                                            </div> -->
+                                                    <p>Unique Visitors</p>
+                                                    </div>
+                                                    <div class="icon">
+                                                    <i class="ion ion-pie-graph"></i>
+                                                    </div>
+                                                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                                    </div>
+                                                    </div> -->
                                 <!-- ./col -->
                             </div>
                             <!-- /.row -->
                             <!-- Main row -->
 
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <!-- Left col -->
                                     <section class="connectedSortable">
 
@@ -160,14 +144,11 @@
                                                             of
                                                             PSS Per month</button>
 
-                                                        <button class="w3-bar-item w3-button" onclick="openCity('Paris')">No
-                                                        of
-                                                        CSM Per month</button>
-
                                                     </div>
                                                 </h3>
                                             </div><!-- /.card-header -->
                                             <div class="card-body">
+
                                                 <div id="London" class=" w3-container city">
                                                     <canvas id="line_chart_css" width="800" height="600"></canvas>
                                                 </div>
@@ -183,29 +164,95 @@
 
                                         <!-- DIRECT CHAT -->
                                         <!-- <div class="card direct-chat direct-chat-primary">
-                                                                                                            <div class="card-header">
-                                                                                                            <h3 class="card-title">Chart 2</h3>
+                                                    <div class="card-header">
+                                                    <h3 class="card-title">Chart 2</h3>
 
-                                                                                                            </div>
+                                                    </div>
 
-                                                                                                            <div class="card-footer">
+                                                    <div class="card-footer">
 
-                                                                                                            </div>
+                                                    </div>
 
-                                                                                                            </div> -->
+                                                    </div> -->
                                     </section>
                                     <!-- right col -->
                                 </div>
-                            </div>
-                            <!-- /.row (main row) -->
-                        </div><!-- /.container-fluid -->
+
+                                <!--<div class="col-lg-6">
+                                        <section class="connectedSortable">
+
+                                            <!-- Custom tabs (Charts with tabs)-->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">
+                                            <i class="fas fa-chart-pie mr-1"></i>
+                                            Forecast
+                                        </h3><br>
+                                        <h3 class="card-title">
+                                            <div class="w3-bar w3-white">
+                                                <button class="w3-bar-item w3-button" onclick="predictCity('London')">No
+                                                    of
+                                                    CSS Per month</button>
+                                                <button class="w3-bar-item w3-button" onclick="predictCity('Paris')">No
+                                                    of
+                                                    PSS Per month</button>
+
+                                            </div>
+                                        </h3>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+
+                                        <div id="London" class=" w3-container predictcity">
+                                            <table class="table" border=1>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Office Name</th>
+                                                        <th>Total No of Feedbacks</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tableBody">
+
+                                                </tbody>
+                                            </table>
+                                            <!-- <canvas id="prediction_chart_css" width="800" height="600"></canvas> -->
+                                        </div>
+
+                                        <div id="Paris" class="col-lg-6 w3-container predictcity"
+                                            style="display:none">
+                                            <!-- <canvas id="prediction_chart_pss" width="800" height="600"></canvas> -->
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- /.card -->
+
+                                <!-- DIRECT CHAT -->
+                                <!-- <div class="card direct-chat direct-chat-primary">
+                                                    <div class="card-header">
+                                                    <h3 class="card-title">Chart 2</h3>
+
+                                                    </div>
+
+                                                    <div class="card-footer">
+
+                                                    </div>
+
+                                                    </div> -->
                     </section>
-                </div>
-                <!-- <div class="card-footer">
-                                                                                                            Footer
-                                                                                                            </div> -->
+                    <!-- right col -->
+                </div>-->
+
             </div>
-        </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+        </section>
+    </div>
+    <!-- <div class="card-footer">
+                                                    Footer
+                                                    </div> -->
+    </div>
+    </div>
     </div>
     <script src="/js/chart.js"></script>
     <script src="/js/brain.js"></script>

@@ -104,13 +104,13 @@
                                                 height="100" align="left"> </center>
                                     </td>
                                     <td align="center">
-                                        <p contenteditable="true" class="font-11">Republic of the Philippines</p>
-                                        <p contenteditable="true" class="font-11">INTERNAL AUDIT SERVICES</p>
-                                        <p contenteditable="true" style="font-size: 12pt"><b>PROVINCIAL GOVERNMENT OF
+                                        <p class="font-11">Republic of the Philippines</p>
+                                        <!-- <p class="font-11">INTERNAL AUDIT SERVICES</p> -->
+                                        <p style="font-size: 12pt"><b>PROVINCIAL GOVERNMENT OF
                                                 LAGUNA</b></p>
-                                        <p contenteditable="true" class="font-11">Pedro Guevara Street, Santa Cruz
+                                        <p class="font-11">Pedro Guevara Street, Santa Cruz
                                             Laguna</p>
-                                        <p contenteditable="true" class="font-11">CUSTOMER SATISFACTION QUESTIONAIRRE
+                                        <p class="font-11">CUSTOMER SATISFACTION MEASUREMENT
                                         </p>
                                     </td>
                                     <td width="15%"><img src="/images/coa-logo.png" height="120" width="120"
@@ -131,7 +131,7 @@
                                     <v-list-item-content>
                                         <v-col cols="12">
                                             <v-select :disabled="isDisabled" v-model="office_name"
-                                                :items="office_items" label="Pumili ng Opisina" :rules="nameRules"
+                                                :items="office_items" label="Uri ng Cliente" :rules="nameRules"
                                                 required @change="service_dropdown"></v-select>
                                         </v-col>
                                         <v-col cols="12">
@@ -139,7 +139,7 @@
                                                 :nudge-right="40" transition="scale-transition" offset-y
                                                 min-width="auto">
                                                 <template v-slot:activator="{ on, attrs }">
-                                                    <v-text-field :disabled="isDisabled" v-model="dates" label="Date"
+                                                    <v-text-field :disabled="isDisabled" v-model="dates" label="Petsa"
                                                         append-icon="mdi-calendar" readonly v-bind="attrs"
                                                         :rules="nameRules" required v-on="on"></v-text-field>
                                                 </template>
@@ -148,21 +148,41 @@
                                         </v-col>
                                         <v-col cols="12">
                                             <v-text-field :disabled="isDisabled" v-model="name_evaluator"
-                                                label="Name of Evaluator" dense></v-text-field>
+                                                label="Edad" dense></v-text-field>
                                         </v-col>
 
                                         <v-col cols="12">
-                                            <v-text-field :disabled="isDisabled" v-model="name_evaluatee"
-                                                label="Name of Evaluatee" dense></v-text-field>
+                                            <v-select :disabled="isDisabled" v-model="office_name"
+                                                :items="office_items" label="Kasarian" :rules="nameRules"
+                                                required @change="service_dropdown"></v-select>
+                                        </v-col>
+
+                                        <v-col cols="12">
+                                        <div>Invalidated?</div>
+                                            <v-radio-group
+                                            v-model="invalidated"
+                                            row
+                                            :rules="nameRules"
+                                            @change="toggleVisibility()"
+                                            required
+                                            >
+                                            <v-radio
+                                            label="Yes"
+                                            value="yes"
+                                            ></v-radio>
+                                            <v-radio
+                                            label="No"
+                                            value="no"
+                                            ></v-radio>
+                                            </v-radio-group>
                                         </v-col>
                                     </v-list-item-content>
                                 </v-list-item>
                             </v-card>
                             <br>
-                            <v-card max-width="1200" outlined rounded raised class="mx-auto">
+                            <v-card v-show="isVisible" max-width="1200" outlined rounded raised class="mx-auto">
                                 <v-sheet class="d-flex" color="indigo" height="50">
-                                    <v-col cols='12'><b class="white--text">I. Requested Service / Hilling na
-                                            Serbisyo</b></v-col>
+                                    <v-col cols='12'><b class="white--text">Hilling na Serbisyo</b></v-col>
                                 </v-sheet>
                                 <v-list-item three-line>
                                     <v-list-item-content>
@@ -174,13 +194,42 @@
                                                     :key="index" :label="item.name"
                                                     :value="item.name">
                                                 </v-radio>
-
-                                            </v-radio-group> --}}
-                                            <v-checkbox v-model="services"  v-for="(item,index) in checkbox_data"
-                                            :key="item.name" :label="item.name"
-                                            :value="item.name"></v-checkbox>
+                                            </v-radio-group>--}}
+                                            <v-checkbox
+                                            v-model="services"
+                                            v-for="(item,index) in checkbox_data"
+                                            :key="item.name"
+                                            :label="item.name"
+                                            :value="item.name"
+                                            :rules="[v => !!v || 'Please select at least one service']"
+                                            required
+                                            ></v-checkbox>
                                             <v-text-field :disabled="isDisabled" v-model="others_remarks"
                                                 label=""></v-text-field>
+                                                Check All Fields?
+                                                <v-radio-group
+                                                v-model="checkradioall"
+                                                row
+                                                @change="toggleCheckall()"
+                                                required
+                                                >
+                                                <v-radio
+                                                label="1"
+                                                value="1"
+                                                ></v-radio>
+                                                <v-radio
+                                                label="2"
+                                                value="2"
+                                                ></v-radio>
+                                                <v-radio
+                                                label="3"
+                                                value="3"
+                                                ></v-radio>
+                                                <v-radio
+                                                label="4"
+                                                value="4"
+                                                ></v-radio>
+                                                </v-radio-group>
                                         </v-col>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -191,35 +240,19 @@
                             <v-card max-width="1200" outlined rounded raised class="mx-auto">
                                 <v-sheet class="d-flex" color="indigo" height="50">
 
-                                    <v-col cols='12'><b class="white--text">Privacy Notice</b></v-col>
+                                    <v-col cols='12'><b class="white--text">PANUTO</b></v-col>
                                 </v-sheet>
                                 <v-list-item three-line>
                                     <v-list-item-content>
                                         <!-- <v-col><b>Privacy Notice</b></v-col><br> -->
                                         <v-col cols="12">
-                                            By accomplishing this form you give PGL the right to process your personal
-                                            information in accordance to the purpose of this questionaire.
+                                           Lagyan ng tsek(🗸) ang iyong sagot sa mga sumusunod na katanungan tungkol sa Citizen's Charter(CC). Ito ay isang opisyal na dokumento na naglalaman ng mga serbisyo sa isang ahensya/opisina ng gobyerno makikita rito mga kinakailangan na dokument, kaukulang bayarin, at pangkabuuang oras ng pagproseso.
                                         </v-col>
-                                        <v-col cols="12">
-                                            II. Using the scores from 1 to 4, please rate the servicing office personnel
-                                            based on the following:<br>
-                                            (Gamit a/ng score na 1 to 4, mangyari po bigyan ng puntos ang empleyadong
-                                            nagbigay serbisyo):<br>
-                                        </v-col>
-                                        <v-col cols="6">
-                                            1 – Not Satisfied (Hindi Nasiyahan)<br>
-                                            3 – Satisfied/Nasiyahan
-                                        </v-col>
-                                        <v-col cols="6">
-                                            2 – Slightly Satisfied/Bahagyang Nasiyahan<br>
-                                            4 - Very Satisfied/Labis na Nasiyahan
-                                        </v-col>
-
                                     </v-list-item-content>
                                 </v-list-item>
                             </v-card>
                             <br>
-                            <v-card max-width="1200" outlined rounded raised class="mx-auto">
+                            <!-- <v-card max-width="1200" outlined rounded raised class="mx-auto">
                                 <v-sheet class="d-flex" color="indigo" height="50">
                                     <v-col cols='12'><b class="white--text">Delivery(Serbisyo)</b></v-col>
                                 </v-sheet>
@@ -231,24 +264,46 @@
                                     </v-col>
                                 </v-list-item>
 
+                            </v-card> -->
+                            <br>
+                            <v-card max-width="1200" outlined rounded raised class="mx-auto">
+                                <v-list-item three-line>
+                                    <v-list-item-content>
+                                        <v-col cols="12">
+                                            <v-col><b>CC1. Alin sa mga sumusunod ang naglalarawan sa iyong kaalaman sa CC?</b></v-col>
+
+                                            <v-col>
+                                                <!-- <b>Not Satisfied</b> -->
+                                                <v-radio-group :disabled="isDisabled" v-model="radio_1" column
+                                                    :rules="nameRules" required>
+                                                    <v-radio label="1. Alam ko ang CC at nakita ko ito sa napuntang opisina" value="1"></v-radio>
+                                                    <v-radio label="2. Alam ko ang CC pero hindi ko ito nakita sa napuntahang opisina" value="2"></v-radio>
+                                                    <v-radio label="3. Nalaman ko ang CC nang makita ko ito sa napuntahang opisina" value="3"></v-radio>
+                                                    <v-radio label="4. Hindi ko alam kung ano ang CC at wala akong nakita sa napuntahang opisina (Lagyan ng tsek ang 'N/A' sa CC2 at CC3 kapag ito ang iyong sagot)" value="4"></v-radio>
+                                                </v-radio-group>
+                                                <!-- <b>Very Satisfied</b> -->
+                                            </v-col>
+                                        </v-col>
+
+                                    </v-list-item-content>
+                                </v-list-item>
                             </v-card>
                             <br>
                             <v-card max-width="1200" outlined rounded raised class="mx-auto">
                                 <v-list-item three-line>
                                     <v-list-item-content>
                                         <v-col cols="12">
-                                            <v-col><b>1.How satisfied are you overall with the service you received?
-                                                    (Sa pangkalahatan, gaano kayo nasiyahan/kontento sa serbisyong
-                                                    natanggap?)</b></v-col>
-
+                                            <v-col><b>CC2. Kung alam ang CC(Nag-tsek sa opsyon 1-3 sa CC1), masasabi mo ba na ang CC nang napuntahang opisina ay..</b>
+                                            </v-col>
                                             <v-col>
                                                 <b>Not Satisfied</b>
-                                                <v-radio-group :disabled="isDisabled" v-model="radio_1" column
+                                                <v-radio-group :disabled="isDisabled" v-model="radio_2" column
                                                     :rules="nameRules" required>
-                                                    <v-radio label="1" value="1"></v-radio>
-                                                    <v-radio label="2" value="2"></v-radio>
-                                                    <v-radio label="3" value="3"></v-radio>
-                                                    <v-radio label="4" value="4"></v-radio>
+                                                    <v-radio label="1.Madali Makita" value="1"></v-radio>
+                                                    <v-radio label="2.Medyo Madaling makita" value="2"></v-radio>
+                                                    <v-radio label="3.Mahirap Makita" value="3"></v-radio>
+                                                    <v-radio label="4.Hindi makita" value="4"></v-radio>
+                                                    <v-radio label="5.N/A" value="4"></v-radio>
                                                 </v-radio-group>
                                                 <b>Very Satisfied</b>
                                             </v-col>
@@ -262,21 +317,18 @@
                                 <v-list-item three-line>
                                     <v-list-item-content>
                                         <v-col cols="12">
-                                            <v-col><b>2.How satisfied are you with the speed in which the service was
-                                                    delivered?
-                                                    (Gaano kayo nasiyahan/kontento sa bilis ng serbisyong
-                                                    natanggap?)</b>
+                                            <v-col><b>CC3. Kung alam ang CC(Nag tsek sa opsyon 1-3 sa CC1), masasabi mo ba na ang CC nang napuntahang opisina ay..</b>
                                             </v-col>
                                             <v-col>
-                                                <b>Not Satisfied</b>
+                                                <!-- <b>Not Satisfied</b> -->
                                                 <v-radio-group :disabled="isDisabled" v-model="radio_2" column
                                                     :rules="nameRules" required>
-                                                    <v-radio label="1" value="1"></v-radio>
-                                                    <v-radio label="2" value="2"></v-radio>
-                                                    <v-radio label="3" value="3"></v-radio>
-                                                    <v-radio label="4" value="4"></v-radio>
+                                                    <v-radio label="1.Sobra nakakatulong" value="1"></v-radio>
+                                                    <v-radio label="2.Nakatulong naman" value="2"></v-radio>
+                                                    <v-radio label="3.Hindi nakakatulong" value="3"></v-radio>
+                                                    <v-radio label="4.N/A" value="4"></v-radio>
                                                 </v-radio-group>
-                                                <b>Very Satisfied</b>
+                                                <!-- <b>Very Satisfied</b> -->
                                             </v-col>
                                         </v-col>
 
@@ -643,7 +695,7 @@
                                 x-large>←
                                 Previous</v-btn>
 
-                            <v-btn width="500" color="primary" :disabled="!valid" @click="nextStep"
+                            <v-btn v-show="isVisible == true" width="500" color="primary" :disabled="!valid" @click="nextStep"
                                 :disabled="!valid" v-if="currentStep < totalSteps" x-large>Next →</v-btn>
 
                             <v-btn width="500" @click="clear_btn()" color="primary "
@@ -653,13 +705,15 @@
                             <v-btn width="500" color="primary" :disabled="!valid" @click="save_btn()"
                                 v-if="currentStep == totalSteps" x-large>Submit ↑</v-btn>
 
-
+                            <v-btn :disabled="!valid" v-show="isVisible == false" width="1000" color="primary"  @click="save_btn()"
+                             x-large>Submit ↑</v-btn>
 
                         </center>
 
 
 
             </div>
+
             </v-container>
 
 
@@ -708,7 +762,7 @@
         scrollToTopAnimated();
     }
 </script>
-<script src="/js/form_css.js"></script>
+<script src="/js/form_css.js?v=2"></script>
 <!-- <script src="/vendor/AdminLTE3/plugins/jquery/jquery.min.js"></script>
 <script>
     setTimeout(function() {

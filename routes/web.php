@@ -122,6 +122,10 @@ Route::get('/form/pss', function () {
     return view('form_pss');
 });
 
+Route::get('/form/csm', function () {
+    return view('form_csm');
+});
+
 Route::get('/reports/css', function () {
     return view('report_css');
 });
@@ -130,17 +134,27 @@ Route::get('/reports/pss', function () {
     return view('report_pss');
 });
 
+Route::get('/reports/pss', function () {
+    return view('report_csm');
+});
+
 Route::post('/save_css', [FormController::class, 'save_css']);
 Route::post('/edit_css', [FormController::class, 'edit_css']);
 Route::post('/delete_css', [FormController::class, 'destroy_css']);
+
+
 Route::post('/save_pss', [FormController::class, 'save_pss']);
 Route::post('/edit_pss', [FormController::class, 'edit_pss']);
 Route::post('/delete_pss', [FormController::class, 'destroy_pss']);
+
+Route::post('/save_csm', [FormController::class, 'save_csm']);
+Route::post('/edit_csm', [FormController::class, 'edit_csm']);
+Route::post('/delete_csm', [FormController::class, 'destroy_csm']);
+
 Route::get('/office_dropdown', [FormController::class, 'office_dropdown']);
 Route::post('/service_dropdown', [FormController::class, 'service_dropdown']);
 Route::get('/municipality_dropdown', [FormController::class, 'municipality_dropdown']);
 Route::post('/change_dropdown', [FormController::class, 'change_dropdown']);
-//
 
 //PDF
 Route::get('/reports1/css/{monthyear}/{year}/{month}/{office_name}', [PDFController::class, 'report_css']);
@@ -159,6 +173,11 @@ Route::get('/select_css', [SurveyController::class, 'display_css']);
 Route::post('/select_css2', [SurveyController::class, 'display_css']);
 Route::get('/select_pss', [SurveyController::class, 'display_pss']);
 Route::post('/select_pss2', [SurveyController::class, 'display_pss']);
+
+Route::get('/select_csm', [SurveyController::class, 'display_csm']);
+Route::post('/select_csm2', [SurveyController::class, 'display_csm']);
+
+
 Route::post('/view_css', [FormController::class, 'view_css']);
 Route::post('/view_pss', [FormController::class, 'view_pss']);
 Route::get('/dropdown_offices', [SurveyController::class, 'display_offices']);
