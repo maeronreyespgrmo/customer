@@ -163,7 +163,7 @@
                     
                     <div class="form-check ms-5">
                     <v-radio-group
-                            v-model="cc1"
+                            v-model="gender"
                             column
                             required
                             >
@@ -192,7 +192,7 @@
                     <label class="col-form-label">CC2 &emsp; Kung alam ang CC (Nag-tsek sa opsyon 1~3 sa CC1), masasabi mo ba na ang CC nang napuntahang opisina ay…</label>
                     <div class="form-check ms-5">
                     <v-radio-group
-                            v-model="cc2"
+                            v-model="cc3"
                             column
                             required
                             >
@@ -294,56 +294,110 @@
                                 <td>
                                     <b>SQD0.</b> Nasiyahan ako sa serbisyo na aking natanggap sa napuntahan na tanggapan.
                                 </td>
-                      
-                                <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd0"></td>
+                                <td colspan=6>
+                                               
+                                                <v-radio-group row v-model="selectedOption1">
+                                                <v-radio label="  " value="A"></v-radio>
+                                                <v-radio label="  " value="B"></v-radio>
+                                                <v-radio label="  " value="B"></v-radio>
+                                                <v-radio label="  " value="B"></v-radio>
+                                                <v-radio label="  " value="B"></v-radio>
+                                                </v-radio-group>
+                                                </td>
+                                <!-- <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td> -->
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD1.</b> Makatwiran ang oras na aking ginugol para sa pagproseso ng aking transaksyon.
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd1"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD2.</b> Ang opisina ay sumusunod sa mga kinakailangang dokumento at mga hakbang batay sa impormasyong ibinigay.
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd2"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD3.</b> Ang mga hakbang sa pagproseso, kasama na ang pagbayad ay madali at simple lamang.
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd3"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD4.</b> Mabilis at madali akong nakahanap ng impormasyon tungkol sa aking transaksyon mula sa opisina o sa website nito.
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd4"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD5.</b> Nagbayad ako ng makatwirang halaga para sa aking transaksyon. <i>(Kung ang sebisyo ay ibinigay ng libre, maglagay ng tsek sa hanay ng N/A.)</i>
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd5"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD6.</b> Pakiramdam ko ay patas ang opisina sa lahat, o “walang palakasan”, sa aking transaksyon.
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd6"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD7.</b> Magalang akong trinato ng mga tauhan, at (kung sakali ako ay humingi ng tulong) alam ko na sila ay handang tumulong sa akin. 
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd7"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD8.</b> Nakuha ko ang kinakailangan ko mula sa tanggapan ng gobyerno, kung tinanggihan man, ito ay sapat na ipinaliwanag sa akin. 
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd8"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
+                                <td class="text-center"><input class="form-check-input" type="radio"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -354,7 +408,7 @@
                     <label class="col-form-label">
                         Mga suhestiyon kung paano pa mapapabuti pa ang aming mga serbisyo (opsyonal):
                     </label>
-                    <textarea class="form-control" v-model="comments"></textarea>
+                    <textarea class="form-control"></textarea>
                 </div>
             </div>
             <div class="row mb-5">
@@ -364,7 +418,7 @@
                           <label class="col-form-label">Email</label>
                         </div>
                         <div class="col-auto">
-                          <input type="email" v-model="email" class="form-control">
+                          <input type="email" id="inputPassword6" class="form-control">
                         </div>
                     </div>
                 </div>
