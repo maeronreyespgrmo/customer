@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\FormCSS;
+use App\Models\FormCSM;
 use App\Models\FormPSS;
 use App\Models\Office;
 use App\Models\Municipality;
@@ -58,6 +59,55 @@ class FormController extends Controller
             $table->comments = $request->comments ?? "N/A";
             $table->invalidated = $request->invalidated;
             $table->others_remarks = $request->others_remarks;
+            $table->save();
+
+            DB::commit();
+            return "success";
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+    }
+
+    public function save_csm(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $query_offices = DB::table('tbl_offices')
+                ->select('id')
+                ->where('office_name', $request->office_name)
+                ->get();
+
+            foreach($request->services as $services_item){
+                $query_services = DB::table('tbl_services')
+                ->select('id')
+                ->where('service_name', $services_item)
+                ->where('office_id', $query_offices[0]->id)
+                ->get();
+                $originalArrayServices[] = $query_services[0]->id;
+            }
+            $services = implode(',',  $originalArrayServices);
+
+            $table = new FormCSM;
+            $table->date = $request->date;
+            $table->office_id = $query_offices[0]->id;
+            $table->service_id = $services;
+            $table->client_type = $request->client_type;
+            $table->age = $request->age;
+            $table->cc1 = $request->cc1;
+            $table->cc2 = $request->cc2;
+            $table->cc3 = $request->cc3;
+            $table->sqd0 = $request->sqd0;
+            $table->sqd1 = $request->sqd1;
+            $table->sqd2 = $request->sqd2;
+            $table->sqd3 = $request->sqd3;
+            $table->sqd4 = $request->sqd4;
+            $table->sqd5 = $request->sqd5;
+            $table->sqd6 = $request->sqd6;
+            $table->sqd7 = $request->sqd7;
+            $table->sqd8 = $request->sqd8;
+            $table->email = $request->email;
+            $table->comments = $request->comments;
             $table->save();
 
             DB::commit();
@@ -443,4 +493,19 @@ class FormController extends Controller
             ->pluck('service_name');
         return $services;
     }
+
+      //CHANGE DROPDOWN CSM
+      public function change_dropdown_csm(Request $request)
+      {
+          $officeName = $request->office_name;
+          $services = DB::table('tbl_services_csm')
+              ->where('office_id', function ($query) use ($officeName) {
+                  $query->select('id')
+                      ->from('tbl_offices')
+                      ->where('office_name', $officeName)
+                      ->where('tbl_services_csm.deleted_at', '=', NULL);
+              })
+              ->pluck('service_name');
+          return $services;
+      }
 }

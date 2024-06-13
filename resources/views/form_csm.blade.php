@@ -34,11 +34,21 @@
         .table tbody .text-center {
             vertical-align: middle;
         }
+
+        
+        body {
+            background-color: rgb(228 219 241);
+            margin: 0;
+        }
     </style>
 </head>
 <body>
 <div id="app" v-cloak>
 <v-app id="inspire">
+<v-snackbar v-model='snackbar' :color='snackbarcolor' top="top" style="margin-top:0;z-index:9000">
+                @{{ snackbartext }}
+            </v-snackbar>
+<v-form ref="form" v-model="valid" lazy-validation>
     <div class="container">
             <div class="row mt-5">
                 <div class="col col-lg-12">
@@ -48,11 +58,15 @@
                     </p>
                 </div>
             </div>
-            <div class="row mb-3">
-            <div class="col col-lg-3">
-                <v-select :disabled="isDisabled" v-model="office_name"
-                :items="office_items" label="Pumili ng Opisina" :rules="nameRules"
-                        required @change="service_dropdown"></v-select>
+            <div class="row mb-6">
+            <div class="col col-lg-6">
+                <v-select
+                v-model="office_name"
+                :items="office_items" label="Pumili ng Opisina" 
+                :disabled="isDisabled" 
+                :rules="nameRules"
+                required 
+                @change="service_dropdown"></v-select>
             </div>
 
     </div>  
@@ -65,6 +79,8 @@
                         <div class="col-auto">
                             <v-radio-group
                             v-model="client_type"
+                            :disabled="isDisabled" 
+                            :rules="nameRules"
                             row
                             required
                             >
@@ -129,7 +145,7 @@
                         </div>
                         <div class="col-auto me-3">
                             <div class="form-check form-check-inline">
-                                <input class="form-control" type="number">
+                                <input class="form-control" type="number" v-model="age">
                             </div>
                         </div>
                     </div>
@@ -165,7 +181,9 @@
                     <v-radio-group
                             v-model="cc1"
                             column
-                            required
+                            :disabled="isDisabled" 
+                            :rules="nameRules"
+                            required 
                             >
                             <v-radio
                             label="1.Alam ko ang CC at nakita ko ito sa napuntahang opisina."
@@ -194,7 +212,9 @@
                     <v-radio-group
                             v-model="cc2"
                             column
-                            required
+                            :disabled="isDisabled" 
+                            :rules="nameRules"
+                            required 
                             >
                             <v-radio
                             label="1. Madaling makita"
@@ -227,7 +247,9 @@
                     <v-radio-group
                             v-model="cc3"
                             column
-                            required
+                            :disabled="isDisabled" 
+                            :rules="nameRules"
+                            required 
                             >
                             <v-radio
                             label="1. Sobrang nakatulong"
@@ -295,55 +317,138 @@
                                     <b>SQD0.</b> Nasiyahan ako sa serbisyo na aking natanggap sa napuntahan na tanggapan.
                                 </td>
                       
-                                <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd0"></td>
+                                <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index">
+                            <v-radio-group
+                            v-model="sqd0"
+                            :rules="[v => !!v || 'Selection required']"
+                            row
+                            required
+                            >
+                            <v-radio :value="sqd_value"></v-radio>
+                            </v-radio-group>
+                            </td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD1.</b> Makatwiran ang oras na aking ginugol para sa pagproseso ng aking transaksyon.
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd1"></td>
+                            <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index">
+                            <v-radio-group
+                            v-model="sqd1"
+                            :rules="[v => !!v || 'Selection required']"
+                            row
+                            required
+                            >
+                            <v-radio :value="sqd_value"></v-radio>
+                            </v-radio-group>
+                            </td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD2.</b> Ang opisina ay sumusunod sa mga kinakailangang dokumento at mga hakbang batay sa impormasyong ibinigay.
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd2"></td>
+                                <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index">
+                                <v-radio-group
+                                v-model="sqd2"
+                                :rules="[v => !!v || 'Selection required']"
+                                row
+                                required
+                                >
+                                <v-radio :value="sqd_value"></v-radio>
+                                </v-radio-group>
+                                </td>
+                              
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD3.</b> Ang mga hakbang sa pagproseso, kasama na ang pagbayad ay madali at simple lamang.
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd3"></td>
+                            
+                                <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index">
+                            <v-radio-group
+                            v-model="sqd3"
+                            :rules="[v => !!v || 'Selection required']"
+                            row
+                            required
+                            >
+                            <v-radio :value="sqd_value"></v-radio>
+                            </v-radio-group>
+                            </td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD4.</b> Mabilis at madali akong nakahanap ng impormasyon tungkol sa aking transaksyon mula sa opisina o sa website nito.
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd4"></td>
+                                <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index">
+                            <v-radio-group
+                            v-model="sqd4"
+                            :rules="[v => !!v || 'Selection required']"
+                            row
+                            required
+                            >
+                            <v-radio :value="sqd_value"></v-radio>
+                            </v-radio-group>
+                            </td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD5.</b> Nagbayad ako ng makatwirang halaga para sa aking transaksyon. <i>(Kung ang sebisyo ay ibinigay ng libre, maglagay ng tsek sa hanay ng N/A.)</i>
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd5"></td>
+                                <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index">
+                            <v-radio-group
+                            v-model="sqd5"
+                            :rules="[v => !!v || 'Selection required']"
+                            row
+                            required
+                            >
+                            <v-radio :value="sqd_value"></v-radio>
+                            </v-radio-group>
+                            </td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD6.</b> Pakiramdam ko ay patas ang opisina sa lahat, o “walang palakasan”, sa aking transaksyon.
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd6"></td>
+                                <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index">
+                            <v-radio-group
+                            v-model="sqd6"
+                            :rules="[v => !!v || 'Selection required']"
+                            row
+                            required
+                            >
+                            <v-radio :value="sqd_value"></v-radio>
+                            </v-radio-group>
+                            </td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD7.</b> Magalang akong trinato ng mga tauhan, at (kung sakali ako ay humingi ng tulong) alam ko na sila ay handang tumulong sa akin. 
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd7"></td>
+                                <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index">
+                            <v-radio-group
+                            v-model="sqd7"
+                            :rules="[v => !!v || 'Selection required']"
+                            row
+                            required
+                            >
+                            <v-radio :value="sqd_value"></v-radio>
+                            </v-radio-group>
+                            </td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>SQD8.</b> Nakuha ko ang kinakailangan ko mula sa tanggapan ng gobyerno, kung tinanggihan man, ito ay sapat na ipinaliwanag sa akin. 
                                 </td>
-                                <td class="text-center"  v-for="(sqd_value, index) in sqd" :key="index"><input class="form-check-input" type="radio" :value="sqd_value" v-model="sqd8"></td>
+                                <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index">
+                            <v-radio-group
+                            v-model="sqd8"
+                            :rules="[v => !!v || 'Selection required']"
+                            row
+                            required
+                            >
+                            <v-radio :value="sqd_value"></v-radio>
+                            </v-radio-group>
+                            </td>
                             </tr>
                         </tbody>
                     </table>
@@ -354,7 +459,13 @@
                     <label class="col-form-label">
                         Mga suhestiyon kung paano pa mapapabuti pa ang aming mga serbisyo (opsyonal):
                     </label>
-                    <textarea class="form-control" v-model="comments"></textarea>
+                    <!-- <textarea class="form-control"
+                    ></textarea> -->
+                    <v-textarea
+                    v-model="comments"
+                    :disabled="isDisabled" 
+                :rules="nameRules"
+                required ></v-textarea>
                 </div>
             </div>
             <div class="row mb-5">
@@ -363,9 +474,22 @@
                         <div class="col-auto">
                           <label class="col-form-label">Email</label>
                         </div>
-                        <div class="col-auto">
-                          <input type="email" v-model="email" class="form-control">
-                        </div>
+                   
+                          <!-- <input 
+                          type="email" 
+                          v-model="email" 
+                          class="form-control"
+                          :disabled="isDisabled" 
+                :rules="nameRules"
+                required > -->
+
+                <v-text-field  type="email" 
+                          v-model="email" 
+                          class="form-control"
+                          :disabled="isDisabled" 
+                :rules="nameRules"
+                required ></v-text-field>
+                       
                     </div>
                 </div>
             </div>
@@ -374,8 +498,14 @@
                     <h4 class="text-center">MARAMING SALAMAT!</h4>
                 </div>
             </div>
+            <div class="row mb-5">
+                <div class="col col-lg-12">
+                    <v-btn @click="save_btn()" color="primary">Save</v-btn>
+                </div>
+            </div>
         </div>
     </div>
+    </v-form>
     </v-app>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -137,16 +137,16 @@ Route::get('/reports/pss', function () {
 Route::get('/reports/pss', function () {
     return view('report_csm');
 });
-
+//CSS
 Route::post('/save_css', [FormController::class, 'save_css']);
 Route::post('/edit_css', [FormController::class, 'edit_css']);
 Route::post('/delete_css', [FormController::class, 'destroy_css']);
 
-
+//PSS
 Route::post('/save_pss', [FormController::class, 'save_pss']);
 Route::post('/edit_pss', [FormController::class, 'edit_pss']);
 Route::post('/delete_pss', [FormController::class, 'destroy_pss']);
-
+//CSM
 Route::post('/save_csm', [FormController::class, 'save_csm']);
 Route::post('/edit_csm', [FormController::class, 'edit_csm']);
 Route::post('/delete_csm', [FormController::class, 'destroy_csm']);
@@ -155,6 +155,7 @@ Route::get('/office_dropdown', [FormController::class, 'office_dropdown']);
 Route::post('/service_dropdown', [FormController::class, 'service_dropdown']);
 Route::get('/municipality_dropdown', [FormController::class, 'municipality_dropdown']);
 Route::post('/change_dropdown', [FormController::class, 'change_dropdown']);
+Route::post('/change_dropdown_csm', [FormController::class, 'change_dropdown_csm']);
 
 //PDF
 Route::get('/reports1/css/{monthyear}/{year}/{month}/{office_name}', [PDFController::class, 'report_css']);

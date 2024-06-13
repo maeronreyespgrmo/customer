@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             RegionTableSeeder::class,
             ProvinceTableSeeder::class,
             CitiesAndMunicipalitiesTableSeeder::class,
-            BarangaysTableSeeder::class
+            BarangaysTableSeeder::class,
+            ServicesCSMSeeder::class
         ]);
     }
 }

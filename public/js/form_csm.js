@@ -43,7 +43,8 @@ sqd6:'',
 sqd7:'',
 sqd8:'',
 comments:'',
-email:''
+email:'',
+age:'',
 }),
 
 mounted() {
@@ -70,7 +71,7 @@ axios.get('/office_dropdown').then(response => {
 this.office_items = response.data.map(x=> x.office_name)
 })
 
-axios.post('/change_dropdown',{
+axios.post('/change_dropdown_csm',{
 office_name: this.office_name
 }).then(response => {
 this.checkbox_data = response.data.map((item, index) => {
@@ -105,7 +106,7 @@ this.cc1 = response.data[0].cc1
 this.cc2 = response.data[0].cc2
 this.cc3 = response.data[0].cc3
 
-axios.post('/change_dropdown',{
+axios.post('/change_dropdown_csm',{
 office_name: response.data[0].office_name
 }).then(response => {
 this.checkbox_data = response.data.map((item, index) => {
@@ -134,7 +135,7 @@ save_btn(){
 if(this.$refs.form.validate()){
 let urrl = window.location.href.split('/')[3];
 let idd =  window.location.href.split('/')[5];
-let url = (urrl === "edit")? "/edit_css" : "/save_css"
+let url = (urrl === "edit")? "/edit_csm" : "/save_csm"
 
 console.log(url)
 
@@ -142,8 +143,25 @@ console.log(url)
 axios.post(url, {
 id: idd,
 office_name: this.office_name,
-name_evaluatee: this.name_evaluatee,
-name_evaluator: this.name_evaluator,
+client_type: this.client_type,
+date: this.dates,
+gender: this.gender,
+age: this.age,
+services: this.services,
+cc1: this.cc1,
+cc2: this.cc2,
+cc3: this.cc3,
+sqd0: this.sqd0,
+sqd1: this.sqd1,
+sqd2: this.sqd2,
+sqd3: this.sqd3,
+sqd4: this.sqd4,
+sqd5: this.sqd5,
+sqd6: this.sqd6,
+sqd7: this.sqd7,
+sqd8: this.sqd8,
+comments: this.comments,
+email: this.email,
 })
 .then((response)=> {
 console.log(response);
@@ -178,7 +196,7 @@ alert("No, Im staying...");
 },
 service_dropdown(){
 // alert()
-axios.post('/change_dropdown',{
+axios.post('/change_dropdown_csm',{
 office_name: this.office_name
 }).then(response => {
 this.checkbox_data = response.data.map((item, index) => {

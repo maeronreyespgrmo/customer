@@ -16,6 +16,11 @@ return new class extends Migration
             $table->id();
             $table->string("office_id")->nullable();
             $table->string("service_id")->nullable();
+            $table->string("gender")->nullable();
+            $table->string("client_type")->nullable();
+            $table->string("comments")->nullable();
+            $table->string("age")->nullable();
+            $table->string("email")->nullable();
             $table->string("date")->nullable();   
             $table->string("cc1")->nullable();    
             $table->string("cc2")->nullable();    
