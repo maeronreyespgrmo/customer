@@ -37,19 +37,46 @@
 
         
         body {
-            background-color: rgb(228 219 241);
-            margin: 0;
+            background-color: black;
         }
+    
     </style>
 </head>
-<body>
+<body >
 <div id="app" v-cloak>
 <v-app id="inspire">
 <v-snackbar v-model='snackbar' :color='snackbarcolor' top="top" style="margin-top:0;z-index:9000">
                 @{{ snackbartext }}
             </v-snackbar>
-<v-form ref="form" v-model="valid" lazy-validation>
+            
+<v-form ref="form" v-model="valid" lazy-validation >
     <div class="container">
+
+
+<table style="width: 100%;">
+    <tr>
+        <td width="15%">
+            <center> <img src="/images/seal_laguna.png" alt="" width="100"
+                    height="100" align="left"> </center>
+        </td>
+        <td align="center">
+            <p class="font-11">Republic of the Philippines</p>
+            <p class="font-11">INTERNAL AUDIT SERVICES</p>
+            <p style="font-size: 12pt"><b>PROVINCIAL GOVERNMENT OF
+                    LAGUNA</b></p>
+            <p class="font-11">Pedro Guevara Street, Santa Cruz
+                Laguna</p>
+            <p class="font-11">CUSTOMER SATISFACTION MEASUREMENT
+            </p>
+        </td>
+        <td width="15%"><img src="/images/coa-logo.png" height="120" width="120"
+                alt="Image"></td>
+    </tr>
+</table>
+
+</v-list-item-content>
+</v-list-item>
+
             <div class="row mt-5">
                 <div class="col col-lg-12">
                     <h4 class="text-center">TULUNGAN MO KAMI MAS MAPABUTI ANG AMING MGA PROSESO AT SERBISYO!</h4>
@@ -317,14 +344,14 @@
                                     <b>SQD0.</b> Nasiyahan ako sa serbisyo na aking natanggap sa napuntahan na tanggapan.
                                 </td>
                       
-                                <td class="text-center" v-for="(sqd_value, index) in sqd" :key="index">
+                                <td class="large-radio" v-for="(sqd_value, index) in sqd" :key="index">
                             <v-radio-group
                             v-model="sqd0"
                             :rules="[v => !!v || 'Selection required']"
                             row
                             required
                             >
-                            <v-radio :value="sqd_value"></v-radio>
+                            <v-radio :value="sqd_value" style="display:inline-block;margin:auto;"></v-radio>
                             </v-radio-group>
                             </td>
                             </tr>
@@ -339,7 +366,7 @@
                             row
                             required
                             >
-                            <v-radio :value="sqd_value"></v-radio>
+                            <v-radio :value="sqd_value" style="display:inline-block;margin:auto;"></v-radio>
                             </v-radio-group>
                             </td>
                             </tr>
@@ -354,7 +381,7 @@
                                 row
                                 required
                                 >
-                                <v-radio :value="sqd_value"></v-radio>
+                                <v-radio :value="sqd_value" style="display:inline-block;margin:auto;"></v-radio>
                                 </v-radio-group>
                                 </td>
                               
@@ -371,7 +398,7 @@
                             row
                             required
                             >
-                            <v-radio :value="sqd_value"></v-radio>
+                            <v-radio :value="sqd_value" style="display:inline-block;margin:auto;"></v-radio>
                             </v-radio-group>
                             </td>
                             </tr>
@@ -386,7 +413,7 @@
                             row
                             required
                             >
-                            <v-radio :value="sqd_value"></v-radio>
+                            <v-radio :value="sqd_value" style="display:inline-block;margin:auto;"></v-radio>
                             </v-radio-group>
                             </td>
                             </tr>
@@ -401,7 +428,7 @@
                             row
                             required
                             >
-                            <v-radio :value="sqd_value"></v-radio>
+                            <v-radio :value="sqd_value" style="display:inline-block;margin:auto;"></v-radio>
                             </v-radio-group>
                             </td>
                             </tr>
@@ -416,7 +443,7 @@
                             row
                             required
                             >
-                            <v-radio :value="sqd_value"></v-radio>
+                            <v-radio :value="sqd_value" style="display:inline-block;margin:auto;"></v-radio>
                             </v-radio-group>
                             </td>
                             </tr>
@@ -431,7 +458,7 @@
                             row
                             required
                             >
-                            <v-radio :value="sqd_value"></v-radio>
+                            <v-radio :value="sqd_value" style="display:inline-block;margin:auto;"></v-radio>
                             </v-radio-group>
                             </td>
                             </tr>
@@ -446,7 +473,7 @@
                             row
                             required
                             >
-                            <v-radio :value="sqd_value"></v-radio>
+                            <v-radio :value="sqd_value" style="display:inline-block;margin:auto;"></v-radio>
                             </v-radio-group>
                             </td>
                             </tr>

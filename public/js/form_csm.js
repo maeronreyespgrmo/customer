@@ -188,7 +188,6 @@ window.location.reload()
 
 } else {
 alert("No, Im staying...");
-// Add logic to perform actions on 'No' confirmation or simply do nothing
 }
 
 
