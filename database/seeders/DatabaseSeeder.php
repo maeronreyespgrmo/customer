@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ServiceSeeder::class,
             OfficeSeeder::class,
+            OfficeCSMSeeder::class,
             HospitalSeeder::class,
             DoctorSeeder::class,
             ManagerSeeder::class,
