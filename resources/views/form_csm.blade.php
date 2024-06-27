@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Satisfaction System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/bootstrap-icons.min.css">
+    <link rel="icon" type="image/png" href="/images/seal_laguna.png" />
     <link href="/vendor/vue/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="/vendor/vue/css/vuetify.min.css" rel="stylesheet">
     <style>
@@ -33,11 +34,6 @@
         }
         .table tbody .text-center {
             vertical-align: middle;
-        }
-
-        
-        body {
-            background-color: black;
         }
     
     </style>
@@ -172,7 +168,15 @@
                         </div>
                         <div class="col-auto me-3">
                             <div class="form-check form-check-inline">
-                                <input class="form-control" type="number" v-model="age">
+                                <!-- <input class="form-control" type="number" v-model="age" :rules="nameRules" required > -->
+                                <v-text-field
+                                type="number" 
+                                v-model="age" 
+                                :rules="nameRules" 
+                                outlined
+                                clearable
+                                >
+                                </v-text-field>
                             </div>
                         </div>
                     </div>
@@ -514,7 +518,7 @@
                           v-model="email" 
                           class="form-control"
                           :disabled="isDisabled" 
-                :rules="nameRules"
+                :rules="emailRules"
                 required ></v-text-field>
                        
                     </div>
@@ -526,8 +530,8 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="col col-lg-12">
-                    <v-btn @click="save_btn()" color="primary">Save</v-btn>
+                <div class="col cdsol-lg-12">
+                    <v-btn @click="save_btn()" color="primary" block>Save</v-btn>
                 </div>
             </div>
         </div>
@@ -535,7 +539,7 @@
     </v-form>
     </v-app>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/vendor/vue/js/vue.js"></script>
     <script src="/vendor/vue/js/Vuetify.js"></script>
     <script src="/vendor/assets/Vuetify/axios.min.js"></script>

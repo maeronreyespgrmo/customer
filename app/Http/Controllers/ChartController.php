@@ -19,10 +19,11 @@ class ChartController extends Controller
          */
         //COUNT TOTAL ONLY THE CHART OF CSS AND PSS
         $results = DB::select("
-        SELECT (count_form_pss + count_form_css) AS total_survey, count_form_pss, count_form_css
+        SELECT (count_form_pss + count_form_css + count_form_csm) AS total_survey, count_form_pss, count_form_css,count_form_csm
         FROM (
         SELECT 
         (SELECT COUNT(id) FROM tbl_form_pss) AS count_form_pss,
+        (SELECT COUNT(id) FROM tbl_form_csm) AS count_form_csm,
         (SELECT COUNT(id) FROM tbl_form_css) AS count_form_css
         ) TB
         ");
@@ -48,6 +49,30 @@ class ChartController extends Controller
             (SELECT COUNT(id) FROM tbl_form_css WHERE DATE_FORMAT(DATE, '%m') = '10' AND DATE LIKE '%" . $currentYear . "%') AS OCT,
             (SELECT COUNT(id) FROM tbl_form_css WHERE DATE_FORMAT(DATE, '%m') = '11' AND DATE LIKE '%" . $currentYear . "%') AS novv,
             (SELECT COUNT(id) FROM tbl_form_css WHERE DATE_FORMAT(DATE, '%m') = '12' AND DATE LIKE '%" . $currentYear . "%') AS decc
+        ) TB
+     ");
+        return $results;
+    }
+
+    public function monthly_csm()
+    {
+        $currentYear = date('Y');
+        $results = DB::select("
+        SELECT *
+        FROM (
+            SELECT
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '01' AND DATE LIKE '%" . $currentYear . "%') AS jan,
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '02' AND DATE LIKE '%" . $currentYear . "%') AS feb,
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '03' AND DATE LIKE '%" . $currentYear . "%') AS march,
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '04' AND DATE LIKE '%" . $currentYear . "%') AS april,
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '05' AND DATE LIKE '%" . $currentYear . "%') AS may,
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '06' AND DATE LIKE '%" . $currentYear . "%') AS june,
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '07' AND DATE LIKE '%" . $currentYear . "%') AS july,
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '08' AND DATE LIKE '%" . $currentYear . "%') AS aug,
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '09' AND DATE LIKE '%" . $currentYear . "%') AS sep,
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '10' AND DATE LIKE '%" . $currentYear . "%') AS OCT,
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '11' AND DATE LIKE '%" . $currentYear . "%') AS novv,
+            (SELECT COUNT(id) FROM tbl_form_csm WHERE DATE_FORMAT(DATE, '%m') = '12' AND DATE LIKE '%" . $currentYear . "%') AS decc
         ) TB
      ");
         return $results;

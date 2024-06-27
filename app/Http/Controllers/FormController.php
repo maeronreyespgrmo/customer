@@ -8,6 +8,7 @@ use App\Models\FormCSS;
 use App\Models\FormCSM;
 use App\Models\FormPSS;
 use App\Models\Office;
+use App\Models\OfficeCSM;
 use App\Models\Municipality;
 use Illuminate\Support\Facades\DB;
 
@@ -73,13 +74,13 @@ class FormController extends Controller
     {
         try {
             DB::beginTransaction();
-            $query_offices = DB::table('tbl_offices')
+            $query_offices = DB::table('tbl_offices_csm')
                 ->select('id')
                 ->where('office_name', $request->office_name)
                 ->get();
 
             foreach($request->services as $services_item){
-                $query_services = DB::table('tbl_services')
+                $query_services = DB::table('tbl_services_csm')
                 ->select('id')
                 ->where('service_name', $services_item)
                 ->where('office_id', $query_offices[0]->id)
@@ -93,6 +94,7 @@ class FormController extends Controller
             $table->office_id = $query_offices[0]->id;
             $table->service_id = $services;
             $table->client_type = $request->client_type;
+            $table->gender = $request->gender;
             $table->age = $request->age;
             $table->cc1 = $request->cc1;
             $table->cc2 = $request->cc2;
@@ -217,6 +219,80 @@ class FormController extends Controller
             ->get();
 
         return $result;
+    }
+    //VIEW CSM FORM
+    public function view_csm(Request $request)
+    {
+
+        
+
+        $result = DB::table('tbl_form_csm')
+        ->join('tbl_services_csm', 'tbl_form_csm.service_id', '=', 'tbl_services_csm.id')
+        ->join('tbl_offices_csm', 'tbl_form_csm.office_id', '=', 'tbl_offices_csm.id')
+        ->select('tbl_form_csm.*', 'tbl_services_csm.service_name', 'tbl_offices_csm.office_name')
+        ->where('tbl_form_csm.id', $request->id)
+        ->get();
+
+        return$result;
+        
+    }
+     //UPDATE CSS FORM
+     public function edit_csm(Request $request)
+      {
+          try {
+              DB::beginTransaction();
+  
+              $query_offices = DB::table('tbl_offices_csm')
+                  ->select('id')
+                  ->where('office_name', $request->office_name)
+                  ->get();
+
+                  
+                foreach($request->services as $services_item){
+                    $query_services = DB::table('tbl_services_csm')
+                    ->select('id')
+                    ->where('service_name', $services_item)
+                    ->where('office_id', $query_offices[0]->id)
+                    ->get();
+                    $originalArrayServices[] = $query_services[0]->id;
+                }
+                $services = implode(',',  $originalArrayServices);
+
+                FormCSM::where('id', $request->id)->update([
+                  'service_id' => $services,
+                  'office_id' => $query_offices[0]->id,
+                  'gender' => $request->gender,
+                  'client_type' => $request->client_type,
+                  'comments' => $request->comments,
+                  'age' => $request->age,
+                  'email' => $request->email,
+                  'date' => $request->date,
+                  'cc1' => $request->cc1,
+                  'cc2' => $request->cc2,
+                  'cc3' => $request->cc3,
+                  'sqd0' => $request->sqd0,
+                  'sqd1' => $request->sqd1,
+                  'sqd2' => $request->sqd2,
+                  'sqd3' => $request->sqd3,
+                  'sqd4' => $request->sqd4,
+                  'sqd5' => $request->sqd5,
+                  'sqd6' => $request->sqd6,
+                  'sqd7' => $request->sqd7,
+                  'sqd8' => $request->sqd8
+              ]);
+              DB::commit();
+              return "Success";
+          } catch (\Exception $e) {
+              DB::rollBack();
+              return $e->getMessage();
+          }
+      }
+    //DELETE CSS FORM
+    public function destroy_csm(Request $request)
+    {
+        $id = FormCSM::find($request->id);
+        $id->delete();
+        return "success";
     }
     //SAVE PSS FORM
     public function save_pss(Request $request)
@@ -428,6 +504,12 @@ class FormController extends Controller
         $offices = Office::orderBy('office_name', 'ASC')->get();
         return $offices;
     }
+    //OFFICE DROPDOWN
+    public function office_dropdown_csm(Request $request)
+    {
+        $offices = OfficeCSM::orderBy('office_name', 'ASC')->get();
+        return $offices;
+    }
     //SERVICE DROPDOWN
     public function service_dropdown(Request $request)
     {
@@ -501,7 +583,7 @@ class FormController extends Controller
           $services = DB::table('tbl_services_csm')
               ->where('office_id', function ($query) use ($officeName) {
                   $query->select('id')
-                      ->from('tbl_offices')
+                      ->from('tbl_offices_csm')
                       ->where('office_name', $officeName)
                       ->where('tbl_services_csm.deleted_at', '=', NULL);
               })

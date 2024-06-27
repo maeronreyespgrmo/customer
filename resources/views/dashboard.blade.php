@@ -160,7 +160,7 @@
                                                             of
                                                             PSS Per month</button>
 
-                                                        <button class="w3-bar-item w3-button" onclick="openCity('Paris')">No
+                                                        <button class="w3-bar-item w3-button" onclick="openCity('France')">No
                                                         of
                                                         CSM Per month</button>
 
@@ -174,6 +174,11 @@
 
                                                 <div id="Paris" class="col-lg-6 w3-container city" style="display:none">
                                                     <canvas id="line_chart_pss" width="800" height="600"></canvas>
+                                                </div>
+
+                                                
+                                                <div id="France" class="col-lg-6 w3-container city" style="display:none">
+                                                    <canvas id="line_chart_csm" width="800" height="600"></canvas>
                                                 </div>
 
                                             </div>
@@ -218,16 +223,19 @@
                 document.getElementById('total_survey').textContent = res[0].total_survey
                 document.getElementById('count_css').textContent = res[0].count_form_css
                 document.getElementById('count_pss').textContent = res[0].count_form_pss
+                document.getElementById('count_csm').textContent = res[0].count_form_csm
 
 
                 // Get the counter element
                 const counterElementCSS = document.getElementById('count_css');
                 const counterElementPSS = document.getElementById('count_pss');
+                const counterElementCSM = document.getElementById('count_csm');
                 const counterElementOVERALL = document.getElementById('total_survey');
 
                 // Define the target number
                 const targetNumberCSS = res[0].count_form_css;
                 const targetNumberPSS = res[0].count_form_pss;
+                const targetNumberCSM = res[0].count_form_csm;
                 const targetNumberOVERALL = res[0].total_survey;
 
                 function countToTargetNumberCSS() {
@@ -248,6 +256,16 @@
                     }
                     currentNumberPSS++;
                     counterElementPSS.textContent = currentNumberPSS.toString();
+                }
+
+                function countToTargetNumberCSM() {
+                    let currentNumberCSM = parseInt(counterElementCSM.textContent);
+                    if (currentNumberCSM === targetNumberCSM) {
+                        clearInterval(countIntervalCSM);
+                        return;
+                    }
+                    currentNumberCSM++;
+                    counterElementCSM.textContent = currentNumberCSM.toString();
                 }
 
                 function countToTargetNumberOVERALL() {
@@ -360,73 +378,117 @@
             })
         }
 
-        function prediction_chart_css() {
-
-            const rowData = {
-                name: 'John',
-                age: 30
-            };
-
-
-            let dd
-            fetch('/prediction_css').then(res => {
+        function line_chart_csm() {
+            fetch('/monthly_csm').then(res => {
                 return res.json()
             }).then(res => {
                 dd = Object.values(res[0])
-                let arr = []
-                res.map(x => {
-                    arr.push({
-                        input: ["2023"],
-                        output: {
-                            outcome: x.cc_id,
-                            name: x.office_name
+                console.log(dd)
+                var data3 = {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+                        'September', 'October', 'November', 'December'
+                    ],
+                    datasets: [{
+                        label: 'Total of CSM per month',
+                        data: dd,
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                        borderColor: 'rgba(0, 123, 255, 1)',
+                        borderWidth: 2,
+                        pointRadius: 5,
+                        pointBackgroundColor: 'rgba(0, 123, 255, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverRadius: 8,
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(0, 123, 255, 1)',
+                        fill: false
+                    }]
+                };
+
+                var options = {
+                    responsive: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
                         }
-                    })
-                })
+                    }
+                };
 
-                // Create and configure the neural network
-                const net = new brain.NeuralNetwork();
-                net.train(arr);
-
-
-
-                // Prepare input for prediction (replace with features for the current year)
-                const inputForCurrentYear = [2023];
-
-                // Make a prediction for the current year
-                const outputForCurrentYear = net.run(inputForCurrentYear);
-
-
-                console.log("rowHtml", outputForCurrentYear)
-
-                // Sort predicted outcomes based on output value
-                const sortedOutcomes = Object.keys(outputForCurrentYear).slice(0, 5).sort((a, b) =>
-                    outputForCurrentYear[b] - outputForCurrentYear[a]);
-
-                // Select top 1 to 5 outcomes for the current year, including names
-                const topOutcomesForCurrentYear = sortedOutcomes.map((x, y) => ({
-                    name: arr[y].output.name,
-                    outcome: outputForCurrentYear[x]
-                }));
-
-
-                // Create a new row HTML dynamically
-                const rowHtml = `
-                        ${topOutcomesForCurrentYear.map(({ name, outcome }) => ` <
-                    tr >
-                    <
-                    td > $ {
-                        name
-                    } < /td> <
-                td > $ {
-                    outcome / 100 * 100
-                } < /td> < /
-                tr > `).join('')}`;
-
-                document.getElementById('tableBody').innerHTML += rowHtml;
+                var ctx3 = document.getElementById('line_chart_csm').getContext('2d');
+                var lineChart = new Chart(ctx3, {
+                    type: 'line',
+                    data: data3,
+                    options: options
+                });
 
             })
         }
+        // function prediction_chart_css() {
+
+        //     const rowData = {
+        //         name: 'John',
+        //         age: 30
+        //     };
+
+
+        //     let dd
+        //     fetch('/prediction_css').then(res => {
+        //         return res.json()
+        //     }).then(res => {
+        //         dd = Object.values(res[0])
+        //         let arr = []
+        //         res.map(x => {
+        //             arr.push({
+        //                 input: ["2023"],
+        //                 output: {
+        //                     outcome: x.cc_id,
+        //                     name: x.office_name
+        //                 }
+        //             })
+        //         })
+
+        //         // Create and configure the neural network
+        //         const net = new brain.NeuralNetwork();
+        //         net.train(arr);
+
+
+
+        //         // Prepare input for prediction (replace with features for the current year)
+        //         const inputForCurrentYear = [2023];
+
+        //         // Make a prediction for the current year
+        //         const outputForCurrentYear = net.run(inputForCurrentYear);
+
+
+        //         console.log("rowHtml", outputForCurrentYear)
+
+        //         // Sort predicted outcomes based on output value
+        //         const sortedOutcomes = Object.keys(outputForCurrentYear).slice(0, 5).sort((a, b) =>
+        //             outputForCurrentYear[b] - outputForCurrentYear[a]);
+
+        //         // Select top 1 to 5 outcomes for the current year, including names
+        //         const topOutcomesForCurrentYear = sortedOutcomes.map((x, y) => ({
+        //             name: arr[y].output.name,
+        //             outcome: outputForCurrentYear[x]
+        //         }));
+
+
+        //         // Create a new row HTML dynamically
+        //         const rowHtml = `
+        //                 ${topOutcomesForCurrentYear.map(({ name, outcome }) => ` <
+        //             tr >
+        //             <
+        //             td > $ {
+        //                 name
+        //             } < /td> <
+        //         td > $ {
+        //             outcome / 100 * 100
+        //         } < /td> < /
+        //         tr > `).join('')}`;
+
+        //         document.getElementById('tableBody').innerHTML += rowHtml;
+
+        //     })
+        // }
 
         // function prediction_chart_pss() {
         //     fetch('/prediction_pss').then(res => {
@@ -495,7 +557,8 @@
         chart_boxes()
         line_chart_css()
         line_chart_pss()
-        prediction_chart_css()
+        line_chart_csm()
+        // prediction_chart_css()
         // prediction_chart_pss()
     </script>
 @endsection

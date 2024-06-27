@@ -50,28 +50,28 @@ let app = new Vue({
     value: 'service_name',
     },
     {
-    text: 'Name of Evalualator',
+    text: 'Client Type',
     align: 'start',
     sortable: false,
-    value: 'name_evaluator',
+    value: 'client_type',
     },
     {
-    text: 'Name of Evaluatee',
+    text: 'Gender',
     align: 'start',
     sortable: false,
-    value: 'name_evaluatee',
+    value: 'gender',
     },
     {
-    text: 'Date',
+    text: 'Age',
     align: 'start',
     sortable: false,
-    value: 'date',
+    value: 'age',
     },
     {
-    text: 'Invalidated?',
+    text: 'Comments',
     align: 'start',
     sortable: false,
-    value: 'invalidated',
+    value: 'comments',
     },
     { text: 'Actions', value: 'actions', sortable: false },
     ],
@@ -120,7 +120,7 @@ let app = new Vue({
     initialize () {
     this.length = 10
     this.loader = true
-    axios.get('/select_css',{
+    axios.get('/select_csm',{
     nextpage:0,
     office_name:this.selectedOffice
     }).then(response => {
@@ -134,13 +134,7 @@ let app = new Vue({
       }, 1500);
     })
 
-    // axios.get('/dropdown_offices').then(response => {
-    // this.office_items =  response.data.map(x=> x.office_name)
-    // console.log("dp",response.data.map(x=> x.office_name))
-    // })
-
-
-    axios.get('/office_dropdown').then(response => {
+    axios.get('/office_dropdown_csm').then(response => {
     // console.log(response.data.map(x=> x.office_name))
     this.office_items = response.data.map(x=> x.office_name)
     this.selectedItemOffice = response.data.map(x=> x.office_name)
@@ -148,28 +142,12 @@ let app = new Vue({
 
 
     },
-    // next(page){
-    // console.log(page)
-    // this.loader = true
-    // this.loading_text = "wew"
-    // axios.post('/select_css2',{
-    // total:this.page_total,
-    // office_name:'Office of the Provincial Veterinarian(VET)',
-    // nextpage:page
-    // }).then(response => {
-    // setTimeout(() => {
-    // console.log(response.data) 
-    // this.data = response.data[0].first_array
-    // this.loader = false
-    // }, 1500);
-    // })
-    // },
 
     editItem (item) {
     this.editedIndex = this.data.indexOf(item)
     this.editedItem = Object.assign({}, item)
     // this.dialog = true
-    window.location.href=`/edit/css/${this.editedItem.id}`
+    window.location.href=`/edit/csm/${this.editedItem.id}`
     },
       
     
@@ -177,7 +155,7 @@ let app = new Vue({
     this.editedIndex = this.data.indexOf(item)
     this.editedItem = Object.assign({}, item)
     // this.dialog = true
-    window.open(`/view/css/${this.editedItem.id}`, '_blank');
+    window.open(`/view/csm/${this.editedItem.id}`, '_blank');
     // window.location.href=`/view/css/${this.editedItem.id}`
     },
     
@@ -189,7 +167,7 @@ let app = new Vue({
     
     deleteItemConfirm () {
     this.data.splice(this.editedIndex, 1)
-    axios.post('/delete_css', {
+    axios.post('/delete_csm', {
     id: this.editedItem.id,
     })
     .then((response)=> {
@@ -221,27 +199,26 @@ let app = new Vue({
     export_btn(){
       let year = this.dates.split("-")[0]
       let month = this.dates.split("-")[1]
-      window.location.href = `/reports1/css/${this.dates}/${year}/${month}/${this.office_name}`
+      window.location.href = `/reports1/csm/${this.dates}/${year}/${month}/${this.office_name}`
     },
-
-    // search_btn(){
-    //   this.length = 10
-    //   this.loader = true
-    //   axios.post('/select_css2',{
-    //   search:this.search,
-    //   office_name:this.selectedOffice,
-    //   nextpage:0  
-    //   }).then(response => {
-    //     setTimeout(() => {
-    //     this.data = response.data[0].first_array
-    //     this.page_total = response.data[0].last_array
-    //     let length_val = this.data.length
-    //     this.total_count  = Math.ceil(length_val/2)
-    //     this.length_val =  this.total_count
-    //     this.loader = false
-    //     }, 1500);
-    //   })
-    // }
+    search_btn(){
+      this.length = 10
+      this.loader = true
+      axios.post('/select_csm2',{
+      search:this.search,
+      office_name:this.office_name,
+      nextpage:0  
+      }).then(response => {
+        setTimeout(() => {
+        this.data = response.data[0].first_array
+        this.page_total = response.data[0].last_array
+        let length_val = this.data.length
+        this.total_count  = Math.ceil(length_val/2)
+        this.length_val =  this.total_count
+        this.loader = false
+        }, 1500);
+      })
+    }
     },
     })
     

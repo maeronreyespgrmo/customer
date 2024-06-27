@@ -98,12 +98,12 @@
                                 <p>PSS</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="/comments/csm" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>CSM</p>
                             </a>
-                        </li>
+                        </li> -->
 
                     </ul>
                 </li>
@@ -129,12 +129,12 @@
                                 <p>PSS</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="/import/csm" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>CSM</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
 
@@ -249,6 +249,21 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
+
+                            <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/office" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>CSS</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/office/csm" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>CSM</p>
+                            </a>
+                        </li>
+                    </ul>
                         </li>
                         <li class="nav-item menu">
                             <a href="/manager" class="nav-link">

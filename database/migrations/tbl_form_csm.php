@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string("cc1")->nullable();    
             $table->string("cc2")->nullable();    
             $table->string("cc3")->nullable();
-            $table->string("sqd0")->nullable(); 
+            $table->string("sqd0")->nullable();
             $table->string("sqd1")->nullable();
             $table->string("sqd2")->nullable();
             $table->string("sqd3")->nullable();

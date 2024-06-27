@@ -53,4 +53,20 @@ class TableController extends Controller
         ];
         return view('table_pss', $data);
     }
+    public function view_csm($id)
+    {
+
+        $result = DB::table('tbl_form_csm')
+        ->join('tbl_services_csm', 'tbl_form_csm.service_id', '=', 'tbl_services_csm.id')
+        ->join('tbl_offices_csm', 'tbl_form_csm.office_id', '=', 'tbl_offices_csm.id')
+        ->select('tbl_form_csm.*', 'tbl_services_csm.service_name', 'tbl_offices_csm.office_name')
+        ->where('tbl_form_csm.id', $id)
+        ->get();
+        
+       
+        $data = [
+            'results' => $result[0],
+        ];
+        return view('table_csm', $data);
+    }
 }

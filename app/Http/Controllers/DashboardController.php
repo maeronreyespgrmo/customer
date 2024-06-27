@@ -78,6 +78,19 @@ class DashboardController extends Controller
         );
         return view('view_pss', compact('page'));
     }
+    
+    public function view_csm()
+    {
+        $page = array(
+            'title' =>  'View CSM Survey',
+            'name'  =>  'View CSM Survey',
+            'crumb' =>  array(
+                'Home' => '',   
+                'View CSM Survey' => ''
+            )
+        );
+        return view('view_csm', compact('page'));
+    }
 
     public function doctor()
     {

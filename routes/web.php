@@ -55,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manager', [DashboardController::class, 'manager']);
     Route::get('/view/css', [DashboardController::class, 'view_css']);
     Route::get('/view/pss', [DashboardController::class, 'view_pss']);
+    Route::get('/view/csm', [DashboardController::class, 'view_csm']);
     Route::get('/comments/css', [DashboardController::class, 'comments_css']);
     Route::get('/comments/pss', [DashboardController::class, 'comments_pss']);
     Route::get('/import/css', [DashboardController::class, 'import_css']);
@@ -152,6 +153,7 @@ Route::post('/edit_csm', [FormController::class, 'edit_csm']);
 Route::post('/delete_csm', [FormController::class, 'destroy_csm']);
 
 Route::get('/office_dropdown', [FormController::class, 'office_dropdown']);
+Route::get('/office_dropdown_csm', [FormController::class, 'office_dropdown_csm']);
 Route::post('/service_dropdown', [FormController::class, 'service_dropdown']);
 Route::get('/municipality_dropdown', [FormController::class, 'municipality_dropdown']);
 Route::post('/change_dropdown', [FormController::class, 'change_dropdown']);
@@ -167,11 +169,16 @@ Route::get('/test', [PDFController::class, 'test']);
 Route::get('/count_chart', [ChartController::class, 'count_survey']);
 Route::get('/monthly_css', [ChartController::class, 'monthly_css']);
 Route::get('/monthly_pss', [ChartController::class, 'monthly_pss']);
+Route::get('/monthly_csm', [ChartController::class, 'monthly_csm']);
 Route::get('/prediction_css', [ChartController::class, 'prediction_css']);
 Route::get('/prediction_pss', [ChartController::class, 'prediction_pss']);
 //SURVEY
 Route::get('/select_css', [SurveyController::class, 'display_css']);
 Route::post('/select_css2', [SurveyController::class, 'display_css']);
+
+Route::get('/select_csm', [SurveyController::class, 'display_csm']);
+Route::post('/select_csm2', [SurveyController::class, 'display_csm']);
+
 Route::get('/select_pss', [SurveyController::class, 'display_pss']);
 Route::post('/select_pss2', [SurveyController::class, 'display_pss']);
 
@@ -181,6 +188,8 @@ Route::post('/select_csm2', [SurveyController::class, 'display_csm']);
 
 Route::post('/view_css', [FormController::class, 'view_css']);
 Route::post('/view_pss', [FormController::class, 'view_pss']);
+Route::post('/view_csm', [FormController::class, 'view_csm']);
+
 Route::get('/dropdown_offices', [SurveyController::class, 'display_offices']);
 Route::get('/dropdown_hospitals', [SurveyController::class, 'display_hospitals']);
 
@@ -225,10 +234,16 @@ Route::get('/wordpss/{currentdate}/{year}/{hospital_name}', [WordController::cla
 
 Route::get('/view/css/{id}', [TableController::class, 'view_css']);
 Route::get('/view/pss/{id}', [TableController::class, 'view_pss']);
+Route::get('/view/csm/{id}', [TableController::class, 'view_csm']);
 
 Route::get('/edit/css/{id}', function () {
     return view('form_css');
 });
+
+Route::get('/edit/csm/{id}', function () {
+    return view('form_csm');
+});
+
 
 // Route::get('/view/pss/{id}', function () {
 //     return view('table_pss');

@@ -61,6 +61,62 @@ class SurveyController extends Controller
         );
         return $myArray;
     }
+
+    public function display_csm(Request $request)
+    {
+        $total_count = DB::table('tbl_form_csm')
+            ->join('tbl_services_csm', 'tbl_form_csm.service_id', '=', 'tbl_services_csm.id')
+            ->join('tbl_offices_csm', 'tbl_form_csm.office_id', '=', 'tbl_offices_csm.id')
+            ->whereNull('tbl_form_csm.deleted_at')
+            ->select('tbl_form_csm.*', 'tbl_services_csm.service_name', 'tbl_offices_csm.office_name')
+            ->where('tbl_offices_csm.office_name', 'LIKE', $request->office_name)
+            ->whereRaw("
+            CONCAT(
+            tbl_form_csm.id, 
+            service_name,
+            client_type,
+            gender,
+            age,
+            comments
+            ) LIKE '%" . $request->search . "%'")
+            ->count();
+        $currentpage =  $request->nextpage;
+        $rowsperpage = 10;
+        $totalpages = ceil($total_count / $rowsperpage);
+        if ($currentpage == null && !is_numeric($currentpage)) {
+            $currentpage = 1;
+        }
+        if ($currentpage > $totalpages) {
+            $currentpage = $totalpages;
+        }
+        $offset = ($currentpage - 1) * $rowsperpage;
+
+        $next = DB::table('tbl_form_csm')
+            ->join('tbl_services_csm', 'tbl_form_csm.service_id', '=', 'tbl_services_csm.id')
+            ->join('tbl_offices_csm', 'tbl_form_csm.office_id', '=', 'tbl_offices_csm.id')
+            ->whereNull('tbl_form_csm.deleted_at')
+            ->select('tbl_form_csm.*', 'tbl_services_csm.service_name', 'tbl_offices_csm.office_name')
+            ->where('tbl_offices_csm.office_name', 'LIKE', $request->office_name)
+            ->whereRaw("
+            CONCAT(
+            tbl_form_csm.id, 
+            service_name,
+            client_type,
+            gender,
+            age,
+            comments
+            ) LIKE '%" . $request->search . "%'")
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        $myArray = array(
+            array(
+                "first_array" => $next,
+                "last_array" => $totalpages
+            )
+        );
+        return $myArray;
+    }
     
     //DISPLAY PSS
     public function display_pss(Request $request)
