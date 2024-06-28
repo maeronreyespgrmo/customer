@@ -422,6 +422,7 @@
 
             })
         }
+        
         // function prediction_chart_css() {
 
         //     const rowData = {
