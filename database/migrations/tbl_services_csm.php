@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string("office_id")->nullable();
             $table->string("service_name")->nullable();
+            $table->string("service_type")->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

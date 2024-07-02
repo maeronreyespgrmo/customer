@@ -1,251 +1,251 @@
-office_id,service_name
-1,Seminar sa pagiging isang miyembro(External)
-1,Pagbibigay ng Pro-forma Template sa mga Kooperatiba(External)
-1,Magbigay ng gabay sa Pagbalangkas ng Artikulo ng Kooperasyon at By-Laws at iba pang mga Dokumento na kinakailangan para sa pagpaparehistro(External)
-1,Pagsasagawa ng kinakailangan seminar at pagsasanay na hinihingi ng CDA(External)
-1,Magbigay ng aktuwal na pagtuturo(External)
-1,Seminar sa pagiging isang miyembro(Internal)
-1,Magbigay ng Tulong Pinansyal sa rehistradong kooperatiba(Internal)
-2,Pagbibigay ng Supportang Teknikal para sa Agrikultura at Pangingisda(External)
-2,"Pagsasagawa ng Pakitang Gawa, Pagsasanay, at Techno Demo Aralan(External)"
-2,Pagbibigay ng mga Kagamitan para sa Pangsakahanat Pangisdaan(External)
-2,Pagsusuri ng Lupa gamit ang Soil Test Kit(External)
-2,Sentro ng Serbisyo sa Impormasyong-Pangteknolohiya para sa mga Magsasaka(External)
-2,Subsidyo o tulong para sa mababang pa-upa ng Traktora(External)
-2,Paglathala ng mga Hiniling na Datos Pang-agrikultura at ng Setipikasyon(External)
-3,Mag-isyu ng Libary Card(External)
-3,Magpahiram ng mga inilimbag at hindi-limbag na materyales sa mga gumagamit ng aklatan(External)
-3,Magbigay ng mga sanguniang serbisyo para sa pananaliksik(External)
-3,Magbigay ng libreng paggamit ng komputer para sa pananaliksik at pag-imprenta lamang (External)
-3,Magkaloob ng mga aklat sa mga pampublikong aklatan at sa mga pampublikong paaralan(External)
-3,Tumanggap ng mga donasyong aklat(External)
-4,"Pagbigay ng Kagamitan, Suplay, Materyales para sa donasyon(External)"
-4,Pagbibigay ng Certificate of Clearance Batay sa Responsibilidad sa Pag-aari(Internal)
-4,"Pamamahagi ng mga kagamitan sa opisina, panglinis, pang-elektrisidad, at pang-kompyuter sa mga tanggapan ng PGL(Internal)"
-4,Magbigay ng mga serbiisyo gaya ng maliit na pagkukumpuni ng mga pasilidad(Internal)
-5,Pagbibigay ng Tulong sa Trapiko at Kaligtasan sa Daan(Internal)
-5,Pagbibigay Kaalaman sa Umiiral na Batas Trapiko(Internal)
-5,Pakikipag-ugnayan sa Lahat ng ahensya ng Gobyerno para sa mga lumalabas at pumapasok na Komunikasyon(Internal)
-5,Pagtatangap at Pagbibigay ng Serbisyong Trapiko sa Lahat(Internal)
-5,Pagbibigay ng Tulong sa Trapiko at Kaligtasan sa Daan(External)
-5,Pagbibigay Kaalaman sa Umiiral na Batas Trapiko(External)
-5,Pakikipag-ugnayan sa Lahat ng ahensya ng Gobyerno para sa mga lumalabas at pumapasok na Komunikasyon(External)
-5,Pagtatangap at Pagbibigay ng Serbisyong Trapiko sa Lahat(External)
-6,Pagsusuri ng Budget ng mga Lungsod at Munisipalidad ng Laguna(External)
-6,Pamamaraan ng Komunikasyon(External)
-6,Proseso ng Paghahanda ng Budget(Internal)
-6,Pamamaraan ng Kahilingan sa Obligasyon(Internal)
-7,Pagsasagawa/Pagsasaayos ng Proyektong Pang-Inprastraktura(External)
-7,Pagtatakda sa Pagpapahiram ng Heavy Equipment(External)
-7,Pagkakaloob ng Permiso/Sertipikasyon at Pahintulot na may kaugnayan sa Road Right of Way(RROW)(External)
-7,Pagsasagawa/Pagsasaayos ng Proyektong Pang-Inprastraktura(Internal)
-7,Pagtatakda sa Pagpapahiram ng Heavy Equipment(Internal)
-7,Pagkakaloob ng Permiso/Sertipikasyon at Pahintulot na may kaugnayan sa Road Right of Way(RROW)(Internal)
-7,Pagsasaayos ng sasakyan at iba pang Heavy Equipment(Internal)
-8,"Magbigay ng mga produktong pagkain(enhanced bread at emergency food) para sa rehabilitasyon ng nutrisyon at pag-iwas sa malnutrition at pagpapagaan ng gutom kabilang ang mga kaso ng emergency sa iba't ibang tanggapan ng Pamahalaang Panlalawigan ng Laguna, mga lokal na pamahalaan, organisasyon ng mamamayan, pribadong indibidwal, akademya, estudyante(External)"
-,Magbigay ng datos kaugnay ng nutrisyon(External)
-8,Magbigay ng mga serbisyo sa Barangay Nutrition Scholars(BNSs) at Nutrition Action Officers(NAOs) at iba pang stakeholders(External)
-8,"Mga mapagkukunan ng tao para sa mga seminar, simposyum, pagsasanay, at iba pang katulad na aktibidad ukol sa nutrisyon.(External)"
-8,"Magbigay Information, Education at Communication(IEC) na materyales para sa tamang nutrisyon(External)"
-8,Paglabas at pagproseso ng mga insentibo ng Barangay Nutrition Scholar(BNS) mula sa Nasyonal at Panlalawigan Pamahalaan ng Laguna(External)
-8,"Magbigay ng mga produktong pagkain(enhanced bread at emergency food) para sa rehabilitasyon ng nutrisyon at pag-iwas sa malnutrition at pagpapagaan ng gutom kabilang ang mga kaso ng emergency sa iba't ibang tanggapan ng Pamahalaang Panlalawigan ng Laguna, mga lokal na pamahalaan, organisasyon ng mamamayan, pribadong indibidwal, akademya, estudyante(External)"
-8,0
-8,"Magbibigay ng mga produktong pagkain(enhanced bread at emergency food) para sa rehabilitasyon ng nutrisyon at pag iwas sa malnutrisyon at pagpapagaan ng gutom kabilang ang mga kaso ng emergency sa iba't ibang tanggapan ng Pamahalaang Panlalawigan ng Lagun, mga lokal na pamahalaan, organisasyon ng pamahalaan, organisasyon ng mamayaan, pribadong indibidwal, akademya, estudyante(External)"
-8,Magbigay ng datos kaugnay ng nutrisyon(External)
-9,"Pagtanggap ng ""Liquidation of Accounts"" sa iba't ibang munisipilidad ng Laguna(External)"
-9,Pagpapalabas ng tseke sa mga kontratista at tapagpatustos at iba pang roklamanto(External)
-9,"Pagtututos at pagtanggap ng bayad sa buwis patungkol sa ""Provincial Imposition"" at sa iba't ibang bayarin at singinlin ng lalawigan(External)"
-9,Pagbabayad ng Amilyar(External)
-9,Pagtanggap ng Koleksyon sa ibat ibang opisyal ng kolektor(Internal)
-9,"Pagbabayad ng mga sahod at iba pang benepisyo ng mga ""Non-ATM"" at espesyal na proyekto sa Lalawigan ng Laguna(Internal)"
-10,Pangangasiwa ng mga kahilingan sa mga problemang pabahay(External)
-10,Pagbibigay ng teknikal na tulong sa mga samahan(External)
-10,Proyektong pabahay(community mortgage program/direct payment scheme)(External)
-10,Pamamagitan at arbitrasyon ng mga reklamo(External)
-11,Pakikipag-ugnayan hinggil samga ipinatutupad na programa/serbisyo ng tanggapan(External)
-11,Pagbibigay/Pagkakaloob ng Pangkabuhayang Pagsasanay(External)
-11,Pamamahagi ng mga Panimuilang Kagamitan sa Pagnenegosyo(External)
-11,Kahilingan mapagkalooban ng pangkabuhayan pagsasanay / panimulang gamit pangkabuyan(External)
-11,Pagbibigay ng Sertipikasyon ng Walang Anumang Obligsayon sa Tanggapan(External)
-12,Panggamot ng hayop sa opisina(External)
-12,Panngamot ng hayop sa labas ng opisina(External)
-12,Paglalabas ng permiso para sa pagbyahe ng mga hayop sa opisina(External)
-12,Paglalabas ng permiso para sa pagbyahe ng mga hayop sa opisina sa pamamagitan ng internet(online)(External)
-12,Pagbisita sa bahay katayan upang suriin ang mga pagsunod nito sa mga regulasyon(External)
-12,Madaling pagbisita at pagimbistiga sa mga may sakit na hayop sa farm(External)
-12,Pagbibigay ng gamot at bakuna(External)
-12,Pagbakuna at pagpurga ng hayop sa opisina(External)
-12,Pagbakuna at pagpurga ng hayop sa labas ng opisina(External)
-12,Paglalagay ng semilya sa kalabaw at baka base sa mga tawag sa opisina(External)
-12,Paglalagay ng semilya sa kalabaw at baka base sa oras na itinakdaw ng opisina(External)
-12,Kahilingan sa Pagsasanay: Pagsasanay sa maayos na pamamahala ng kalusugan ng hayop para sa pagiwas at pagkontrol ng iba't-ibang sakit ng hayop(sa pamamagitan ng pagbisita sa tanggapan)(External)
-12,Kahilingan sa Pagsasanay: Pagsasanay sa maayos na pamamahala ng kalusugan ng hayop para sa pagiwas at pagkontrol ng iba't-ibang sakit ng hayop(sa pamamagitan ng social media/on-line)(External)
-12,Kahiligan sa Pagsasanay tungkol sa iba't-ibang pangkabuhayan sa paghahayupan(pagbisita sa tanggapan/walk-in)(External)
-12,Kahilingan sa Pagsasanay tungkol sa iba't-ibang pangkabuhayan sa paghahayupan(paggamit ng social media/on-line)(External)
-12,"Kahiligan sa Pagbabalangkas ng ""Feasibility Study"" ukol sa pangkabuhayan sa paghahayupan(pagbisita sa tanggapan)(External)"
-12,"Kahilingan sa Pagbabalangkas ng ""Feasibility Study"" ukol sa pangkabuhayan sa paghahayupan(panggamit ng social media-on-line)(External)"
-12,Pagtatala ng mga nakalap na presyo sa 11 malalaking pamilihang bayan ng laguna(External)
-12,Pagsusuri ng mga isinagawa o isinagawang proyekto ng Panlalawigan Tanggapan ng Beterinaryo(External)
-12,Paggamot ng hayop sa opisina(Internal)
-12,Paggamot ng hayop sa labas ng opisina(Internal)
-12,Pagbakuna at pagpurga ng hayop sa opisina(Internal)
-12,Pagbigay ng gamot at bakuna(Internal)
-12,Pagbakuna at pagpurga ng hayop sa labas ng opisina(Internal)
-13,Paghingi ng Datos ng Populasyon(External)
-13,Pagpapayo sa mga ikakasal(External)
-13,Pangkalusugan at Pagpapaunlad ng mga Kabataan(External)
-13,Responsableng Pagmamagulang at Planadong Pagpapamilya(External)
-13,Kamalayang Pangkasarian at Pagpapaunlad(External)
-13,"Responsablem, Epektibo, at Aktibong Pagmamagulang(External)"
-14,Pag renta ng mga pasilidad sa Laguna Sport Complex(Walk-in)(External)
-14,Kahilingan makagamit ng pasilidad at makahiram ng kagamitan sa Laguna Sports Complex para sa mga sport at non-sports event(Internal o PGL Offices)(External)
-14,Kahilingan makagamit ng pasilidad at makahiram ng kagamitan sa Laguna Sports Complex para sa mga sport at non-sports event(External o Non-PGL Offices)(External)
-14,Pagkakaloob ng pinansyal na insentibo para sa mga atleta at taga-pagsanay ng Laguna na nanalo ng medalya sa nasyonal at internasyonal na kumpetisyon(External)
-15,Pagpapatala(External)
-15,Pagpapatala sa ibang paaralan(External)
-15,Balidasyon ng pagkakakilanlan(External)
-15,Hiling para sa karagdagang yunit sa klase(External)
-15,Pagtangal sa mga kurso(External)
-15,Hiling para sa pagloiban mula sa pagaaral(External)
-15,Pagpapalabas ng papel para sa pagkumpleto ng tala(External)
-15,Hiling/Paglabas ng mga rekord ng eskwela(External)
-15,Pag-aaplay para sa pagtatapos(External)
-15,"Pagpapalabas ng ""Terminal Clearance""(External)"
-15,"Pagbabayad ng Matrikula, Dokumento(TOR, Copy of Grades, Good Moral, Honorable Dismissal at Sertipikasyon) at iba pa(External)"
-15,"Pamamahagi/Pagbibigay ng Sahod ng mga Kawani at ""Student Assistant"", Iskolarship(TES at TDP), Alawans para sa Paglalakbay, Alawans para sa Pananamit, ""Honorarium"" at Bonus(External)"
-15,Medikal at Dental na Pagsusuri(External)
-15,Pagsusuring Medikal Bago ang Partisipasyon(External)
-15,Pang araw-araw na Konsultasyon(External)
-15,Serbisyo pang Dental(External)
-15,Pagbibigay ng Sertipiko ng Mabuting Pag-uugali(External)
-15,Pagsasagawa ng Pagsusulit sa Pag pasok sa Laguna University(External)
-15,Pagpapahiram ng mga Kagamitan sa Silid Aklatan(External)
-15,Pagpapalabas ng Liham ng Rekomendasyon(External)
-15,Pagpasa/Pagtanggap ng mga pinal na tala ng marka(Internal)
-15,"Pamamahagi/Pagbibigay ng Sahod ng mga Kawani at ""Student Assistant"", Iskolarship(TES at TDP), Alawans para sa Paglalakbay, Alawans para sa Pananamit, ""Honorarium"" at Bonus(Internal)"
-15,"Paglalakbay, Alawans para sa Pananamit, ""Honorarium"" at Bonus(Internal)"
-15,Medikal at Dental na Pagsusuri(Internal)
-15,Pang araw-araw na Konsultasyon(Internal)
-15,Serbisyo pang Dental(Internal)
-15,Pagpapahiram ng mga Kagamitan sa Silid Aklatan(Internal)
-15,Pagbabalik ng Kagamitan sa Silid Aklatan(Internal)
-16,Pagtanggap/Pagproseso ng mga Aplikasyon(para sa Trabaho/Promosyon)(External)
-16,"Kahilingan para sa Service Record, Certificate of Employment at Good Moral(External)"
-16,Kahilingan para sa pagpoproseso ng Terminal Leave(External)
-16,Aplikasyon/Pagpoproseso ng OJT Contract(External)
-16,Pag-iisyu ng Appointment(Permanent Contractual)(Internal)
-16,Pag-iisyu ng Casual Appointment(Internal)
-16,Pag-iisyu ng Appointment(Contract of Service at Job Order)(Internal)
-16,Preparasyon at Pag-iisyu ng Volunteer Contract(Internal)
-16,"Pag-iisyu ng Certified True Copy ng 201 Files Documents(Appointment, PDS, SALN, NOSI/NOSA, IPCR Plantilla, atbp.)(Internal)"
-16,Pag-iisyu ng Leave Credits Certification(Internal)
-16,Pagproseso ng Leave Application(Internal)
-16,Kahilingan para sa Monetization at Forecasted Terminal Leave(Internal)
-16,"Kahilingan para sa Employee Indorsement para sa Claims, Benefits, Clearances, atbp.(Internal)"
-16,Pagwawasto ng Erroneous ATS Logs at Iba pang Concern/Requests para sa Attendance at Working hoursaw(Internal)
-16,Preparasyon ng Payroll para sa mga Permanent at Co-Terminous na mga Empleyado(Internal)
-16,"Preparasyon ng Payroll para sa mga Casual/Contractual, Contract of Service at Job Order na mga Empleyado COS at Job Order na mga Empleyado(Internal)"
-16,Kahilingan para sa Salary Adjustment at Change Form Status sa Payroll System(Internal)
-16,Pagproseso ng GSIS Loan Application(Internal)
-16,"Beripikasyon ng Salary Net para sa Pagpoproseso ng Land Bank Loan, DBP Loan, Pagibig Loan, at iba pang Loans(Internal)"
-16,Pag-iisyu ng Performance Final Ratings(Internal)
-16,Kahilingan para sa Conduct of Training(In-Service)(Internal)
-16,"Preparasyon/Pagiisyu ng Simple Memoranda, Office Orders, at Certificates(Internal)"
-17,Representasyon sa kaso sa hukuman(External)
-17,Paghahanda at pagsusuri ng mga kasunduan(External)
-17,Opinyong legal(External)
-17,Administratibong pagdinig(External)
-17,Tulong sa mga Lehislatibong gawain(External)
-17,Tulong Legal(External)
-17,Pagiisyu ng sertipikong administratibo(Internal)
-18,Iskolar ng Laguna Online Qualifying Examination(External)
-18,Iskolar ng Laguna Submission of Requirements(External)
-18,Pag po-proseso ng mga iba't-ibang sulat pang komunikasyon(Internal)
-18,Probisyon ng tulong pang pinasyal(External)
-18,Probisyon ng mga gamot(External)
-18,Tulong pang pinansyal sa pamilya ng namatay kawani ng barangay(External)
-18,Pag po-proseso ng mga iba't-ibang sulat pang komunikasyon(Internal)
-19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Larawan(External)
-19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Larawan(online request)(External)
-19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Video(External)
-19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Video(online request)(External)
-19,Magkaloob ng Tulong Teknikal: Video Editing(External)
-19,Magpalabas ng mga digital na kopya ng mga photo(External)
-19,Magpalabas ng mga digital na kopya ng mga photo(online request)(External)
-19,Magpalabas ng mga digital na kopya ng mga video(External)
-19,Magpalabas ng mga digital na kopya ng mga video(online request)(External)
-19,Paglalathala ng mga artikulong pagbabalita at mga larawan sa mga social media platform(External)
-19,Paglalathala ng mga artikulong pagbabalita at mga larawan sa mga social media platform(online request)(External)
-19,Pagtugon sa mga e-mails at website(External)
-19,Gumawa ng mga Audio Visual Presentation(External)
-19,Gumawa ng mga Info-graphics materials(External)
-19,Magsagawa ng Interview(External)
-19,Paglalapat ng boses(External)
-19,Magsasagawa ng mga live feeds coverage(External)
-19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Larawan(Internal)
-19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Larawan(online request)(Internal)
-19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Video(Internal)
-19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Video(online request)(Internal)
-19,Magkaloob ng Tulong Teknikal: Video Editing(Internal)
-19,Magpalabas ng mga digital na kopya ng mga photo(Internal)
-19,Magpalabas ng mga digital na kopya ng mga photo(online request)(Internal)
-19,Magpalabas ng mga digital na kopya ng mga video(Internal)
-19,Magpalabas ng mga digital na kopya ng mga video(online request)(Internal)
-19,Paglalathala ng mga artikulong pagbabalita at mga larawan sa mga social media platform(Internal)
-19,Paglalathala ng mga artikulong pagbabalita at mga larawan sa mga social media platform(online request)(Internal)
-19,Pagtugon sa mga e-mails at website(Internal)
-19,Gumawa ng mga Audio Visual Presentation(Internal)
-19,Gumawa ng mga Info-graphics materials(Internal)
-19,Magsagawa ng Interview(Internal)
-19,Paglalapat ng boses(Internal)
-19,Magsasagawa ng mga live feeds coverage(Internal)
-20,Pagsusuri ng mga bayarin at mga dokumentong kinakailangan para sa mga binili ng Pamahalaang Panlalawigan(External)
-20,Pagpapatunay ng Pananagutang Pinansyal(Internal)
-20,Pagbibigay ng Sertipikasyon ng Huling Sahod/Sweldo na natanggap(Internal)
-20,"Pagbibigay ng Sertipikasyon ng mga Kontribusyon Naisumite sa GSIS, Pag-IBIG/HDMF, Philhealth at Bangko(Internal)"
-20,"Pagbibigay ng Sertipikasyon ng Pagkakaroon ng Pondo at Balanse ng New Born Screening(NBS), No Balance Billing (NBB) at Philhealth Honorarium(Internal)"
-20,Pagsusuri ng mga bayarin at mga dokumentong kinakailangan sa Sweldo/Sahod ng mga empleyado at iba pang mga gastusin(Internal)
-21,Pagtugon sa Kahilingan para sa Presensya/ Mensahe mula sa Kagalang-galang na Gobernador sa mga Espesyal na Kaganapan Okasyon/Aktibidad(External)
-21,Kahilingan para sa mga Rekord ng mga Empleyado(Internal)
-21,Kahiligan para sa Mga Pangailangan sa Komunikasyon(Internal)
-21,Pagtugon sa mga Katanungan o Inquiry tungkol sa mga Empleyado. Promosyon sa Trabaho at Paghire ng mga bagong empleyado(External)
-21,Paghahanda ng mga Payroll ng Empleyado(External)
-21,Pagtatangap at Pagtatala ng mga Dokumento para sa Lagda ng Gobernador at Pag-Release ng mga ito sa Opisinang Nagrequest(Internal)
-21,Pagtugon sa Kahilingan para sa Presensya/Mensahe mula sa Kagalang galang na Gobernador sa Mga Espesyal na Kaganapan/ Okasyon/ Aktibidad(Internal)
-21,Kahilingan sa mga Kailangang Tarpaulin ng mga Opisina ng PGL(Internal)
-21,Koordinasyon ng PGL Events sa Gobernador sa pamamagitan ng GMS(Internal)
-21,Pag-Asiste sa Pangailangan ng mga Kliyente ng Chief-of-Staff(Internal)
-22,Pagsasagawa ng pagtuturo ukol sa Pagpapataas ng antas ng Espiritwal at mga Sesyon ng Aralin ukol sa Pagpapaunlad ng Moralidad(External)
-22,Pananalangin at pagbibigay ng payo sa mga nangangailangan ng kalakasan pang espiritwal tungo sa pagpapaunlad ng sarili biling matagumpay at epektibong linkod bayan(External)
-22,Pagbibigay ng mga Materyales/Handouts tungkol sa Pagpapataas ng antas ng Espiritwal at Sesyon ng Aralin ukol sa pagkakaroon ng mabuting moralidad at kagandahang asal bilang isang linkod bayan(External)
-22,Pagsasagawa ng pagtuturo ukol sa Pagpapataas ng antas ng Espiritwal at mga Sesyon ng Aralin ukol sa Pagpapaunlad ng Moralidad(Internal)
-22,Pananalangin at pagbibigay ng payo sa mga nangangailangan ng kalakasan pang espiritwal tungo sa pagpapaunlad ng sarili biling matagumpay at epektibong linkod bayan(Internal)
-22,Pagbibigay ng mga Materyales/Handouts tungkol sa Pagpapataas ng antas ng Espiritwal at Sesyon ng Aralin ukol sa pagkakaroon ng mabuting moralidad at kagandahang asal bilang isang linkod bayan(Internal)
-23,Pagsasanay sa Disenyong Grapiko sa Kompyuter para sa mga Guro(External)
-23,Pagsasanay sa Kurso sa Batayang Kaalaman/leterasi sa Kompyuter at Internet Para sa mga Kabataang Hindi Nag-aaral at mga Matatanda(External)
-23,Pagpapatunay ng Blue Card(External)
-23,Direktang Pagsasahimpapawid ng mga Kaganapan(External)
-23,Proseso sa Pag-aayos ng Impormasyon Teknolohiya(Internal)
-23,Pamamaraan sa Pagbuo ng Sistemang Pangimpormasyon(Internal)
-23,Tulong Teknikal sa Zoom Miting(Internal)
-23,Pag-isyu/Pagbibigay ng PGL ID(Internal)
-23,Direktang Pagsasahimpawid ng mga Kaganapan(Internal)
-24,Pagpapasa at rekomendasyon(personal na pumunta upang mahanap ng trabaho)(External)
-24,Pagapapsaat at rekomendasyon(naghahanap ng trabaho online)(External)
-24,Pagtuturo ng propesyon(External)
-24,Pagtuturo tungkol sa trabaho(External)
-24,Akreditasyon ng Kumpanya para sa aktibidad sa pag rekrut ng trabaho(External)
-24,Job Fair(kumpanya)(External)
-24,Job Fair(aplikante)(External)
-24,Lokal na aktibidad sa pagrekrut(kumpanya)(External)
-24,Lokal na aktibidad sa pagrekrut(aplikante)(External)
-24,Espisyal na programa para sa pagtrabaho ng mga magaaral(bagong SPES)(External)
-24,Espisyal na programa para sa pagtrabaho ng mga magaaral(dating SPES)(External)
-24,Tanggapan ng tulong para sa mga OFW(pamamahala ng kaso at pagtukoy)(External)
-24,Kaalaman sa pinansyal(External)
-24,Seminar ar oryentasyon bago ang pagtratrabaho(External)
-24,Seminar laban sa illegal na pagrekrut(External)
-24,Pagtuturo laban sa illegal na pagrekrut(External)
-24,Pagtuturo sa mga kasanayang pang komunidad(External)
-24,Espesyal na aktibidad para sa pag rerekrut kumpanya(External)
-24,Espesyal na aktibidad para sa pag rerekrut ng mga applikante(External)
+office_id,service_name,service_type
+1,Seminar sa pagiging isang miyembro(External),0
+1,Pagbibigay ng Pro-forma Template sa mga Kooperatiba(External),0
+1,Magbigay ng gabay sa Pagbalangkas ng Artikulo ng Kooperasyon at By-Laws at iba pang mga Dokumento na kinakailangan para sa pagpaparehistro(External),0
+1,Pagsasagawa ng kinakailangan seminar at pagsasanay na hinihingi ng CDA(External),0
+1,Magbigay ng aktuwal na pagtuturo(External),0
+1,Seminar sa pagiging isang miyembro(Internal),1
+1,Magbigay ng Tulong Pinansyal sa rehistradong kooperatiba(Internal),1
+2,Pagbibigay ng Supportang Teknikal para sa Agrikultura at Pangingisda(External),0
+2,"Pagsasagawa ng Pakitang Gawa, Pagsasanay, at Techno Demo Aralan(External)",0
+2,Pagbibigay ng mga Kagamitan para sa Pangsakahanat Pangisdaan(External),0
+2,Pagsusuri ng Lupa gamit ang Soil Test Kit(External),0
+2,Sentro ng Serbisyo sa Impormasyong-Pangteknolohiya para sa mga Magsasaka(External),0
+2,Subsidyo o tulong para sa mababang pa-upa ng Traktora(External),0
+2,Paglathala ng mga Hiniling na Datos Pang-agrikultura at ng Setipikasyon(External),0
+3,Mag-isyu ng Libary Card(External),0
+3,Magpahiram ng mga inilimbag at hindi-limbag na materyales sa mga gumagamit ng aklatan(External),0
+3,Magbigay ng mga sanguniang serbisyo para sa pananaliksik(External),0
+3,Magbigay ng libreng paggamit ng komputer para sa pananaliksik at pag-imprenta lamang (External),0
+3,Magkaloob ng mga aklat sa mga pampublikong aklatan at sa mga pampublikong paaralan(External),0
+3,Tumanggap ng mga donasyong aklat(External),0
+4,"Pagbigay ng Kagamitan, Suplay, Materyales para sa donasyon(External)",0
+4,Pagbibigay ng Certificate of Clearance Batay sa Responsibilidad sa Pag-aari(Internal),1
+4,"Pamamahagi ng mga kagamitan sa opisina, panglinis, pang-elektrisidad, at pang-kompyuter sa mga tanggapan ng PGL(Internal)",1
+4,Magbigay ng mga serbiisyo gaya ng maliit na pagkukumpuni ng mga pasilidad(Internal),1
+5,Pagbibigay ng Tulong sa Trapiko at Kaligtasan sa Daan(Internal),1
+5,Pagbibigay Kaalaman sa Umiiral na Batas Trapiko(Internal),1
+5,Pakikipag-ugnayan sa Lahat ng ahensya ng Gobyerno para sa mga lumalabas at pumapasok na Komunikasyon(Internal),1
+5,Pagtatangap at Pagbibigay ng Serbisyong Trapiko sa Lahat(Internal),1
+5,Pagbibigay ng Tulong sa Trapiko at Kaligtasan sa Daan(External),0
+5,Pagbibigay Kaalaman sa Umiiral na Batas Trapiko(External),0
+5,Pakikipag-ugnayan sa Lahat ng ahensya ng Gobyerno para sa mga lumalabas at pumapasok na Komunikasyon(External),0
+5,Pagtatangap at Pagbibigay ng Serbisyong Trapiko sa Lahat(External),0
+6,Pagsusuri ng Budget ng mga Lungsod at Munisipalidad ng Laguna(External),0
+6,Pamamaraan ng Komunikasyon(External),0
+6,Proseso ng Paghahanda ng Budget(Internal),1
+6,Pamamaraan ng Kahilingan sa Obligasyon(Internal),1
+7,Pagsasagawa/Pagsasaayos ng Proyektong Pang-Inprastraktura(External),0
+7,Pagtatakda sa Pagpapahiram ng Heavy Equipment(External),0
+7,Pagkakaloob ng Permiso/Sertipikasyon at Pahintulot na may kaugnayan sa Road Right of Way(RROW)(External),0
+7,Pagsasagawa/Pagsasaayos ng Proyektong Pang-Inprastraktura(Internal),1
+7,Pagtatakda sa Pagpapahiram ng Heavy Equipment(Internal),1
+7,Pagkakaloob ng Permiso/Sertipikasyon at Pahintulot na may kaugnayan sa Road Right of Way(RROW)(Internal),1
+7,Pagsasaayos ng sasakyan at iba pang Heavy Equipment(Internal),1
+8,"Magbigay ng mga produktong pagkain(enhanced bread at emergency food) para sa rehabilitasyon ng nutrisyon at pag-iwas sa malnutrition at pagpapagaan ng gutom kabilang ang mga kaso ng emergency sa iba't ibang tanggapan ng Pamahalaang Panlalawigan ng Laguna, mga lokal na pamahalaan, organisasyon ng mamamayan, pribadong indibidwal, akademya, estudyante(External)",0
+,Magbigay ng datos kaugnay ng nutrisyon(External),0
+8,Magbigay ng mga serbisyo sa Barangay Nutrition Scholars(BNSs) at Nutrition Action Officers(NAOs) at iba pang stakeholders(External),0
+8,"Mga mapagkukunan ng tao para sa mga seminar, simposyum, pagsasanay, at iba pang katulad na aktibidad ukol sa nutrisyon.(External)",0
+8,"Magbigay Information, Education at Communication(IEC) na materyales para sa tamang nutrisyon(External)",0
+8,Paglabas at pagproseso ng mga insentibo ng Barangay Nutrition Scholar(BNS) mula sa Nasyonal at Panlalawigan Pamahalaan ng Laguna(External),0
+8,"Magbigay ng mga produktong pagkain(enhanced bread at emergency food) para sa rehabilitasyon ng nutrisyon at pag-iwas sa malnutrition at pagpapagaan ng gutom kabilang ang mga kaso ng emergency sa iba't ibang tanggapan ng Pamahalaang Panlalawigan ng Laguna, mga lokal na pamahalaan, organisasyon ng mamamayan, pribadong indibidwal, akademya, estudyante(External)",0
+8,0,
+8,"Magbibigay ng mga produktong pagkain(enhanced bread at emergency food) para sa rehabilitasyon ng nutrisyon at pag iwas sa malnutrisyon at pagpapagaan ng gutom kabilang ang mga kaso ng emergency sa iba't ibang tanggapan ng Pamahalaang Panlalawigan ng Lagun, mga lokal na pamahalaan, organisasyon ng pamahalaan, organisasyon ng mamayaan, pribadong indibidwal, akademya, estudyante(External)",0
+8,Magbigay ng datos kaugnay ng nutrisyon(External),0
+9,"Pagtanggap ng ""Liquidation of Accounts"" sa iba't ibang munisipilidad ng Laguna(External)",0
+9,Pagpapalabas ng tseke sa mga kontratista at tapagpatustos at iba pang roklamanto(External),0
+9,"Pagtututos at pagtanggap ng bayad sa buwis patungkol sa ""Provincial Imposition"" at sa iba't ibang bayarin at singinlin ng lalawigan(External)",0
+9,Pagbabayad ng Amilyar(External),0
+9,Pagtanggap ng Koleksyon sa ibat ibang opisyal ng kolektor(Internal),1
+9,"Pagbabayad ng mga sahod at iba pang benepisyo ng mga ""Non-ATM"" at espesyal na proyekto sa Lalawigan ng Laguna(Internal)",1
+10,Pangangasiwa ng mga kahilingan sa mga problemang pabahay(External),0
+10,Pagbibigay ng teknikal na tulong sa mga samahan(External),0
+10,Proyektong pabahay(community mortgage program/direct payment scheme)(External),0
+10,Pamamagitan at arbitrasyon ng mga reklamo(External),0
+11,Pakikipag-ugnayan hinggil samga ipinatutupad na programa/serbisyo ng tanggapan(External),0
+11,Pagbibigay/Pagkakaloob ng Pangkabuhayang Pagsasanay(External),0
+11,Pamamahagi ng mga Panimuilang Kagamitan sa Pagnenegosyo(External),0
+11,Kahilingan mapagkalooban ng pangkabuhayan pagsasanay / panimulang gamit pangkabuyan(External),0
+11,Pagbibigay ng Sertipikasyon ng Walang Anumang Obligsayon sa Tanggapan(External),0
+12,Panggamot ng hayop sa opisina(External),0
+12,Panngamot ng hayop sa labas ng opisina(External),0
+12,Paglalabas ng permiso para sa pagbyahe ng mga hayop sa opisina(External),0
+12,Paglalabas ng permiso para sa pagbyahe ng mga hayop sa opisina sa pamamagitan ng internet(online)(External),0
+12,Pagbisita sa bahay katayan upang suriin ang mga pagsunod nito sa mga regulasyon(External),0
+12,Madaling pagbisita at pagimbistiga sa mga may sakit na hayop sa farm(External),0
+12,Pagbibigay ng gamot at bakuna(External),0
+12,Pagbakuna at pagpurga ng hayop sa opisina(External),0
+12,Pagbakuna at pagpurga ng hayop sa labas ng opisina(External),0
+12,Paglalagay ng semilya sa kalabaw at baka base sa mga tawag sa opisina(External),0
+12,Paglalagay ng semilya sa kalabaw at baka base sa oras na itinakdaw ng opisina(External),0
+12,Kahilingan sa Pagsasanay: Pagsasanay sa maayos na pamamahala ng kalusugan ng hayop para sa pagiwas at pagkontrol ng iba't-ibang sakit ng hayop(sa pamamagitan ng pagbisita sa tanggapan)(External),0
+12,Kahilingan sa Pagsasanay: Pagsasanay sa maayos na pamamahala ng kalusugan ng hayop para sa pagiwas at pagkontrol ng iba't-ibang sakit ng hayop(sa pamamagitan ng social media/on-line)(External),0
+12,Kahiligan sa Pagsasanay tungkol sa iba't-ibang pangkabuhayan sa paghahayupan(pagbisita sa tanggapan/walk-in)(External),0
+12,Kahilingan sa Pagsasanay tungkol sa iba't-ibang pangkabuhayan sa paghahayupan(paggamit ng social media/on-line)(External),0
+12,"Kahiligan sa Pagbabalangkas ng ""Feasibility Study"" ukol sa pangkabuhayan sa paghahayupan(pagbisita sa tanggapan)(External)",0
+12,"Kahilingan sa Pagbabalangkas ng ""Feasibility Study"" ukol sa pangkabuhayan sa paghahayupan(panggamit ng social media-on-line)(External)",0
+12,Pagtatala ng mga nakalap na presyo sa 11 malalaking pamilihang bayan ng laguna(External),0
+12,Pagsusuri ng mga isinagawa o isinagawang proyekto ng Panlalawigan Tanggapan ng Beterinaryo(External),0
+12,Paggamot ng hayop sa opisina(Internal),1
+12,Paggamot ng hayop sa labas ng opisina(Internal),1
+12,Pagbakuna at pagpurga ng hayop sa opisina(Internal),1
+12,Pagbigay ng gamot at bakuna(Internal),1
+12,Pagbakuna at pagpurga ng hayop sa labas ng opisina(Internal),1
+13,Paghingi ng Datos ng Populasyon(External),0
+13,Pagpapayo sa mga ikakasal(External),0
+13,Pangkalusugan at Pagpapaunlad ng mga Kabataan(External),0
+13,Responsableng Pagmamagulang at Planadong Pagpapamilya(External),0
+13,Kamalayang Pangkasarian at Pagpapaunlad(External),0
+13,"Responsablem, Epektibo, at Aktibong Pagmamagulang(External)",0
+14,Pag renta ng mga pasilidad sa Laguna Sport Complex(Walk-in)(External),0
+14,Kahilingan makagamit ng pasilidad at makahiram ng kagamitan sa Laguna Sports Complex para sa mga sport at non-sports event(Internal o PGL Offices)(External),1
+14,Kahilingan makagamit ng pasilidad at makahiram ng kagamitan sa Laguna Sports Complex para sa mga sport at non-sports event(External o Non-PGL Offices)(External),0
+14,Pagkakaloob ng pinansyal na insentibo para sa mga atleta at taga-pagsanay ng Laguna na nanalo ng medalya sa nasyonal at internasyonal na kumpetisyon(External),0
+15,Pagpapatala(External),0
+15,Pagpapatala sa ibang paaralan(External),0
+15,Balidasyon ng pagkakakilanlan(External),0
+15,Hiling para sa karagdagang yunit sa klase(External),0
+15,Pagtangal sa mga kurso(External),0
+15,Hiling para sa pagloiban mula sa pagaaral(External),0
+15,Pagpapalabas ng papel para sa pagkumpleto ng tala(External),0
+15,Hiling/Paglabas ng mga rekord ng eskwela(External),0
+15,Pag-aaplay para sa pagtatapos(External),0
+15,"Pagpapalabas ng ""Terminal Clearance""(External)",0
+15,"Pagbabayad ng Matrikula, Dokumento(TOR, Copy of Grades, Good Moral, Honorable Dismissal at Sertipikasyon) at iba pa(External)",0
+15,"Pamamahagi/Pagbibigay ng Sahod ng mga Kawani at ""Student Assistant"", Iskolarship(TES at TDP), Alawans para sa Paglalakbay, Alawans para sa Pananamit, ""Honorarium"" at Bonus(External)",0
+15,Medikal at Dental na Pagsusuri(External),0
+15,Pagsusuring Medikal Bago ang Partisipasyon(External),0
+15,Pang araw-araw na Konsultasyon(External),0
+15,Serbisyo pang Dental(External),0
+15,Pagbibigay ng Sertipiko ng Mabuting Pag-uugali(External),0
+15,Pagsasagawa ng Pagsusulit sa Pag pasok sa Laguna University(External),0
+15,Pagpapahiram ng mga Kagamitan sa Silid Aklatan(External),0
+15,Pagpapalabas ng Liham ng Rekomendasyon(External),0
+15,Pagpasa/Pagtanggap ng mga pinal na tala ng marka(Internal),1
+15,"Pamamahagi/Pagbibigay ng Sahod ng mga Kawani at ""Student Assistant"", Iskolarship(TES at TDP), Alawans para sa Paglalakbay, Alawans para sa Pananamit, ""Honorarium"" at Bonus(Internal)",1
+15,"Paglalakbay, Alawans para sa Pananamit, ""Honorarium"" at Bonus(Internal)",1
+15,Medikal at Dental na Pagsusuri(Internal),1
+15,Pang araw-araw na Konsultasyon(Internal),1
+15,Serbisyo pang Dental(Internal),1
+15,Pagpapahiram ng mga Kagamitan sa Silid Aklatan(Internal),1
+15,Pagbabalik ng Kagamitan sa Silid Aklatan(Internal),1
+16,Pagtanggap/Pagproseso ng mga Aplikasyon(para sa Trabaho/Promosyon)(External),0
+16,"Kahilingan para sa Service Record, Certificate of Employment at Good Moral(External)",0
+16,Kahilingan para sa pagpoproseso ng Terminal Leave(External),0
+16,Aplikasyon/Pagpoproseso ng OJT Contract(External),0
+16,Pag-iisyu ng Appointment(Permanent Contractual)(Internal),1
+16,Pag-iisyu ng Casual Appointment(Internal),1
+16,Pag-iisyu ng Appointment(Contract of Service at Job Order)(Internal),1
+16,Preparasyon at Pag-iisyu ng Volunteer Contract(Internal),1
+16,"Pag-iisyu ng Certified True Copy ng 201 Files Documents(Appointment, PDS, SALN, NOSI/NOSA, IPCR Plantilla, atbp.)(Internal)",1
+16,Pag-iisyu ng Leave Credits Certification(Internal),1
+16,Pagproseso ng Leave Application(Internal),1
+16,Kahilingan para sa Monetization at Forecasted Terminal Leave(Internal),1
+16,"Kahilingan para sa Employee Indorsement para sa Claims, Benefits, Clearances, atbp.(Internal)",1
+16,Pagwawasto ng Erroneous ATS Logs at Iba pang Concern/Requests para sa Attendance at Working hoursaw(Internal),1
+16,Preparasyon ng Payroll para sa mga Permanent at Co-Terminous na mga Empleyado(Internal),1
+16,"Preparasyon ng Payroll para sa mga Casual/Contractual, Contract of Service at Job Order na mga Empleyado COS at Job Order na mga Empleyado(Internal)",1
+16,Kahilingan para sa Salary Adjustment at Change Form Status sa Payroll System(Internal),1
+16,Pagproseso ng GSIS Loan Application(Internal),1
+16,"Beripikasyon ng Salary Net para sa Pagpoproseso ng Land Bank Loan, DBP Loan, Pagibig Loan, at iba pang Loans(Internal)",1
+16,Pag-iisyu ng Performance Final Ratings(Internal),1
+16,Kahilingan para sa Conduct of Training(In-Service)(Internal),1
+16,"Preparasyon/Pagiisyu ng Simple Memoranda, Office Orders, at Certificates(Internal)",1
+17,Representasyon sa kaso sa hukuman(External),0
+17,Paghahanda at pagsusuri ng mga kasunduan(External),0
+17,Opinyong legal(External),0
+17,Administratibong pagdinig(External),0
+17,Tulong sa mga Lehislatibong gawain(External),0
+17,Tulong Legal(External),0
+17,Pagiisyu ng sertipikong administratibo(Internal),1
+18,Iskolar ng Laguna Online Qualifying Examination(External),0
+18,Iskolar ng Laguna Submission of Requirements(External),0
+18,Pag po-proseso ng mga iba't-ibang sulat pang komunikasyon(Internal),1
+18,Probisyon ng tulong pang pinasyal(External),0
+18,Probisyon ng mga gamot(External),0
+18,Tulong pang pinansyal sa pamilya ng namatay kawani ng barangay(External),0
+18,Pag po-proseso ng mga iba't-ibang sulat pang komunikasyon(Internal),1
+19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Larawan(External),0
+19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Larawan(online request)(External),0
+19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Video(External),0
+19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Video(online request)(External),0
+19,Magkaloob ng Tulong Teknikal: Video Editing(External),0
+19,Magpalabas ng mga digital na kopya ng mga photo(External),0
+19,Magpalabas ng mga digital na kopya ng mga photo(online request)(External),0
+19,Magpalabas ng mga digital na kopya ng mga video(External),0
+19,Magpalabas ng mga digital na kopya ng mga video(online request)(External),0
+19,Paglalathala ng mga artikulong pagbabalita at mga larawan sa mga social media platform(External),0
+19,Paglalathala ng mga artikulong pagbabalita at mga larawan sa mga social media platform(online request)(External),0
+19,Pagtugon sa mga e-mails at website(External),0
+19,Gumawa ng mga Audio Visual Presentation(External),0
+19,Gumawa ng mga Info-graphics materials(External),0
+19,Magsagawa ng Interview(External),0
+19,Paglalapat ng boses(External),0
+19,Magsasagawa ng mga live feeds coverage(External),0
+19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Larawan(Internal),1
+19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Larawan(online request)(Internal),1
+19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Video(Internal),1
+19,Magkaloob ng Tulong Teknikal: Pagkuha ng mga Video(online request)(Internal),1
+19,Magkaloob ng Tulong Teknikal: Video Editing(Internal),1
+19,Magpalabas ng mga digital na kopya ng mga photo(Internal),1
+19,Magpalabas ng mga digital na kopya ng mga photo(online request)(Internal),1
+19,Magpalabas ng mga digital na kopya ng mga video(Internal),1
+19,Magpalabas ng mga digital na kopya ng mga video(online request)(Internal),1
+19,Paglalathala ng mga artikulong pagbabalita at mga larawan sa mga social media platform(Internal),1
+19,Paglalathala ng mga artikulong pagbabalita at mga larawan sa mga social media platform(online request)(Internal),1
+19,Pagtugon sa mga e-mails at website(Internal),1
+19,Gumawa ng mga Audio Visual Presentation(Internal),1
+19,Gumawa ng mga Info-graphics materials(Internal),1
+19,Magsagawa ng Interview(Internal),1
+19,Paglalapat ng boses(Internal),1
+19,Magsasagawa ng mga live feeds coverage(Internal),1
+20,Pagsusuri ng mga bayarin at mga dokumentong kinakailangan para sa mga binili ng Pamahalaang Panlalawigan(External),0
+20,Pagpapatunay ng Pananagutang Pinansyal(Internal),1
+20,Pagbibigay ng Sertipikasyon ng Huling Sahod/Sweldo na natanggap(Internal),1
+20,"Pagbibigay ng Sertipikasyon ng mga Kontribusyon Naisumite sa GSIS, Pag-IBIG/HDMF, Philhealth at Bangko(Internal)",1
+20,"Pagbibigay ng Sertipikasyon ng Pagkakaroon ng Pondo at Balanse ng New Born Screening(NBS), No Balance Billing (NBB) at Philhealth Honorarium(Internal)",1
+20,Pagsusuri ng mga bayarin at mga dokumentong kinakailangan sa Sweldo/Sahod ng mga empleyado at iba pang mga gastusin(Internal),1
+21,Pagtugon sa Kahilingan para sa Presensya/ Mensahe mula sa Kagalang-galang na Gobernador sa mga Espesyal na Kaganapan Okasyon/Aktibidad(External),0
+21,Kahilingan para sa mga Rekord ng mga Empleyado(Internal),1
+21,Kahiligan para sa Mga Pangailangan sa Komunikasyon(Internal),1
+21,Pagtugon sa mga Katanungan o Inquiry tungkol sa mga Empleyado. Promosyon sa Trabaho at Paghire ng mga bagong empleyado(External),0
+21,Paghahanda ng mga Payroll ng Empleyado(External),0
+21,Pagtatangap at Pagtatala ng mga Dokumento para sa Lagda ng Gobernador at Pag-Release ng mga ito sa Opisinang Nagrequest(Internal),1
+21,Pagtugon sa Kahilingan para sa Presensya/Mensahe mula sa Kagalang galang na Gobernador sa Mga Espesyal na Kaganapan/ Okasyon/ Aktibidad(Internal),1
+21,Kahilingan sa mga Kailangang Tarpaulin ng mga Opisina ng PGL(Internal),1
+21,Koordinasyon ng PGL Events sa Gobernador sa pamamagitan ng GMS(Internal),1
+21,Pag-Asiste sa Pangailangan ng mga Kliyente ng Chief-of-Staff(Internal),1
+22,Pagsasagawa ng pagtuturo ukol sa Pagpapataas ng antas ng Espiritwal at mga Sesyon ng Aralin ukol sa Pagpapaunlad ng Moralidad(External),0
+22,Pananalangin at pagbibigay ng payo sa mga nangangailangan ng kalakasan pang espiritwal tungo sa pagpapaunlad ng sarili biling matagumpay at epektibong linkod bayan(External),0
+22,Pagbibigay ng mga Materyales/Handouts tungkol sa Pagpapataas ng antas ng Espiritwal at Sesyon ng Aralin ukol sa pagkakaroon ng mabuting moralidad at kagandahang asal bilang isang linkod bayan(External),0
+22,Pagsasagawa ng pagtuturo ukol sa Pagpapataas ng antas ng Espiritwal at mga Sesyon ng Aralin ukol sa Pagpapaunlad ng Moralidad(Internal),1
+22,Pananalangin at pagbibigay ng payo sa mga nangangailangan ng kalakasan pang espiritwal tungo sa pagpapaunlad ng sarili biling matagumpay at epektibong linkod bayan(Internal),1
+22,Pagbibigay ng mga Materyales/Handouts tungkol sa Pagpapataas ng antas ng Espiritwal at Sesyon ng Aralin ukol sa pagkakaroon ng mabuting moralidad at kagandahang asal bilang isang linkod bayan(Internal),1
+23,Pagsasanay sa Disenyong Grapiko sa Kompyuter para sa mga Guro(External),0
+23,Pagsasanay sa Kurso sa Batayang Kaalaman/leterasi sa Kompyuter at Internet Para sa mga Kabataang Hindi Nag-aaral at mga Matatanda(External),0
+23,Pagpapatunay ng Blue Card(External),0
+23,Direktang Pagsasahimpapawid ng mga Kaganapan(External),0
+23,Proseso sa Pag-aayos ng Impormasyon Teknolohiya(Internal),1
+23,Pamamaraan sa Pagbuo ng Sistemang Pangimpormasyon(Internal),1
+23,Tulong Teknikal sa Zoom Miting(Internal),1
+23,Pag-isyu/Pagbibigay ng PGL ID(Internal),1
+23,Direktang Pagsasahimpawid ng mga Kaganapan(Internal),1
+24,Pagpapasa at rekomendasyon(personal na pumunta upang mahanap ng trabaho)(External),0
+24,Pagapapsaat at rekomendasyon(naghahanap ng trabaho online)(External),0
+24,Pagtuturo ng propesyon(External),0
+24,Pagtuturo tungkol sa trabaho(External),0
+24,Akreditasyon ng Kumpanya para sa aktibidad sa pag rekrut ng trabaho(External),0
+24,Job Fair(kumpanya)(External),0
+24,Job Fair(aplikante)(External),0
+24,Lokal na aktibidad sa pagrekrut(kumpanya)(External),0
+24,Lokal na aktibidad sa pagrekrut(aplikante)(External),0
+24,Espisyal na programa para sa pagtrabaho ng mga magaaral(bagong SPES)(External),0
+24,Espisyal na programa para sa pagtrabaho ng mga magaaral(dating SPES)(External),0
+24,Tanggapan ng tulong para sa mga OFW(pamamahala ng kaso at pagtukoy)(External),0
+24,Kaalaman sa pinansyal(External),0
+24,Seminar ar oryentasyon bago ang pagtratrabaho(External),0
+24,Seminar laban sa illegal na pagrekrut(External),0
+24,Pagtuturo laban sa illegal na pagrekrut(External),0
+24,Pagtuturo sa mga kasanayang pang komunidad(External),0
+24,Espesyal na aktibidad para sa pag rerekrut kumpanya(External),0
+24,Espesyal na aktibidad para sa pag rerekrut ng mga applikante(External),0

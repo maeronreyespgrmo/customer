@@ -23,7 +23,8 @@ class ServicesCSMSeeder extends Seeder
             if (!$firstline) {
                 ServiceCSM::create([
                     "office_id" => $data['0'],
-                    "service_name" => $data['1']
+                    "service_name" => $data['1'],
+                    "service_type" => $data['2']
                 ]);
             }
             $firstline = false;

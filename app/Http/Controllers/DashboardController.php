@@ -51,6 +51,20 @@ class DashboardController extends Controller
         );
         return view('services', compact('page'));
     }
+    
+    public function services_csm()
+    {
+        $page = array(
+            'title' =>  'Services CSM',
+            'name'  =>  'Services CSM',
+            'crumb' =>  array(
+                'Home' => '',   
+                'Services' => ''
+            )
+        );
+        return view('services_csm', compact('page'));
+    }
+
 
 
     public function view_css()
@@ -134,14 +148,27 @@ class DashboardController extends Controller
     public function office()
     {
         $page = array(
-            'title' =>  'Office Maintenance',
-            'name'  =>  'Office Maintenance',
+            'title' =>  'Office Maintenance CSS',
+            'name'  =>  'Office Maintenance CSS',
             'crumb' =>  array(
                 'Home' => '',   
                 'Manager' => ''
             )
         );
         return view('office', compact('page'));
+    }
+
+    public function office_csm()
+    {
+        $page = array(
+            'title' =>  'Office Maintenance CSM',
+            'name'  =>  'Office Maintenance CSM',
+            'crumb' =>  array(
+                'Home' => '',   
+                'Manager' => ''
+            )
+        );
+        return view('office_csm', compact('page'));
     }
 
     public function comments_css()
