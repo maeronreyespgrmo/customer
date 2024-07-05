@@ -79,15 +79,41 @@ class FormController extends Controller
                 ->where('office_name', $request->office_name)
                 ->get();
 
-            foreach($request->services as $services_item){
-                $query_services = DB::table('tbl_services_csm')
+            // foreach($request->services as $services_item){
+            //     $query_services = DB::table('tbl_services_csm')
+            //     ->select('id')
+            //     ->where('service_name', $services_item)
+            //     ->where('office_id', $query_offices[0]->id)
+            //     ->get();
+            //     $originalArrayServices[] = $query_services[0]->id;
+            // }
+            // $services = implode(',',  $originalArrayServices);
+
+            foreach($request->services_external as $services_item){
+                $query_services_external = DB::table('tbl_services_csm')
                 ->select('id')
                 ->where('service_name', $services_item)
                 ->where('office_id', $query_offices[0]->id)
+                ->where('service_type', "0")
                 ->get();
-                $originalArrayServices[] = $query_services[0]->id;
+                $originalArrayServicesExternal[] = $query_services_external[0]->id;
             }
-            $services = implode(',',  $originalArrayServices);
+
+            foreach($request->services_internal as $services_item){
+                $query_services_internal = DB::table('tbl_services_csm')
+                ->select('id')
+                ->where('service_name', $services_item)
+                ->where('office_id', $query_offices[0]->id)
+                ->where('service_type', "1")
+                ->get();
+                $originalArrayServicesInternal[] = $query_services_internal[0]->id;
+            }
+
+            $services_external = implode(',',  $originalArrayServicesExternal);
+            $services_internal = implode(',',  $originalArrayServicesInternal);
+            $services = $services_external.",".$services_internal;
+            
+            return $services;
 
             $table = new FormCSM;
             $table->date = $request->date;
@@ -576,18 +602,19 @@ class FormController extends Controller
         return $services;
     }
 
-      //CHANGE DROPDOWN CSM
-      public function change_dropdown_csm(Request $request)
-      {
-          $officeName = $request->office_name;
-          $services = DB::table('tbl_services_csm')
-              ->where('office_id', function ($query) use ($officeName) {
-                  $query->select('id')
-                      ->from('tbl_offices_csm')
-                      ->where('office_name', $officeName)
-                      ->where('tbl_services_csm.deleted_at', '=', NULL);
-              })
-              ->pluck('service_name');
-          return $services;
-      }
+    //CHANGE DROPDOWN CSM
+    public function change_dropdown_csm(Request $request)
+    {
+        $officeName = $request->office_name;
+        $services = DB::table('tbl_services_csm')
+        ->select('service_name', 'service_type')
+            ->where('office_id', function ($query) use ($officeName) {
+                $query->select('id')
+                    ->from('tbl_offices_csm')
+                    ->where('office_name', $officeName)
+                    ->where('tbl_services_csm.deleted_at', '=', NULL);
+            })
+            ->get();
+        return $services;
+    }
 }

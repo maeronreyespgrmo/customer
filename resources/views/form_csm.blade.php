@@ -185,18 +185,30 @@
             <hr>
             <div class="row mb-3">
                 <div class="col col-lg-12">
-                    <label class="col-form-label">URI NG TRANSAKSYON/SERBISYO: </label>
-                    <v-checkbox
-                    v-model="services"
-                    v-for="(item,index) in checkbox_data"
-                    :key="item.name"
-                    :label="item.name"
-                    :value="item.name"
-                    :rules="[v => !!v || 'Please select at least one service']"
-                    required
-                    ></v-checkbox>
+                <label class="col-form-label">URI NG TRANSAKSYON/SERBISYO: </label><br>
+                <label><b>External Services</b></label>
+                <v-checkbox
+                v-model="services_external"
+                v-for="(item,index) in checkbox_data_external"
+                :key="item.name"
+                :label="item.name"
+                :value="item.name"
+                :rules="[v => !!v || 'Please select at least one service']"
+                required
+                ></v-checkbox>
+                <label><b>Internal Services</b></label>
+                <v-checkbox
+                v-model="services_internal"
+                v-for="(item,index) in checkbox_data_internal"
+                :key="item.name"
+                :label="item.name"
+                :value="item.name"
+                :rules="[v => !!v || 'Please select at least one service']"
+                required
+                ></v-checkbox>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col col-lg-12">
                     <p class="text-justify">
@@ -225,11 +237,11 @@
                             value="2"
                             ></v-radio>
                             <v-radio
-                            label="3.Alam ko ang CC pero hindi ko ito nakita sa napuntahang opisina."
+                            label="3.Nalaman ko ang CC nang nakita ko ito sa napuntang opisina"
                             value="3"
                             ></v-radio>
                             <v-radio
-                            label="4.Alam ko ang CC pero hindi ko ito nakita sa napuntahang opisina.(Lagyan ng tsek ang ‘N/A’ sa CC2 at CC3 kapag ito ang iyong sagot)"
+                            label="4. Hindi ko alam kung ano ang CC at wala akong nakita sa napuntang opisina(Lagyan ng tsek ang 'N/A' sa CC2 at)"
                             value="4"
                             ></v-radio>
                             </v-radio-group>
@@ -531,7 +543,7 @@
             </div>
             <div class="row mb-5">
                 <div class="col cdsol-lg-12">
-                    <v-btn @click="save_btn()" color="primary" block>Save</v-btn>
+                    <v-btn :disabled="!valid" @click="save_btn()" color="primary" block>Save</v-btn>
                 </div>
             </div>
         </div>
@@ -543,6 +555,6 @@
     <script src="/vendor/vue/js/vue.js"></script>
     <script src="/vendor/vue/js/Vuetify.js"></script>
     <script src="/vendor/assets/Vuetify/axios.min.js"></script>
-    <script src="/js/form_csm.js"></script>
+    <script src="/js/form_csm.js?v=1"></script>
 </body>
 </html>
