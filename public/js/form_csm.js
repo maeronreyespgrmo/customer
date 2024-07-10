@@ -94,6 +94,8 @@ this.dates = response.data[0].date
 this.gender = response.data[0].gender
 this.age = response.data[0].age
 this.services = [response.data[0].service_name]
+this.services_external = response.data[0].service_id_external.split(',')
+this.services_internal = response.data[0].service_id_internal.split(',')
 this.cc1 = response.data[0].cc1
 this.cc2 = response.data[0].cc2
 this.cc3 = response.data[0].cc3
@@ -112,16 +114,24 @@ this.email = response.data[0].email
 axios.post('/change_dropdown_csm',{
 office_name: response.data[0].office_name
 }).then(response => {
-let external = response.data.filter(x=> x.service_type == "0").map(x=> x)
-console.log(external)
-// this.checkbox_data = response.data.map((item, index) => {
-// return {
-// id: index + 1, // Add an ID property if needed
-// name: item,
-// checked: false
-// };
-// });
-// console.log(response.data)
+    let external = response.data.filter(x=> x.service_type == "0").map(x=> x.service_name)
+    let internal = response.data.filter(x=> x.service_type == "1").map(x=> x.service_name)
+    
+        this.checkbox_data_external = external.map((item, index) => {
+        return {
+        id: index + 1, // Add an ID property if needed
+        name: item,
+        checked: false
+        };
+        });
+        
+        this.checkbox_data_internal = internal.map((item, index) => {
+        return {
+        id: index + 1, // Add an ID property if needed
+        name: item,
+        checked: false
+        };
+        });
 })
 
 })
@@ -144,42 +154,52 @@ let url = (urrl === "edit")? "/edit_csm" : "/save_csm"
 
 console.log(url)
 // console.log(this.services.join(","))
-axios.post(url, {
-id: idd,
-office_name: this.office_name,
-client_type: this.client_type,
-date: this.dates,
-gender: this.gender,
-age: this.age,
-services_internal: this.services_internal,
-services_external: this.services_external,
-cc1: this.cc1,
-cc2: this.cc2,
-cc3: this.cc3,
-sqd0: this.sqd0,
-sqd1: this.sqd1,
-sqd2: this.sqd2,
-sqd3: this.sqd3,
-sqd4: this.sqd4,
-sqd5: this.sqd5,
-sqd6: this.sqd6,
-sqd7: this.sqd7,
-sqd8: this.sqd8,
-comments: this.comments,
-email: this.email,
-})
-.then((response)=> {
-console.log(response);
-this.snackbar = true
-this.snackbarcolor = "success"
-this.snackbartext = "Save Successfully"
-this.valid = false
-setTimeout(() => {
-this.valid = true
-// window.location.reload()
-}, 5000);
 
-})
+if(this.services_external.length == 0 || this.services_internal.length == 0){
+    this.snackbar = true
+    this.snackbarcolor = "error"
+    this.snackbartext = "Please Fill up atleast 1 services"
+}
+else{
+    axios.post(url, {
+        id: idd,
+        office_name: this.office_name,
+        client_type: this.client_type,
+        date: this.dates,
+        gender: this.gender,
+        age: this.age,
+        services_internal: this.services_internal,
+        services_external: this.services_external,
+        cc1: this.cc1,
+        cc2: this.cc2,
+        cc3: this.cc3,
+        sqd0: this.sqd0,
+        sqd1: this.sqd1,
+        sqd2: this.sqd2,
+        sqd3: this.sqd3,
+        sqd4: this.sqd4,
+        sqd5: this.sqd5,
+        sqd6: this.sqd6,
+        sqd7: this.sqd7,
+        sqd8: this.sqd8,
+        comments: this.comments,
+        email: this.email,
+        })
+        .then((response)=> {
+        console.log(response);
+        this.snackbar = true
+        this.snackbarcolor = "success"
+        this.snackbartext = "Save Successfully"
+        this.valid = false
+        setTimeout(() => {
+        this.valid = true
+        // window.location.reload()
+        }, 5000);
+        
+        })
+}
+
+
 }
 },
 

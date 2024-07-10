@@ -78,17 +78,7 @@ class FormController extends Controller
                 ->select('id')
                 ->where('office_name', $request->office_name)
                 ->get();
-
-            // foreach($request->services as $services_item){
-            //     $query_services = DB::table('tbl_services_csm')
-            //     ->select('id')
-            //     ->where('service_name', $services_item)
-            //     ->where('office_id', $query_offices[0]->id)
-            //     ->get();
-            //     $originalArrayServices[] = $query_services[0]->id;
-            // }
-            // $services = implode(',',  $originalArrayServices);
-
+            
             foreach($request->services_external as $services_item){
                 $query_services_external = DB::table('tbl_services_csm')
                 ->select('id')
@@ -96,7 +86,7 @@ class FormController extends Controller
                 ->where('office_id', $query_offices[0]->id)
                 ->where('service_type', "0")
                 ->get();
-                $originalArrayServicesExternal[] = $query_services_external[0]->id;
+                $originalArrayServicesExternal[] = $query_services_external[0]->id ?? ",";
             }
 
             foreach($request->services_internal as $services_item){
@@ -106,14 +96,12 @@ class FormController extends Controller
                 ->where('office_id', $query_offices[0]->id)
                 ->where('service_type', "1")
                 ->get();
-                $originalArrayServicesInternal[] = $query_services_internal[0]->id;
+                $originalArrayServicesInternal[] = $query_services_internal[0]->id ?? ",";
             }
 
             $services_external = implode(',',  $originalArrayServicesExternal);
             $services_internal = implode(',',  $originalArrayServicesInternal);
             $services = $services_external.",".$services_internal;
-            
-            return $services;
 
             $table = new FormCSM;
             $table->date = $request->date;
@@ -249,9 +237,6 @@ class FormController extends Controller
     //VIEW CSM FORM
     public function view_csm(Request $request)
     {
-
-        
-
         $result = DB::table('tbl_form_csm')
         ->join('tbl_services_csm', 'tbl_form_csm.service_id', '=', 'tbl_services_csm.id')
         ->join('tbl_offices_csm', 'tbl_form_csm.office_id', '=', 'tbl_offices_csm.id')
@@ -259,60 +244,128 @@ class FormController extends Controller
         ->where('tbl_form_csm.id', $request->id)
         ->get();
 
+         
+        $service_id_temp = collect([$result[0]->service_id]);
+        $service_id_temp = trim($service_id_temp, '[]"');
+        $service_id_temp = str_replace('"', '', $service_id_temp);
+
+        // Convert the string to an array
+        $service_id = explode(',', $service_id_temp);
+
+        $query_services = DB::table('tbl_services_csm')
+        ->select('service_name','service_type')
+        ->whereIn('id', $service_id)
+        ->get();
+        
+
+        foreach($query_services as $services_item){
+            if($services_item->service_type == '0'){
+                $originalArrayServicesExternal[] = $services_item->service_name;
+            }
+            else{
+                $originalArrayServicesInternal[] = $services_item->service_name;   
+            }
+        }
+
+        if (!empty($originalArrayServicesExternal)) {
+        $services_external = implode(',',  $originalArrayServicesExternal);
+        } else {
+            $services_external = ""; // or any default value you want to use
+        }
+        
+        if (!empty($originalArrayServicesInternal)) {
+        $services_internal = implode(',',  $originalArrayServicesInternal);
+        } else {
+        $services_internal = ""; // or any default value you want to use
+        }
+
+
+        $result[0]->service_id_external = $services_external;
+        $result[0]->service_id_internal = $services_internal;
+         
         return$result;
         
     }
-     //UPDATE CSS FORM
-     public function edit_csm(Request $request)
-      {
-          try {
-              DB::beginTransaction();
-  
-              $query_offices = DB::table('tbl_offices_csm')
-                  ->select('id')
-                  ->where('office_name', $request->office_name)
-                  ->get();
+    //UPDATE CSS FORM
+    public function edit_csm(Request $request)
+    {
+        try {
+            DB::beginTransaction();
 
-                  
-                foreach($request->services as $services_item){
-                    $query_services = DB::table('tbl_services_csm')
+            $query_offices = DB::table('tbl_offices_csm')
+            ->select('id')
+            ->where('office_name', $request->office_name)
+            ->get();
+            
+                if(!empty($request->services_external)){                      
+                    foreach($request->services_external as $services_item){
+                    $query_services_external = DB::table('tbl_services_csm')
                     ->select('id')
                     ->where('service_name', $services_item)
                     ->where('office_id', $query_offices[0]->id)
+                    ->where('service_type', "0")
                     ->get();
-                    $originalArrayServices[] = $query_services[0]->id;
+                    $originalArrayServicesExternal[] = $query_services_external[0]->id;
+                    }
                 }
-                $services = implode(',',  $originalArrayServices);
+                else{
+                    $originalArrayServicesExternal[] = "";
+                }
 
-                FormCSM::where('id', $request->id)->update([
-                  'service_id' => $services,
-                  'office_id' => $query_offices[0]->id,
-                  'gender' => $request->gender,
-                  'client_type' => $request->client_type,
-                  'comments' => $request->comments,
-                  'age' => $request->age,
-                  'email' => $request->email,
-                  'date' => $request->date,
-                  'cc1' => $request->cc1,
-                  'cc2' => $request->cc2,
-                  'cc3' => $request->cc3,
-                  'sqd0' => $request->sqd0,
-                  'sqd1' => $request->sqd1,
-                  'sqd2' => $request->sqd2,
-                  'sqd3' => $request->sqd3,
-                  'sqd4' => $request->sqd4,
-                  'sqd5' => $request->sqd5,
-                  'sqd6' => $request->sqd6,
-                  'sqd7' => $request->sqd7,
-                  'sqd8' => $request->sqd8
-              ]);
-              DB::commit();
-              return "Success";
-          } catch (\Exception $e) {
-              DB::rollBack();
-              return $e->getMessage();
-          }
-      }
+                if(!empty($request->services_internal)){                      
+                    foreach($request->services_internal as $services_item){
+                        $query_services_internal = DB::table('tbl_services_csm')
+                        ->select('id')
+                        ->where('service_name', $services_item)
+                        ->where('office_id', $query_offices[0]->id)
+                        ->where('service_type', "1")
+                        ->get();
+                        $originalArrayServicesInternal[] = $query_services_internal[0]->id;
+                    }
+                }
+                else{
+                    $originalArrayServicesInternal[] = "";
+                }
+
+        
+               
+          
+            $services_external = implode(',',  $originalArrayServicesExternal);
+            $services_internal = implode(',',  $originalArrayServicesInternal);
+            $services = $services_external.",".$services_internal;
+            
+            return$services;
+
+
+            FormCSM::where('id', $request->id)->update([
+                'service_id' => $services,
+                'office_id' => $query_offices[0]->id,
+                'gender' => $request->gender,
+                'client_type' => $request->client_type,
+                'comments' => $request->comments,
+                'age' => $request->age,
+                'email' => $request->email,
+                'date' => $request->date,
+                'cc1' => $request->cc1,
+                'cc2' => $request->cc2,
+                'cc3' => $request->cc3,
+                'sqd0' => $request->sqd0,
+                'sqd1' => $request->sqd1,
+                'sqd2' => $request->sqd2,
+                'sqd3' => $request->sqd3,
+                'sqd4' => $request->sqd4,
+                'sqd5' => $request->sqd5,
+                'sqd6' => $request->sqd6,
+                'sqd7' => $request->sqd7,
+                'sqd8' => $request->sqd8
+            ]);
+            DB::commit();
+            return "Success";
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e->getMessage();
+        }
+    }
     //DELETE CSS FORM
     public function destroy_csm(Request $request)
     {

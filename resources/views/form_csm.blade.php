@@ -183,10 +183,10 @@
                 </div>
             </div>
             <hr>
-            <div class="row mb-3">
+            <div class="row mb-3" >
                 <div class="col col-lg-12">
                 <label class="col-form-label">URI NG TRANSAKSYON/SERBISYO: </label><br>
-                <label><b>External Services</b></label>
+                <label><b>Panlabas(External) na mga Serbisyo</b></label>
                 <v-checkbox
                 v-model="services_external"
                 v-for="(item,index) in checkbox_data_external"
@@ -196,7 +196,7 @@
                 :rules="[v => !!v || 'Please select at least one service']"
                 required
                 ></v-checkbox>
-                <label><b>Internal Services</b></label>
+                <label><b>Panloob(Internal) na mga Serbisyo</b></label>
                 <v-checkbox
                 v-model="services_internal"
                 v-for="(item,index) in checkbox_data_internal"
