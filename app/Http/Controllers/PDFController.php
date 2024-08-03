@@ -1172,6 +1172,151 @@ class PDFController extends Controller
             return view('report_css', $data);
         }
     }
+
+    public function report_csm(Request $request)
+    {  
+        //II. SCOPE SERVICES EXTERNAL
+            $query_scope_external = "
+            SELECT service_name,id,services_id,responses FROM(
+            SELECT
+            id,services_id,responses,
+            (
+            SELECT service_name
+            FROM tbl_services_csm
+            WHERE id = tb2.services_id AND service_type = '0'
+            )AS service_name
+            FROM(
+            SELECT
+            tbl_form_csm.id,
+            SUBSTRING_INDEX(SUBSTRING_INDEX(service_id, ',', n.digit + 1), ',', -1) AS services_id,
+            COUNT(*) AS responses
+            FROM
+            tbl_form_csm
+            JOIN
+            (
+            SELECT 0 AS digit
+            UNION ALL
+            SELECT 1 UNION ALL
+            SELECT 2 UNION ALL
+            SELECT 3 UNION ALL
+            SELECT 4 UNION ALL
+            SELECT 5 UNION ALL
+            SELECT 6 UNION ALL
+            SELECT 7 UNION ALL
+            SELECT 8 UNION ALL
+            SELECT 9 UNION ALL
+            SELECT 10 UNION ALL
+            SELECT 11 UNION ALL
+            SELECT 12 UNION ALL
+            SELECT 13 UNION ALL
+            SELECT 14 UNION ALL
+            SELECT 15 UNION ALL
+            SELECT 16 UNION ALL
+            SELECT 17 UNION ALL
+            SELECT 18 UNION ALL
+            SELECT 19 UNION ALL
+            SELECT 20
+            ) n
+            ON LENGTH(service_id) - LENGTH(REPLACE(service_id, ',', '')) >= n.digit
+            WHERE tbl_form_csm.office_id = '21'
+            GROUP BY
+            services_id
+            )tb2
+            )tb3 WHERE service_name IS NOT NULL
+            ";
+
+            $result_scope_external = DB::select($query_scope_external);
+            $sum_scope_external = 0; 
+            foreach ($result_scope_external as $item) {
+                $sum_scope_external += $item->responses;
+            }        
+        //II. SCOPE SERVICES INTERNAL
+        $query_scope_internal = "
+        SELECT service_name,id,services_id,responses FROM(
+        SELECT
+        id,services_id,responses,
+        (
+        SELECT service_name
+        FROM tbl_services_csm
+        WHERE id = tb2.services_id AND service_type = '1'
+        )AS service_name
+        FROM(
+        SELECT
+        tbl_form_csm.id,
+        SUBSTRING_INDEX(SUBSTRING_INDEX(service_id, ',', n.digit + 1), ',', -1) AS services_id,
+        COUNT(*) AS responses
+        FROM
+        tbl_form_csm
+        JOIN
+        (
+        SELECT 0 AS digit
+        UNION ALL
+        SELECT 1 UNION ALL
+        SELECT 2 UNION ALL
+        SELECT 3 UNION ALL
+        SELECT 4 UNION ALL
+        SELECT 5 UNION ALL
+        SELECT 6 UNION ALL
+        SELECT 7 UNION ALL
+        SELECT 8 UNION ALL
+        SELECT 9 UNION ALL
+        SELECT 10 UNION ALL
+        SELECT 11 UNION ALL
+        SELECT 12 UNION ALL
+        SELECT 13 UNION ALL
+        SELECT 14 UNION ALL
+        SELECT 15 UNION ALL
+        SELECT 16 UNION ALL
+        SELECT 17 UNION ALL
+        SELECT 18 UNION ALL
+        SELECT 19 UNION ALL
+        SELECT 20
+        ) n
+        ON LENGTH(service_id) - LENGTH(REPLACE(service_id, ',', '')) >= n.digit
+        WHERE tbl_form_csm.office_id = '21'
+        GROUP BY
+        services_id
+        )tb2
+        )tb3 WHERE service_name IS NOT NULL
+        ";
+
+        $result_scope_internal = DB::select($query_scope_internal);
+
+        //II. PEOPLE ANSWERED THE SURVEY
+
+        $sum = 0; // Initialize the variable
+
+        foreach ($numbers as $number) {
+        $sum += $number; // Add each number to the sum
+        }
+
+
+        //II. TOTAL PEOPLE ANSWERED SURVEY
+
+        //II. PEOPLE PERCENTAGE
+
+        //II. SERVICES THAT HAS NO CLIENTS
+
+        //III. METHODOLOGY
+
+        //IV.A RESULT CC
+
+        //IV.A RESULT SQD
+
+        //IV.B Average Score Services
+        
+        //IV.B Average Score Services
+
+        $data = [
+            'result_scope_external' => $result_scope_external,
+            'result_scope_internal' => $result_scope_internal,
+            'sum_scope_external' => $result_scope_external,
+            'sum_scope_internal' => $result_scope_internal,
+        ];
+        
+
+        return view('report_csm',$data);
+    }
     //GENERATE REPORTS PSS
     public function report_pss(Request $request)
     {

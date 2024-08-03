@@ -154,8 +154,8 @@ let url = (urrl === "edit")? "/edit_csm" : "/save_csm"
 
 console.log(url)
 // console.log(this.services.join(","))
-
-if(this.services_external.length == 0 || this.services_internal.length == 0){
+let combine_services = this.services_external.concat(this.services_internal);
+if(combine_services.length == 0){
     this.snackbar = true
     this.snackbarcolor = "error"
     this.snackbartext = "Please Fill up atleast 1 services"
@@ -193,9 +193,8 @@ else{
         this.valid = false
         setTimeout(() => {
         this.valid = true
-        // window.location.reload()
+        window.location.reload()
         }, 5000);
-        
         })
 }
 

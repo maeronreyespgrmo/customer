@@ -152,7 +152,7 @@ Route::get('/reports/pss', function () {
     return view('report_pss');
 });
 
-Route::get('/reports/pss', function () {
+Route::get('/reports/csm', function () {
     return view('report_csm');
 });
 //CSS
@@ -179,6 +179,7 @@ Route::post('/change_dropdown_csm', [FormController::class, 'change_dropdown_csm
 //PDF
 Route::get('/reports1/css/{monthyear}/{year}/{month}/{office_name}', [PDFController::class, 'report_css']);
 Route::get('/reports1/pss/{year}/{hospital_name}', [PDFController::class, 'report_pss']);
+Route::get('/reports1/csm/{monthyear}/{year}/{month}/{office_name}', [PDFController::class, 'report_csm']);
 
 Route::get('/test', [PDFController::class, 'test']);
 //CHARTS
@@ -200,7 +201,6 @@ Route::post('/select_pss2', [SurveyController::class, 'display_pss']);
 
 Route::get('/select_csm', [SurveyController::class, 'display_csm']);
 Route::post('/select_csm2', [SurveyController::class, 'display_csm']);
-
 
 Route::post('/view_css', [FormController::class, 'view_css']);
 Route::post('/view_pss', [FormController::class, 'view_pss']);
@@ -252,7 +252,6 @@ Route::get('/edit/css/{id}', function () {
 Route::get('/edit/csm/{id}', function () {
     return view('form_csm');
 });
-
 
 // Route::get('/view/pss/{id}', function () {
 //     return view('table_pss');

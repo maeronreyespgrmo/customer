@@ -86,9 +86,9 @@
                                                     <v-form ref="form" v-model="valid" lazy-validation>
                                                         <v-row>
                                                             <v-col cols="12">
-                                                                <v-select v-model="editedItem.office_name"
+                                                            <v-combobox v-model="editedItem.office_name"
                                                                     :items="office_items" label="Office Name"
-                                                                    :rules="nameRules" required></v-select>
+                                                                    :rules="nameRules" required></v-combobox>
                                                             </v-col>
                                                             <v-col cols="12">
                                                                 <v-text-field v-model="editedItem.service_name"
@@ -96,14 +96,14 @@
                                                                 </v-text-field>
                                                             </v-col>
                                                             <v-col cols="12">
-                                                                <v-select
+                                                                <v-combobox
                                                                 v-model="editedItem.service_type"
                                                                 :items="service_type_items"
                                                                 :rules="nameRules"
                                                                 required
                                                                 label="Service Type"
                                                                 >
-                                                                </v-select>
+                                                                </v-combobox>
                                                             </v-col>
 
 

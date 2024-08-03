@@ -40,8 +40,8 @@ let app = new Vue({
     value: 'service_name',
     },
     {
-    text: 'Service Type',
-    align: 'start',
+    text: 'Services',
+    align: 'start',   
     sortable: false,
     value: 'service_type',
     },
@@ -103,7 +103,17 @@ let app = new Vue({
        nextpage:0  
        }).then(response => {
          setTimeout(() => {
-         this.data = response.data[0].first_array
+
+    
+        this.data = response.data[0].first_array.map(item=> {
+          if (item.service_type === '0') {
+          item.service_type = 'External';
+          }
+          else{
+            item.service_type = 'Internal';
+          }
+          return item; 
+        })
          this.page_total = response.data[0].last_array
          let length_val = this.data.length
          this.total_count  = Math.ceil(length_val/2)
@@ -131,7 +141,6 @@ let app = new Vue({
     editItem (item) {
     this.editedIndex = this.data.indexOf(item)
     this.editedItem = Object.assign({}, item)
-    this.editedItem.service_type = this.editedItem.service_type == 0 ? "External" : "Internal"
     this.dialog = true
     },
     
@@ -219,7 +228,15 @@ let app = new Vue({
       nextpage:0  
       }).then(response => {
       setTimeout(() => {
-      this.data = response.data[0].first_array
+        this.data = response.data[0].first_array.map(item=> {
+          if (item.service_type === '0') {
+          item.service_type = 'External';
+          }
+          else{
+            item.service_type = 'Internal';
+          }
+          return item; 
+        })
       this.page_total = response.data[0].last_array
       let length_val = this.data.length
       this.total_count  = Math.ceil(length_val/2)

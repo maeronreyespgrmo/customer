@@ -172,7 +172,6 @@
                                 <v-text-field
                                 type="number" 
                                 v-model="age" 
-                                :rules="nameRules" 
                                 outlined
                                 clearable
                                 >
@@ -529,9 +528,7 @@
                 <v-text-field  type="email" 
                           v-model="email" 
                           class="form-control"
-                          :disabled="isDisabled" 
-                :rules="emailRules"
-                required ></v-text-field>
+                          :disabled="isDisabled"  ></v-text-field>
                        
                     </div>
                 </div>
