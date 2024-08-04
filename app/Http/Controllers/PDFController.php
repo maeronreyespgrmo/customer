@@ -1175,6 +1175,18 @@ class PDFController extends Controller
 
     public function report_csm(Request $request)
     {  
+        $monthYearString = $request->monthyear;
+        $monthString = $request->month;
+        $yearString = $request->year;
+        $yy = $request->year;
+        $prev_y = $yy-1;
+        $office_name = $request->office_name;
+
+        $result_offices = DB::table('tbl_offices_csm')
+        ->select('office_name', 'id')
+        ->where('office_name', $office_name)
+        ->get();
+
         //II. SCOPE SERVICES EXTERNAL
             $query_scope_external = "
             SELECT service_name,id,services_id,responses FROM(
@@ -1218,7 +1230,7 @@ class PDFController extends Controller
             SELECT 20
             ) n
             ON LENGTH(service_id) - LENGTH(REPLACE(service_id, ',', '')) >= n.digit
-            WHERE tbl_form_csm.office_id = '21'
+            WHERE tbl_form_csm.office_id = " . $result_offices[0]->id . " AND DATE LIKE '%" . $monthYearString . "%'
             GROUP BY
             services_id
             )tb2
@@ -1273,7 +1285,7 @@ class PDFController extends Controller
         SELECT 20
         ) n
         ON LENGTH(service_id) - LENGTH(REPLACE(service_id, ',', '')) >= n.digit
-        WHERE tbl_form_csm.office_id = '21'
+        WHERE tbl_form_csm.office_id = " . $result_offices[0]->id . " AND DATE LIKE '%" . $monthYearString . "%'
         GROUP BY
         services_id
         )tb2
@@ -1284,34 +1296,478 @@ class PDFController extends Controller
 
         //II. PEOPLE ANSWERED THE SURVEY
 
-        $sum = 0; // Initialize the variable
+        $sum_scope_external = 0;
+        $sum_scope_internal = 0;  // Initialize the variable
 
-        foreach ($numbers as $number) {
-        $sum += $number; // Add each number to the sum
+        foreach ($result_scope_external as $item_external) {
+        $sum_scope_external += $item_external->responses; 
         }
 
+        foreach ($result_scope_internal as $item_internal) {
+        $sum_scope_internal += $item_internal->responses;
+        }
 
         //II. TOTAL PEOPLE ANSWERED SURVEY
+        $initial_scope = $sum_scope_external + $item_internal->responses;
 
         //II. PEOPLE PERCENTAGE
+        $query_total_scope = "
+        SELECT service_name,id,services_id,responses FROM(
+        SELECT
+        id,services_id,responses,
+        (
+        SELECT service_name
+        FROM tbl_services_csm
+        WHERE id = tb2.services_id
+        )AS service_name
+        FROM(
+        SELECT
+        tbl_form_csm.id,
+        SUBSTRING_INDEX(SUBSTRING_INDEX(service_id, ',', n.digit + 1), ',', -1) AS services_id,
+        COUNT(*) AS responses
+        FROM
+        tbl_form_csm
+        JOIN
+        (
+        SELECT 0 AS digit
+        UNION ALL
+        SELECT 1 UNION ALL
+        SELECT 2 UNION ALL
+        SELECT 3 UNION ALL
+        SELECT 4 UNION ALL
+        SELECT 5 UNION ALL
+        SELECT 6 UNION ALL
+        SELECT 7 UNION ALL
+        SELECT 8 UNION ALL
+        SELECT 9 UNION ALL
+        SELECT 10 UNION ALL
+        SELECT 11 UNION ALL
+        SELECT 12 UNION ALL
+        SELECT 13 UNION ALL
+        SELECT 14 UNION ALL
+        SELECT 15 UNION ALL
+        SELECT 16 UNION ALL
+        SELECT 17 UNION ALL
+        SELECT 18 UNION ALL
+        SELECT 19 UNION ALL
+        SELECT 20
+        ) n
+        ON LENGTH(service_id) - LENGTH(REPLACE(service_id, ',', '')) >= n.digit
+        WHERE tbl_form_csm.office_id = " . $result_offices[0]->id . " AND DATE LIKE '%" . $monthYearString . "%'
+        GROUP BY
+        services_id
+        )tb2
+        )tb3 WHERE service_name IS NOT NULL
+        ";
+
+        $result_total_scope = DB::select($query_total_scope);
+
+        $sum_total_scope = 0;
+        foreach ($result_total_scope as $item_total_scope) {
+            $sum_total_scope += $item_total_scope->responses;
+        }
+        $total_scope_percentage = floor(($initial_scope / $sum_total_scope*100*100)) / 100;
 
         //II. SERVICES THAT HAS NO CLIENTS
+        $query_scope_no_clients = "
+        SELECT service_name,id,services_id,responses FROM(
+        SELECT
+        id,services_id,responses,
+        (
+        SELECT service_name
+        FROM tbl_services_csm
+        WHERE id = tb2.services_id AND service_type = '1'
+        )AS service_name
+        FROM(
+        SELECT
+        tbl_form_csm.id,
+        SUBSTRING_INDEX(SUBSTRING_INDEX(service_id, ',', n.digit + 1), ',', -1) AS services_id,
+        COUNT(*) AS responses
+        FROM
+        tbl_form_csm
+        JOIN
+        (
+        SELECT 0 AS digit
+        UNION ALL
+        SELECT 1 UNION ALL
+        SELECT 2 UNION ALL
+        SELECT 3 UNION ALL
+        SELECT 4 UNION ALL
+        SELECT 5 UNION ALL
+        SELECT 6 UNION ALL
+        SELECT 7 UNION ALL
+        SELECT 8 UNION ALL
+        SELECT 9 UNION ALL
+        SELECT 10 UNION ALL
+        SELECT 11 UNION ALL
+        SELECT 12 UNION ALL
+        SELECT 13 UNION ALL
+        SELECT 14 UNION ALL
+        SELECT 15 UNION ALL
+        SELECT 16 UNION ALL
+        SELECT 17 UNION ALL
+        SELECT 18 UNION ALL
+        SELECT 19 UNION ALL
+        SELECT 20
+        ) n
+        ON LENGTH(service_id) - LENGTH(REPLACE(service_id, ',', '')) >= n.digit
+        WHERE tbl_form_csm.office_id = " . $result_offices[0]->id . " AND DATE LIKE '%" . $monthYearString . "%'
+        GROUP BY
+        services_id
+        )tb2
+        )tb3 WHERE service_name IS NOT NULL
+        ";
+        $val_scope_no_clients = [];
+        $result_scope_no_clients = DB::select($query_scope_no_clients);
+        foreach ($result_scope_no_clients as $item_scope_no_clients) {
+            $val_scope_no_clients[] = $item_scope_no_clients->services_id;
+        }
+        
+        $result_no_services = DB::table('tbl_services_csm')
+        ->select('id','service_name')
+        ->where('office_id', $result_offices[0]->id)
+        ->whereNotIn('id', $val_scope_no_clients)
+        ->get();
 
         //III. METHODOLOGY
 
         //IV.A RESULT CC
+        $query_total_scope = "
+        SELECT * FROM(
+        SELECT
+        (SELECT COUNT(cc1) FROM tbl_form_csm WHERE services_id = services_id AND cc1 = 1) AS cc1_1,
+        (SELECT COUNT(cc1) FROM tbl_form_csm WHERE services_id = services_id AND cc1 = 2) AS cc1_2,
+        (SELECT COUNT(cc1) FROM tbl_form_csm WHERE services_id = services_id AND cc1 = 3) AS cc1_3,
+        (SELECT COUNT(cc2) FROM tbl_form_csm WHERE services_id = services_id AND cc2 = 1) AS cc2_1,
+        (SELECT COUNT(cc2) FROM tbl_form_csm WHERE services_id = services_id AND cc2 = 2) AS cc2_2,
+        (SELECT COUNT(cc3) FROM tbl_form_csm WHERE services_id = services_id AND cc3 = 1) AS cc3_1,
+        (SELECT COUNT(cc3) FROM tbl_form_csm WHERE services_id = services_id AND cc3 = 2) AS cc3_2
+        FROM(
+        SELECT
+        tbl_form_csm.id,
+        SUBSTRING_INDEX(SUBSTRING_INDEX(service_id, ',', n.digit + 1), ',', -1) AS services_id,
+        COUNT(*) AS responses
+        FROM
+        tbl_form_csm
+        JOIN
+        (
+        SELECT 0 AS digit
+        UNION ALL
+        SELECT 1 UNION ALL
+        SELECT 2 UNION ALL
+        SELECT 3 UNION ALL
+        SELECT 4 UNION ALL
+        SELECT 5 UNION ALL
+        SELECT 6 UNION ALL
+        SELECT 7 UNION ALL
+        SELECT 8 UNION ALL
+        SELECT 9 UNION ALL
+        SELECT 10 UNION ALL
+        SELECT 11 UNION ALL
+        SELECT 12 UNION ALL
+        SELECT 13 UNION ALL
+        SELECT 14 UNION ALL
+        SELECT 15 UNION ALL
+        SELECT 16 UNION ALL
+        SELECT 17 UNION ALL
+        SELECT 18 UNION ALL
+        SELECT 19 UNION ALL
+        SELECT 20
+        ) n
+        ON LENGTH(service_id) - LENGTH(REPLACE(service_id, ',', '')) >= n.digit
+        WHERE tbl_form_csm.office_id = " . $result_offices[0]->id . " AND DATE LIKE '%" . $monthYearString . "%'
+        )tb2
+        )tb3 
+        ";
+        $result_total_scope = DB::select($query_total_scope);
+        $sum_cc1_1 = 0;
+        $sum_cc1_2 = 0;
+        $sum_cc1_3 = 0;
+
+        $sum_cc2_1 = 0;
+        $sum_cc2_2 = 0;
+
+        $sum_cc3_1 = 0;
+        $sum_cc3_2 = 0;
+
+        foreach ($result_total_scope as $item_total_scope) {
+            $sum_cc1_1 += $item_total_scope->cc1_1;
+            $sum_cc1_2 += $item_total_scope->cc1_2;
+            $sum_cc1_3 += $item_total_scope->cc1_3;
+            $sum_cc2_1 += $item_total_scope->cc2_1;
+            $sum_cc2_2 += $item_total_scope->cc2_2;
+            $sum_cc3_1 += $item_total_scope->cc3_1;
+            $sum_cc3_2 += $item_total_scope->cc3_2;
+        }
+        $total_sum_cc = $sum_cc1_1 + $sum_cc1_2 + $sum_cc1_3 + $sum_cc2_1 + $sum_cc2_2 + $sum_cc3_1 + $sum_cc3_2;
+        
+        $percentage_cc1_1 = floor(($sum_cc1_1 / $total_sum_cc*100*100)) / 100;
+        $percentage_cc1_2 = floor(($sum_cc1_2 / $total_sum_cc*100*100)) / 100;
+        $percentage_cc1_3 = floor(($sum_cc1_3 / $total_sum_cc*100*100)) / 100;
+        $percentage_cc2_1 = floor(($sum_cc2_1 / $total_sum_cc*100*100)) / 100;
+        $percentage_cc2_2 = floor(($sum_cc2_2 / $total_sum_cc*100*100)) / 100;
+        $percentage_cc3_1 = floor(($sum_cc3_1 / $total_sum_cc*100*100)) / 100;
+        $percentage_cc3_2 = floor(($sum_cc3_2 / $total_sum_cc*100*100)) / 100;
 
         //IV.A RESULT SQD
-
-        //IV.B Average Score Services
+        $query_sqd = "
+        SELECT *,
+        SUM(sqd0_1+sqd2_1+sqd3_1+sqd4_1+sqd5_1+sqd6_1+sqd7_1+sqd8_1) AS s1_total,
+        SUM(sqd0_2+sqd2_2+sqd3_2+sqd4_2+sqd5_2+sqd6_2+sqd7_2+sqd8_2) AS s2_total,
+        SUM(sqd0_3+sqd2_3+sqd3_3+sqd4_3+sqd5_3+sqd6_3+sqd7_3+sqd8_3) AS s3_total,
+        SUM(sqd0_4+sqd2_4+sqd3_4+sqd4_4+sqd5_4+sqd6_4+sqd7_4+sqd8_4) AS s4_total,
+        SUM(sqd0_5+sqd2_5+sqd3_5+sqd4_5+sqd5_5+sqd6_5+sqd7_5+sqd8_5) AS s5_total,
+        SUM(sqd0_responses+sqd1_responses+sqd2_responses+sqd3_responses+sqd4_responses+sqd5_responses+sqd6_responses+sqd7_responses+sqd8_responses) AS response_total,
+	TRUNCATE(COALESCE((AVG(sqd0_avg+sqd1_avg+sqd2_avg+sqd3_avg+sqd4_avg+sqd5_avg+sqd6_avg+sqd7_avg+sqd8_avg)/9),0),2) AS total_rating
+        FROM(
+        SELECT
+	(SELECT COUNT(sqd0) FROM tbl_form_csm WHERE services_id = services_id AND sqd0 = 1) AS sqd0_1,
+        (SELECT COUNT(sqd0) FROM tbl_form_csm WHERE services_id = services_id AND sqd0 = 2) AS sqd0_2,
+        (SELECT COUNT(sqd0) FROM tbl_form_csm WHERE services_id = services_id AND sqd0 = 3) AS sqd0_3,
+        (SELECT COUNT(sqd0) FROM tbl_form_csm WHERE services_id = services_id AND sqd0 = 4) AS sqd0_4,
+        (SELECT COUNT(sqd0) FROM tbl_form_csm WHERE services_id = services_id AND sqd0 = 5) AS sqd0_5,
+        (SELECT COUNT(sqd0) FROM tbl_form_csm WHERE services_id = services_id AND sqd0 = 6) AS sqd0_6,
+        (SELECT COUNT(id) FROM tbl_form_csm WHERE services_id = services_id) AS sqd0_responses,
+	(SELECT COUNT(sqd1) FROM tbl_form_csm WHERE services_id = services_id AND sqd1 = 1) AS sqd1_1,
+        (SELECT COUNT(sqd1) FROM tbl_form_csm WHERE services_id = services_id AND sqd1 = 2) AS sqd1_2,
+        (SELECT COUNT(sqd1) FROM tbl_form_csm WHERE services_id = services_id AND sqd1 = 3) AS sqd1_3,
+        (SELECT COUNT(sqd1) FROM tbl_form_csm WHERE services_id = services_id AND sqd1 = 4) AS sqd1_4,
+        (SELECT COUNT(sqd1) FROM tbl_form_csm WHERE services_id = services_id AND sqd1 = 5) AS sqd1_5,
+        (SELECT COUNT(sqd1) FROM tbl_form_csm WHERE services_id = services_id AND sqd1 = 6) AS sqd1_6,
+        (SELECT COUNT(id) FROM tbl_form_csm WHERE services_id = services_id) AS sqd1_responses,
+	(SELECT COUNT(sqd2) FROM tbl_form_csm WHERE services_id = services_id AND sqd2 = 1) AS sqd2_1,
+        (SELECT COUNT(sqd2) FROM tbl_form_csm WHERE services_id = services_id AND sqd2 = 2) AS sqd2_2,
+        (SELECT COUNT(sqd2) FROM tbl_form_csm WHERE services_id = services_id AND sqd2 = 3) AS sqd2_3,
+        (SELECT COUNT(sqd2) FROM tbl_form_csm WHERE services_id = services_id AND sqd2 = 4) AS sqd2_4,
+        (SELECT COUNT(sqd2) FROM tbl_form_csm WHERE services_id = services_id AND sqd2 = 5) AS sqd2_5,
+        (SELECT COUNT(sqd2) FROM tbl_form_csm WHERE services_id = services_id AND sqd2 = 6) AS sqd2_6,
+        (SELECT COUNT(id) FROM tbl_form_csm WHERE services_id = services_id) AS sqd3_responses,
+	(SELECT COUNT(sqd3) FROM tbl_form_csm WHERE services_id = services_id AND sqd3 = 1) AS sqd3_1,
+        (SELECT COUNT(sqd3) FROM tbl_form_csm WHERE services_id = services_id AND sqd3 = 2) AS sqd3_2,
+        (SELECT COUNT(sqd3) FROM tbl_form_csm WHERE services_id = services_id AND sqd3 = 3) AS sqd3_3,
+        (SELECT COUNT(sqd3) FROM tbl_form_csm WHERE services_id = services_id AND sqd3 = 4) AS sqd3_4,
+        (SELECT COUNT(sqd3) FROM tbl_form_csm WHERE services_id = services_id AND sqd3 = 5) AS sqd3_5,
+        (SELECT COUNT(sqd3) FROM tbl_form_csm WHERE services_id = services_id AND sqd3 = 6) AS sqd3_6,
+        (SELECT COUNT(id) FROM tbl_form_csm WHERE services_id = services_id) AS sqd2_responses,
+	(SELECT COUNT(sqd4) FROM tbl_form_csm WHERE services_id = services_id AND sqd4 = 1) AS sqd4_1,
+        (SELECT COUNT(sqd4) FROM tbl_form_csm WHERE services_id = services_id AND sqd4 = 2) AS sqd4_2,
+        (SELECT COUNT(sqd4) FROM tbl_form_csm WHERE services_id = services_id AND sqd4 = 3) AS sqd4_3,
+        (SELECT COUNT(sqd4) FROM tbl_form_csm WHERE services_id = services_id AND sqd4 = 4) AS sqd4_4,
+        (SELECT COUNT(sqd4) FROM tbl_form_csm WHERE services_id = services_id AND sqd4 = 5) AS sqd4_5,
+        (SELECT COUNT(sqd4) FROM tbl_form_csm WHERE services_id = services_id AND sqd4 = 6) AS sqd4_6,
+        (SELECT COUNT(id) FROM tbl_form_csm WHERE services_id = services_id) AS sqd4_responses,
+	(SELECT COUNT(sqd5) FROM tbl_form_csm WHERE services_id = services_id AND sqd5 = 1) AS sqd5_1,
+        (SELECT COUNT(sqd5) FROM tbl_form_csm WHERE services_id = services_id AND sqd5 = 2) AS sqd5_2,
+        (SELECT COUNT(sqd5) FROM tbl_form_csm WHERE services_id = services_id AND sqd5 = 3) AS sqd5_3,
+        (SELECT COUNT(sqd5) FROM tbl_form_csm WHERE services_id = services_id AND sqd5 = 4) AS sqd5_4,
+        (SELECT COUNT(sqd5) FROM tbl_form_csm WHERE services_id = services_id AND sqd5 = 5) AS sqd5_5,
+        (SELECT COUNT(sqd5) FROM tbl_form_csm WHERE services_id = services_id AND sqd5 = 6) AS sqd5_6,
+        (SELECT COUNT(id) FROM tbl_form_csm WHERE services_id = services_id) AS sqd5_responses,
+	(SELECT COUNT(sqd6) FROM tbl_form_csm WHERE services_id = services_id AND sqd6 = 1) AS sqd6_1,
+        (SELECT COUNT(sqd6) FROM tbl_form_csm WHERE services_id = services_id AND sqd6 = 2) AS sqd6_2,
+        (SELECT COUNT(sqd6) FROM tbl_form_csm WHERE services_id = services_id AND sqd6 = 3) AS sqd6_3,
+        (SELECT COUNT(sqd6) FROM tbl_form_csm WHERE services_id = services_id AND sqd6 = 4) AS sqd6_4,
+        (SELECT COUNT(sqd6) FROM tbl_form_csm WHERE services_id = services_id AND sqd6 = 5) AS sqd6_5,
+        (SELECT COUNT(sqd6) FROM tbl_form_csm WHERE services_id = services_id AND sqd6 = 6) AS sqd6_6,
+        (SELECT COUNT(id) FROM tbl_form_csm WHERE services_id = services_id) AS sqd6_responses,
+	(SELECT COUNT(sqd7) FROM tbl_form_csm WHERE services_id = services_id AND sqd7 = 1) AS sqd7_1,
+        (SELECT COUNT(sqd7) FROM tbl_form_csm WHERE services_id = services_id AND sqd7 = 2) AS sqd7_2,
+        (SELECT COUNT(sqd7) FROM tbl_form_csm WHERE services_id = services_id AND sqd7 = 3) AS sqd7_3,
+        (SELECT COUNT(sqd7) FROM tbl_form_csm WHERE services_id = services_id AND sqd7 = 4) AS sqd7_4,
+        (SELECT COUNT(sqd7) FROM tbl_form_csm WHERE services_id = services_id AND sqd7 = 5) AS sqd7_5,
+        (SELECT COUNT(sqd7) FROM tbl_form_csm WHERE services_id = services_id AND sqd7 = 6) AS sqd7_6,
+        (SELECT COUNT(id) FROM tbl_form_csm WHERE services_id = services_id) AS sqd7_responses,
+	(SELECT COUNT(sqd8) FROM tbl_form_csm WHERE services_id = services_id AND sqd8 = 1) AS sqd8_1,
+        (SELECT COUNT(sqd8) FROM tbl_form_csm WHERE services_id = services_id AND sqd8 = 2) AS sqd8_2,
+        (SELECT COUNT(sqd8) FROM tbl_form_csm WHERE services_id = services_id AND sqd8 = 3) AS sqd8_3,
+        (SELECT COUNT(sqd8) FROM tbl_form_csm WHERE services_id = services_id AND sqd8 = 4) AS sqd8_4,
+        (SELECT COUNT(sqd8) FROM tbl_form_csm WHERE services_id = services_id AND sqd8 = 5) AS sqd8_5,
+        (SELECT COUNT(sqd8) FROM tbl_form_csm WHERE services_id = services_id AND sqd8 = 6) AS sqd8_6,
+        (SELECT COUNT(id) FROM tbl_form_csm WHERE services_id = services_id) AS sqd8_responses,
+	(SELECT TRUNCATE(COALESCE((AVG(sqd0)),0),2) FROM tbl_form_csm WHERE services_id = services_id) AS sqd0_avg,
+	(SELECT TRUNCATE(COALESCE((AVG(sqd1)),0),2) FROM tbl_form_csm WHERE services_id = services_id) AS sqd1_avg,
+	(SELECT TRUNCATE(COALESCE((AVG(sqd2)),0),2) FROM tbl_form_csm WHERE services_id = services_id) AS sqd2_avg,
+	(SELECT TRUNCATE(COALESCE((AVG(sqd3)),0),2) FROM tbl_form_csm WHERE services_id = services_id) AS sqd3_avg,
+	(SELECT TRUNCATE(COALESCE((AVG(sqd4)),0),2) FROM tbl_form_csm WHERE services_id = services_id) AS sqd4_avg,
+	(SELECT TRUNCATE(COALESCE((AVG(sqd5)),0),2) FROM tbl_form_csm WHERE services_id = services_id) AS sqd5_avg,
+	(SELECT TRUNCATE(COALESCE((AVG(sqd6)),0),2) FROM tbl_form_csm WHERE services_id = services_id) AS sqd6_avg,
+	(SELECT TRUNCATE(COALESCE((AVG(sqd7)),0),2) FROM tbl_form_csm WHERE services_id = services_id) AS sqd7_avg,
+	(SELECT TRUNCATE(COALESCE((AVG(sqd8)),0),2) FROM tbl_form_csm WHERE services_id = services_id) AS sqd8_avg
+        FROM(
+        SELECT
+        tbl_form_csm.id,
+        SUBSTRING_INDEX(SUBSTRING_INDEX(service_id, ',', n.digit + 1), ',', -1) AS services_id,
+        COUNT(*) AS responses
+        FROM
+        tbl_form_csm
+        JOIN
+        (
+        SELECT 0 AS digit
+        UNION ALL
+        SELECT 1 UNION ALL
+        SELECT 2 UNION ALL
+        SELECT 3 UNION ALL
+        SELECT 4 UNION ALL
+        SELECT 5 UNION ALL
+        SELECT 6 UNION ALL
+        SELECT 7 UNION ALL
+        SELECT 8 UNION ALL
+        SELECT 9 UNION ALL
+        SELECT 10 UNION ALL
+        SELECT 11 UNION ALL
+        SELECT 12 UNION ALL
+        SELECT 13 UNION ALL
+        SELECT 14 UNION ALL
+        SELECT 15 UNION ALL
+        SELECT 16 UNION ALL
+        SELECT 17 UNION ALL
+        SELECT 18 UNION ALL
+        SELECT 19 UNION ALL
+        SELECT 20
+        ) n
+        ON LENGTH(service_id) - LENGTH(REPLACE(service_id, ',', '')) >= n.digit
+        WHERE tbl_form_csm.office_id = " . $result_offices[0]->id . " AND DATE LIKE '%" . $monthYearString . "%'
+        )tb2
+        )tb3
+        ";
+        $result_sqd = DB::select($query_sqd);
+    
+        //IV.B Average Score External Services
+        $query_average_sqd_external= "
+        SELECT * FROM(
+        SELECT service_name,id,services_id,responses,sqd_avg
+        FROM(
+        SELECT
+        id,services_id,responses,sqd_avg,
+        (
+        SELECT service_name
+        FROM tbl_services_csm
+        WHERE id = tb2.services_id AND service_type = '1'
+        )AS service_name
+        FROM(
+        SELECT
+        tbl_form_csm.id,
+	TRUNCATE(COALESCE((AVG(tbl_form_csm.sqd0+tbl_form_csm.sqd1+tbl_form_csm.sqd2+tbl_form_csm.sqd3+tbl_form_csm.sqd4+tbl_form_csm.sqd5+tbl_form_csm.sqd6+tbl_form_csm.sqd7+tbl_form_csm.sqd8)/9),0),2) AS sqd_avg,
+        SUBSTRING_INDEX(SUBSTRING_INDEX(service_id, ',', n.digit + 1), ',', -1) AS services_id,
+        COUNT(*) AS responses
+        FROM
+        tbl_form_csm
+        JOIN
+        (
+        SELECT 0 AS digit
+        UNION ALL
+        SELECT 1 UNION ALL
+        SELECT 2 UNION ALL
+        SELECT 3 UNION ALL
+        SELECT 4 UNION ALL
+        SELECT 5 UNION ALL
+        SELECT 6 UNION ALL
+        SELECT 7 UNION ALL
+        SELECT 8 UNION ALL
+        SELECT 9 UNION ALL
+        SELECT 10 UNION ALL
+        SELECT 11 UNION ALL
+        SELECT 12 UNION ALL
+        SELECT 13 UNION ALL
+        SELECT 14 UNION ALL
+        SELECT 15 UNION ALL
+        SELECT 16 UNION ALL
+        SELECT 17 UNION ALL
+        SELECT 18 UNION ALL
+        SELECT 19 UNION ALL
+        SELECT 20
+        ) n
+        ON LENGTH(service_id) - LENGTH(REPLACE(service_id, ',', '')) >= n.digit
+        WHERE tbl_form_csm.office_id = " . $result_offices[0]->id . " AND DATE LIKE '%" . $monthYearString . "%'
+        GROUP BY
+        services_id
+        )tb2
+        )tb3 WHERE service_name IS NOT NULL
+        )tb4
+        ";
+        $result_average_sqd_external = DB::select($query_average_sqd_external);
         
-        //IV.B Average Score Services
+        //IV.B Average Score Internal Services
+        $query_average_sqd_internal= "
+        SELECT * FROM(
+        SELECT service_name,id,services_id,responses,sqd_avg
+        FROM(
+        SELECT
+        id,services_id,responses,sqd_avg,
+        (
+        SELECT service_name
+        FROM tbl_services_csm
+        WHERE id = tb2.services_id AND service_type = '1'
+        )AS service_name
+        FROM(
+        SELECT
+        tbl_form_csm.id,
+	TRUNCATE(COALESCE((AVG(tbl_form_csm.sqd0+tbl_form_csm.sqd1+tbl_form_csm.sqd2+tbl_form_csm.sqd3+tbl_form_csm.sqd4+tbl_form_csm.sqd5+tbl_form_csm.sqd6+tbl_form_csm.sqd7+tbl_form_csm.sqd8)/9),0),2) AS sqd_avg,
+        SUBSTRING_INDEX(SUBSTRING_INDEX(service_id, ',', n.digit + 1), ',', -1) AS services_id,
+        COUNT(*) AS responses
+        FROM
+        tbl_form_csm
+        JOIN
+        (
+        SELECT 0 AS digit
+        UNION ALL
+        SELECT 1 UNION ALL
+        SELECT 2 UNION ALL
+        SELECT 3 UNION ALL
+        SELECT 4 UNION ALL
+        SELECT 5 UNION ALL
+        SELECT 6 UNION ALL
+        SELECT 7 UNION ALL
+        SELECT 8 UNION ALL
+        SELECT 9 UNION ALL
+        SELECT 10 UNION ALL
+        SELECT 11 UNION ALL
+        SELECT 12 UNION ALL
+        SELECT 13 UNION ALL
+        SELECT 14 UNION ALL
+        SELECT 15 UNION ALL
+        SELECT 16 UNION ALL
+        SELECT 17 UNION ALL
+        SELECT 18 UNION ALL
+        SELECT 19 UNION ALL
+        SELECT 20
+        ) n
+        ON LENGTH(service_id) - LENGTH(REPLACE(service_id, ',', '')) >= n.digit
+        WHERE tbl_form_csm.office_id = " . $result_offices[0]->id . " AND DATE LIKE '%" . $monthYearString . "%'
+        GROUP BY
+        services_id
+        )tb2
+        )tb3 WHERE service_name IS NOT NULL
+        )tb4
+        ";
+        $result_average_sqd_internal = DB::select($query_average_sqd_internal);
 
         $data = [
             'result_scope_external' => $result_scope_external,
             'result_scope_internal' => $result_scope_internal,
-            'sum_scope_external' => $result_scope_external,
-            'sum_scope_internal' => $result_scope_internal,
+            'sum_scope_external' => $sum_scope_external,
+            'sum_scope_internal' => $sum_scope_internal,
+            'total_scope' => $result_total_scope,
+            'total_scope_percentage' => $total_scope_percentage,
+            'result_no_services' => $result_no_services,
+            'sum_cc1_1' => $sum_cc1_1,
+            'sum_cc1_2' => $sum_cc1_2,
+            'sum_cc1_3' => $sum_cc1_3,
+            'sum_cc2_1' => $sum_cc2_1,
+            'sum_cc2_2' => $sum_cc2_2,
+            'sum_cc3_1' => $sum_cc1_1,
+            'sum_cc3_2' => $sum_cc2_2,
+            'total_sum_cc' => $total_sum_cc,
+            'percentage_cc1_1' => $percentage_cc1_1,
+            'percentage_cc1_2' => $percentage_cc1_2,
+            'percentage_cc1_3' => $percentage_cc1_3,
+            'percentage_cc2_1' => $percentage_cc2_1,
+            'percentage_cc2_2' => $percentage_cc2_2,
+            'percentage_cc3_1' => $percentage_cc3_1,
+            'percentage_cc3_2' => $percentage_cc3_2,
+            'result_sqd' => $result_sqd,
+            'result_average_sqd_external' => $result_average_sqd_external,
+            'result_average_sqd_internal' => $result_average_sqd_internal
         ];
         
 
