@@ -363,9 +363,9 @@ padding-bottom: 72px ;
 <br>
 <div>A. Count of CC and SQD results</div>
 <br>
-<div>While the majority of respondents know the existence of a Citizen's Charter(CC), 49% of clients were still unaware of the CC. 49% of Clients were still unaware of the CC.</div>
+<div>While the majority of respondents know the existence of a Citizen's Charter(CC), {{$percentage_cc1_3}}% of clients were still unaware of the CC.</div>
 <br>
-<div>Meanwhile, among those that knew the CC, 77% were able to see ARTA's CC. However, only 34% of clients were able to use it as a guide for their service.</div>
+<div>Meanwhile, among those that knew the CC, {{$percentage_cc2_1}}% were able to see ARTA's CC. However, only {{$percentage_cc3_1}}% of clients were able to use it as a guide for their service.</div>
 <br>
 <table border=1 style="width:100%">
 <thead class="table">
@@ -424,7 +424,23 @@ padding-bottom: 72px ;
 </tbody>
 </table>
 <br>
-<div>Meanwhile, most repondents were "Very Satisfied" with ARTA in terms of the service quality dimensions, recording score range of 4.55-4.72.</div>
+<div>
+@if($result_sqd[0]->total_rating <= 1.00 || $result_sqd[0]->total_rating >=1.49)
+<p>Meanwhile, most repondents were  Very Unsatisfied</p>
+@elseif($result_sqd[0]->total_rating <= 1.50 || $result_sqd[0]->total_rating >=2.49)
+<p>Meanwhile, most repondents were  Unsatisfied</p>
+@elseif($result_sqd[0]->total_rating <= 2.50 || $result_sqd[0]->total_rating >=3.49)
+<p>Meanwhile, most repondents were  Neither Unsatisfied nor Satisfied</p>
+@elseif($result_sqd[0]->total_rating <= 3.50 || $result_sqd[0]->total_rating >=4.49)
+<p>Meanwhile, most repondents were Satisfied</p>
+@elseif($result_sqd[0]->total_rating <= 4.50 || $result_sqd[0]->total_rating >=5.00)
+<p>Meanwhile, most repondents were  Very Satisfied</p>
+@else
+
+@endif
+with ARTA in terms of the service quality dimensions, recording score range of 
+
+4.55-4.72.</div>
 <br>
 <div>The data below shows the breakdown of the results per service quality dimension.</div>
 <br>
